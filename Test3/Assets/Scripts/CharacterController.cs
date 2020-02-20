@@ -14,7 +14,10 @@ public class CharacterController : MonoBehaviour
     public float CheckRadius;
     public LayerMask WhatIsGround;
     private int Jumps;
-    public int ExtraJumpCount; 
+    public int ExtraJumpCount;
+    private float JumpTimeCounter;
+    public float JumpTime;
+    private bool Jumping;
     private void Start()
     {
         Jumps = ExtraJumpCount;
@@ -22,7 +25,7 @@ public class CharacterController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Grounded = Physics2D.OverlapCircle(GroundCheck.position,CheckRadius, WhatIsGround);
+        Grounded = Physics2D.OverlapCircle(GroundCheck.position, CheckRadius, WhatIsGround);
         MoveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         if (!facingRight && MoveInput > 0) Flip();
@@ -31,10 +34,10 @@ public class CharacterController : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(Grounded);
-       if (Grounded) Jumps = ExtraJumpCount;
+        if (Grounded) Jumps = ExtraJumpCount;
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
+            Jumping = true;
             rb.velocity = Vector2.up * JumpForce;
             Jumps--;
         }
@@ -42,6 +45,18 @@ public class CharacterController : MonoBehaviour
         {
             rb.velocity = Vector2.up * JumpForce;
         }
+        if (Input.GetKey(KeyCode.UpArrow) && Jumping)
+        {
+            if (JumpTimeCounter > 0)
+            {
+                rb.velocity = Vector2.up * JumpForce;
+                JumpTimeCounter -= Time.deltaTime;
+            }
+            else Jumping = false;
+
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow)) { Jumping = false; JumpTimeCounter = JumpTime; }
+        
     }
     void Flip()
     {
