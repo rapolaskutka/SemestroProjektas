@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     public float speed;
     public float JumpForce;
@@ -34,6 +34,10 @@ public class CharacterController : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine("DashMove");
+        }
         if (Grounded) Jumps = ExtraJumpCount;
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
@@ -56,7 +60,14 @@ public class CharacterController : MonoBehaviour
 
         }
         if (Input.GetKeyUp(KeyCode.UpArrow)) { Jumping = false; JumpTimeCounter = JumpTime; }
+     
         
+    }
+    IEnumerator DashMove()
+    {
+        speed += 30;
+        yield return new WaitForSeconds(.3f);
+        speed -= 30;
     }
     void Flip()
     {

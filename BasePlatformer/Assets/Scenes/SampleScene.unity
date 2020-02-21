@@ -156,7 +156,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 7
   m_Material: {fileID: 6200000, guid: f0d8102c64d92be488db6378c600fa86, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -175,7 +175,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.039696693, y: -0.039696693}
+  m_Offset: {x: -0.08009863, y: -0.034487724}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -186,7 +186,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0571041, y: 1.1941776}
+  m_Size: {x: 0.9216833, y: 1.1837597}
   m_EdgeRadius: 0
 --- !u!212 &355680773
 SpriteRenderer:
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  JumpForce: 20
+  JumpForce: 15
   GroundCheck: {fileID: 1910050409}
   CheckRadius: 0.5
   WhatIsGround:
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 1441099182}
   - component: {fileID: 1441099181}
   - component: {fileID: 1441099184}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: One-WayPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
