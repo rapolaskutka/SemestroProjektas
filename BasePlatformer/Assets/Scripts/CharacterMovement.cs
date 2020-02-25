@@ -113,8 +113,7 @@ public class CharacterMovement : MonoBehaviour
         {
             islide = false;
             Jumps--;
-            //Vector2 force = new Vector2(wallJumpF * wallJumpD.x * -moveDir, wallJumpF * wallJumpD.y);
-            rb.AddForce(facingRight ? Vector2.left * wallJumpF : Vector2.right * wallJumpF);
+            StartCoroutine("WallJump");
         }
         else
         {
@@ -137,6 +136,15 @@ public class CharacterMovement : MonoBehaviour
             touch = false;
         }
     }
+    IEnumerator WallJump()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            rb.AddForce(facingRight ? Vector2.left * wallJumpF : Vector2.right * wallJumpF);
+            yield return new WaitForSeconds(.016f);
+        }       
+    }
+   
     IEnumerator DashMove()
     {
         speed += 30;
