@@ -275,7 +275,7 @@ MonoBehaviour:
   ExtraJumpCount: 1
   JumpTime: 0.2
   wallHopF: 0
-  wallJumpF: 100
+  wallJumpF: 200
   wallDistance: 0
   wallHopD: {x: 0, y: 0}
   wallJumpD: {x: 0, y: 0}
@@ -383,7 +383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357462702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.295705, y: -25.153, z: -10}
+  m_LocalPosition: {x: -12.297293, y: -25.153, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -872,7 +872,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971183057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.295705, y: -25.153, z: -10}
+  m_LocalPosition: {x: -12.297293, y: -25.153, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1564479708}
