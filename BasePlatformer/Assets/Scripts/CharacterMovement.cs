@@ -18,10 +18,26 @@ public class CharacterMovement : MonoBehaviour
     private float JumpTimeCounter;
     public float JumpTime;
     private bool Jumping;
+    public bool isTouchingWall = false;
+    public float wallHopF;
+    public float wallJumpF;
+    public float wallDistance;
+    private int facedir = 1;
+    private bool touch;
+    public Transform wallCheck;
+    private RaycastHit2D wallCheckHit;
+    public Vector2 wallHopD;
+    public Vector2 wallJumpD;
+    public float wallSlideSpeed;
+    private float moveDir;
+    private bool islide;
     private void Start()
     {
         Jumps = ExtraJumpCount;
         rb = GetComponent<Rigidbody2D>();
+        wallHopD.Normalize();
+        wallJumpD.Normalize();
+
     }
     void FixedUpdate()
     {
@@ -31,19 +47,53 @@ public class CharacterMovement : MonoBehaviour
         if (!facingRight && MoveInput > 0) Flip();
         else if (facingRight && MoveInput < 0) Flip();
 
+        if (wallCheck)
+        {
+            wallCheckHit = Physics2D.Raycast(wallCheck.position, wallCheck.right, wallDistance, WhatIsGround);
+            if (wallCheckHit)
+            {
+                Debug.Log("Touching");
+            }
+            Debug.Log(wallCheck.position.ToString());
+            Debug.Log(rb.transform.position.ToString());
+        }
+        ApplyMovement();
+
+    }
+    public void ApplyMovement()
+    {
+        if(islide)
+        {
+            if(rb.velocity.y < -wallSlideSpeed)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
+            }
+        }
+    }
+    public void CheckIfSliding()
+    {
+        if(touch && !Grounded && rb.velocity.y < 0)
+        {
+            islide = true;
+        }
+        else
+        {
+            islide = false;
+        }
     }
     void Update()
     {
+        CheckIfSliding();
+        moveDir = Input.GetAxisRaw("Horizontal");
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine("DashMove");
         }
-        if (Grounded) Jumps = ExtraJumpCount;
+        if (Grounded || islide) Jumps = ExtraJumpCount;
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
             Jumping = true;
-            rb.velocity = Vector2.up * JumpForce;
-            Jumps--;
+            Jump();
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps == 0 && Grounded)
         {
@@ -63,6 +113,44 @@ public class CharacterMovement : MonoBehaviour
      
         
     }
+    public void Jump()
+    {
+
+        if (islide && moveDir == 0)
+        {
+            islide = false;
+            Jumps--;
+            Vector2 force = new Vector2(wallHopF * wallHopD.x * -facedir, wallHopF * wallHopD.y);
+            rb.AddForce(force, ForceMode2D.Impulse);
+        }
+        else if ((islide || touch) && moveDir != 0)
+        {
+            islide = false;
+            Jumps--;
+            Vector2 force = new Vector2(wallJumpF * wallJumpD.x * moveDir, wallJumpF * wallJumpD.y);
+            rb.AddForce(force, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.velocity = Vector2.up * JumpForce;
+            Jumps--;
+        }
+    }
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.name.Equals("Bruh"))
+        {
+            touch = true;
+        }
+
+    }
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Equals("Bruh"))
+        {
+            touch = false;
+        }
+    }
     IEnumerator DashMove()
     {
         speed += 30;
@@ -71,6 +159,10 @@ public class CharacterMovement : MonoBehaviour
     }
     void Flip()
     {
+        if(islide)
+        {
+            facedir *= -1;
+        }
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
     }
