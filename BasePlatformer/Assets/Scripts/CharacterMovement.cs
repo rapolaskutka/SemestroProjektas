@@ -18,22 +18,14 @@ public class CharacterMovement : MonoBehaviour
     private float JumpTimeCounter;
     public float JumpTime;
     private bool Jumping;
-    public float wallHopF;
-    public float wallJumpF;
-    public float wallDistance;
-    private int facedir = 1;
+    public float WallJumpForce;
     private bool touch;
-    public Vector2 wallHopD;
-    public Vector2 wallJumpD;
     public float wallSlideSpeed;
-    private float moveDir;
     private bool islide;
     private void Start()
     {
         Jumps = ExtraJumpCount;
         rb = GetComponent<Rigidbody2D>();
-        wallHopD.Normalize();
-        wallJumpD.Normalize();
 
     }
     void FixedUpdate()
@@ -43,10 +35,10 @@ public class CharacterMovement : MonoBehaviour
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         if (!facingRight && MoveInput > 0) Flip();
         else if (facingRight && MoveInput < 0) Flip();
-        ApplyMovement();
+        ApplySliding();
 
     }
-    public void ApplyMovement()
+    public void ApplySliding()
     {
         if(islide)
         {
@@ -70,7 +62,6 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         CheckIfSliding();
-        moveDir = Input.GetAxisRaw("Horizontal");
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine("DashMove");
@@ -83,7 +74,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps == 0 && Grounded)
         {
-            rb.velocity = Vector2.up * JumpForce;
+            Jump();
         }
         if (Input.GetKey(KeyCode.UpArrow) && Jumping)
         {
@@ -96,19 +87,11 @@ public class CharacterMovement : MonoBehaviour
 
         }
         if (Input.GetKeyUp(KeyCode.UpArrow)) { Jumping = false; JumpTimeCounter = JumpTime; }
-     
-        
     }
     public void Jump()
     {
 
-        if (islide && moveDir == 0)
-        {
-            islide = false;
-            Jumps--;
-            StartCoroutine("WallJump");
-        }
-        else if ((islide || touch) && moveDir != 0)
+        if ((islide || touch) )
         {
             islide = false;
             Jumps--;
@@ -120,28 +103,15 @@ public class CharacterMovement : MonoBehaviour
             Jumps--;
         }
     }
-    public void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.gameObject.name.Equals("Bruh"))
-        {
-            touch = true;
-        }
 
-    }
-    public void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.name.Equals("Bruh"))
-        {
-            touch = false;
-        }
-    }
     IEnumerator WallJump()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 24; i++)
         {
-            rb.AddForce(facingRight ? Vector2.left * wallJumpF : Vector2.right * wallJumpF);
+            rb.AddForce(facingRight ? Vector2.left * WallJumpForce : Vector2.right * WallJumpForce);
             yield return new WaitForSeconds(0.005f);
-        }       
+        }
+        Flip();
     }
    
 
@@ -153,11 +123,22 @@ public class CharacterMovement : MonoBehaviour
     }
     void Flip()
     {
-        if(islide)
-        {
-            facedir *= -1;
-        }
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
+    }
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Equals("TestWalls"))
+        {
+            touch = true;
+        }
+
+    }
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Equals("TestWalls"))
+        {
+            touch = false;
+        }
     }
 }
