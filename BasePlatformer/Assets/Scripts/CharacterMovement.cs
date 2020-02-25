@@ -18,14 +18,11 @@ public class CharacterMovement : MonoBehaviour
     private float JumpTimeCounter;
     public float JumpTime;
     private bool Jumping;
-    public bool isTouchingWall = false;
     public float wallHopF;
     public float wallJumpF;
     public float wallDistance;
     private int facedir = 1;
     private bool touch;
-    public Transform wallCheck;
-    private RaycastHit2D wallCheckHit;
     public Vector2 wallHopD;
     public Vector2 wallJumpD;
     public float wallSlideSpeed;
@@ -46,17 +43,6 @@ public class CharacterMovement : MonoBehaviour
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         if (!facingRight && MoveInput > 0) Flip();
         else if (facingRight && MoveInput < 0) Flip();
-
-        if (wallCheck)
-        {
-            wallCheckHit = Physics2D.Raycast(wallCheck.position, wallCheck.right, wallDistance, WhatIsGround);
-            if (wallCheckHit)
-            {
-                Debug.Log("Touching");
-            }
-            Debug.Log(wallCheck.position.ToString());
-            Debug.Log(rb.transform.position.ToString());
-        }
         ApplyMovement();
 
     }
@@ -127,8 +113,8 @@ public class CharacterMovement : MonoBehaviour
         {
             islide = false;
             Jumps--;
-            Vector2 force = new Vector2(wallJumpF * wallJumpD.x * moveDir, wallJumpF * wallJumpD.y);
-            rb.AddForce(force, ForceMode2D.Impulse);
+            //Vector2 force = new Vector2(wallJumpF * wallJumpD.x * -moveDir, wallJumpF * wallJumpD.y);
+            rb.AddForce(facingRight ? Vector2.left * wallJumpF : Vector2.right * wallJumpF);
         }
         else
         {
