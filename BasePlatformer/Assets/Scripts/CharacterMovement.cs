@@ -40,7 +40,7 @@ public class CharacterMovement : MonoBehaviour
     }
     public void ApplySliding()
     {
-        if (islide && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) && islide))
         {
             if (rb.velocity.y < -wallSlideSpeed)
             {
