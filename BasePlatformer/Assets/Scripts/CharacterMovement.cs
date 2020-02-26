@@ -47,6 +47,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Grounded) Jumps = JumpCount;
         if (TouchLeft || TouchRight) Jumps = JumpCount - 1;
+        if (TouchLeft || TouchRight & speed > 20) rb.velocity = Vector2.zero;
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
@@ -160,7 +161,9 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator DashMove()
     {
         speed += 30;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         yield return new WaitForSeconds(.2f);
+        rb.constraints = RigidbodyConstraints2D.None;
         speed -= 30;
     }
     void Flip()
