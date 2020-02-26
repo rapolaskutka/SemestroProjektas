@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
     public Transform GroundCheck;
     public float CheckRadius;
     public LayerMask WhatIsGround;
+    public LayerMask WhatIsWall;
     private int Jumps;
     public int ExtraJumpCount;
     private float JumpTimeCounter;
@@ -35,9 +36,10 @@ public class CharacterMovement : MonoBehaviour
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         if (!facingRight && MoveInput > 0) Flip();
         else if (facingRight && MoveInput < 0) Flip();
-        ApplySliding();
+        ApplySliding(); 
 
     }
+
     public void ApplySliding()
     {
         if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && islide)
@@ -64,6 +66,8 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
+        touch = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.6f, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.6f, transform.position.y - 0.1f), WhatIsWall);
+        Debug.Log(touch);
         CheckIfSliding();
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -140,20 +144,5 @@ public class CharacterMovement : MonoBehaviour
     {
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
-    }
-    public void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.name.Equals("TestWalls"))
-        {
-            touch = true;
-        }
-
-    }
-    public void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.name.Equals("TestWalls"))
-        {
-            touch = false;
-        }
     }
 }
