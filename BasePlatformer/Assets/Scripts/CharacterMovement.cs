@@ -40,9 +40,9 @@ public class CharacterMovement : MonoBehaviour
     }
     public void ApplySliding()
     {
-        if(islide)
+        if (islide && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
         {
-            if(rb.velocity.y < -wallSlideSpeed)
+            if (rb.velocity.y < -wallSlideSpeed)
             {
                 rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
             }
@@ -50,7 +50,7 @@ public class CharacterMovement : MonoBehaviour
     }
     public void CheckIfSliding()
     {
-        if(touch && !Grounded && rb.velocity.y < 0)
+        if (touch && !Grounded && rb.velocity.y < 0)
         {
             islide = true;
         }
@@ -91,7 +91,7 @@ public class CharacterMovement : MonoBehaviour
     public void Jump()
     {
 
-        if ((islide || touch) )
+        if ((islide || touch))
         {
             islide = false;
             Jumps--;
@@ -106,15 +106,26 @@ public class CharacterMovement : MonoBehaviour
 
     IEnumerator WallJump()
     {
-        Flip();
-        for (int i = 0; i < 30; i++)
+        if (facingRight)
         {
-            rb.AddForce(facingRight ? Vector2.left * WallJumpForce : Vector2.right * WallJumpForce);
-            yield return new WaitForSeconds(0.005f);
+            for (int i = 0; i < 20; i++)
+            {
+                rb.AddForce(Vector2.left * WallJumpForce);
+                yield return new WaitForSeconds(0.005f);
+            }
         }
-       
+        else
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                rb.AddForce(Vector2.right * WallJumpForce);
+                yield return new WaitForSeconds(0.005f);
+            }
+        }
+
+
     }
-   
+
 
     IEnumerator DashMove()
     {
