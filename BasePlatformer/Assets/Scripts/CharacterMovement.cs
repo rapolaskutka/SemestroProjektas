@@ -106,12 +106,13 @@ public class CharacterMovement : MonoBehaviour
 
     IEnumerator WallJump()
     {
-        for (int i = 0; i < 24; i++)
+        Flip();
+        for (int i = 0; i < 30; i++)
         {
             rb.AddForce(facingRight ? Vector2.left * WallJumpForce : Vector2.right * WallJumpForce);
             yield return new WaitForSeconds(0.005f);
         }
-        Flip();
+       
     }
    
 
