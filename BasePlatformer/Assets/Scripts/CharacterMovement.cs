@@ -23,6 +23,9 @@ public class CharacterMovement : MonoBehaviour
     private bool TouchLeft;
     public float wallSlideSpeed;
     private bool islide;
+
+    public float DashCooldown;
+    private float DashCooldownTimer;
     private void Start()
     {
         Jumps = ExtraJumpCount;
@@ -39,6 +42,75 @@ public class CharacterMovement : MonoBehaviour
         ApplySliding();
 
     }
+    void Update()
+    {
+        CoolDownTicker();
+        CollisionChecks();
+        DashCheck();
+        if (Grounded || TouchLeft || TouchRight) Jumps = ExtraJumpCount;
+        JumpCheck();
+        JumpHeightClocker();
+        if (Input.GetKeyUp(KeyCode.UpArrow)) { Jumping = false; JumpTimeCounter = JumpTime; }
+    }
+
+    private void JumpHeightClocker()
+    {
+        if (Input.GetKey(KeyCode.UpArrow) && Jumping)
+        {
+            if (JumpTimeCounter > 0)
+            {
+                rb.velocity = Vector2.up * JumpForce;
+                JumpTimeCounter -= Time.deltaTime;
+            }
+            else Jumping = false;
+
+        }
+    }
+
+    private void JumpCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
+        {
+            Jumping = true;
+            Jump();
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps == 0 && Grounded)
+        {
+            Jumping = true;
+            Jump();
+        }
+    }
+
+    private void DashCheck()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && DashCooldownTimer == 0)
+        {
+            StartCoroutine("DashMove");
+            DashCooldownTimer = DashCooldown;
+        }
+    }
+
+    private void CoolDownTicker()
+    {
+        if (DashCooldownTimer > 0) DashCooldownTimer -= Time.deltaTime;
+        if (DashCooldownTimer < 0) DashCooldownTimer = 0;
+    }
+
+    private void CollisionChecks()
+    {
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
+        {
+            islide = true;
+        }
+        else
+        {
+            islide = false;
+        }
+        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.45f, transform.position.y - 0.1f), WhatIsWall);
+        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.45f, transform.position.y - 0.1f), WhatIsWall);
+    }
+
+  
 
     public void ApplySliding()
     {
@@ -53,55 +125,14 @@ public class CharacterMovement : MonoBehaviour
 
         }
     }
-    public void CheckIfSliding()
-    {
-        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
-        {
-            islide = true;
-        }
-        else
-        {
-            islide = false;
-        }
-    }
-    void Update()
-    {
-        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.6f, transform.position.y - 0.1f), WhatIsWall);
-        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.6f, transform.position.y - 0.1f), WhatIsWall);
-        CheckIfSliding();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine("DashMove");
-        }
-        if (Grounded || TouchLeft || TouchRight) Jumps = ExtraJumpCount;
-        if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
-        {
-            Jumping = true;
-            Jump();
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps == 0 && Grounded)
-        {
-            Jump();
-        }
-        if (Input.GetKey(KeyCode.UpArrow) && Jumping)
-        {
-            if (JumpTimeCounter > 0)
-            {
-                rb.velocity = Vector2.up * JumpForce;
-                JumpTimeCounter -= Time.deltaTime;
-            }
-            else Jumping = false;
 
-        }
-        if (Input.GetKeyUp(KeyCode.UpArrow)) { Jumping = false; JumpTimeCounter = JumpTime; }
-    }
     public void Jump()
     {
 
         if ((TouchLeft || TouchRight))
         {
             islide = false;
-            Jumps--;
+           
             StartCoroutine("WallJump");
         }
         else
@@ -113,6 +144,7 @@ public class CharacterMovement : MonoBehaviour
 
     IEnumerator WallJump()
     {
+      
         if (TouchRight)
         {
             for (int i = 0; i < 20; i++)
@@ -129,11 +161,9 @@ public class CharacterMovement : MonoBehaviour
                 yield return new WaitForSeconds(0.005f);
             }
         }
-
+        Jumps--;
 
     }
-
-
     IEnumerator DashMove()
     {
         speed += 30;
