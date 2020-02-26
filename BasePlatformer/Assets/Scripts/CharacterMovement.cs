@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -45,8 +46,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-        if (Grounded) Jumps = JumpCount;
-        if (TouchLeft || TouchRight) Jumps = JumpCount - 1;
+        if (Grounded || TouchLeft || TouchRight) Jumps = JumpCount;
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
@@ -184,6 +184,18 @@ public class CharacterMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
             }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Dead") 
+        {
+            Scene currentscene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentscene.name);
+        }
+        if (collision.gameObject.tag == "TP") 
+        {
+            SceneManager.LoadScene("Best");
         }
     }
 
