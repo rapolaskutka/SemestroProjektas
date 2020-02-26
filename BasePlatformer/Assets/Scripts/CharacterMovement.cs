@@ -9,9 +9,8 @@ public class CharacterMovement : MonoBehaviour
     private float MoveInput;
     private Rigidbody2D rb;
     private bool facingRight = true;
-    public bool Grounded;
+    private bool Grounded;
     public Transform GroundCheck;
-    public float CheckRadius;
     public LayerMask WhatIsGround;
     public LayerMask WhatIsWall;
     private int Jumps;
@@ -20,8 +19,8 @@ public class CharacterMovement : MonoBehaviour
     public float JumpTime;
     private bool Jumping;
     public float WallJumpForce;
-    public bool TouchRight;
-    public bool TouchLeft;
+    private bool TouchRight;
+    private bool TouchLeft;
     public float wallSlideSpeed;
     private bool islide;
     private void Start()
@@ -32,7 +31,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Grounded = Physics2D.OverlapCircle(GroundCheck.position, CheckRadius, WhatIsGround);
+        Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
         MoveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         if (!facingRight && MoveInput > 0) Flip();
