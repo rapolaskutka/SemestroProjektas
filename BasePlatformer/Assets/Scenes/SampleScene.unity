@@ -268,10 +268,10 @@ MonoBehaviour:
   speed: 5
   JumpForce: 12
   GroundCheck: {fileID: 1910050409}
-  CheckRadius: 0.5
+  CheckRadius: 0.1
   WhatIsGround:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   ExtraJumpCount: 1
   JumpTime: 0.2
   WallJumpForce: 300
@@ -379,7 +379,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357462702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.2965555, y: -25.153, z: -10}
+  m_LocalPosition: {x: -12.297293, y: -25.153, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 851724576}
   - component: {fileID: 851724575}
   - component: {fileID: 851724574}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TestWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1165,7 +1165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971183057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.2965555, y: -25.153, z: -10}
+  m_LocalPosition: {x: -12.297293, y: -25.153, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1564479708}
@@ -1508,7 +1508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867209259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16, y: -0.08, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 608304911}

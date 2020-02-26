@@ -40,12 +40,15 @@ public class CharacterMovement : MonoBehaviour
     }
     public void ApplySliding()
     {
-        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) && islide))
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && islide)
         {
-            if (rb.velocity.y < -wallSlideSpeed)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
-            }
+           
+                if (rb.velocity.y < -wallSlideSpeed)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
+                }
+            
+        
         }
     }
     public void CheckIfSliding()
@@ -91,7 +94,7 @@ public class CharacterMovement : MonoBehaviour
     public void Jump()
     {
 
-        if ((islide || touch))
+        if ((islide || touch) && !Grounded)
         {
             islide = false;
             Jumps--;
