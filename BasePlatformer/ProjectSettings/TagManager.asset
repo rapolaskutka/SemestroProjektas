@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dead
   - TP
+  - Water
   layers:
   - Default
   - TransparentFX

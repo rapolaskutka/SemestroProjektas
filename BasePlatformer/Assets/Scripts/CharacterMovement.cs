@@ -171,10 +171,6 @@ public class CharacterMovement : MonoBehaviour
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
     }
-
-
-
-
     public void ApplySliding()
     {
         if (islide)
@@ -186,6 +182,34 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Dead")
+        {
+            Scene currentscene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentscene.name);
+        }
+        if (collision.gameObject.tag == "TP")
+        {
+            SceneManager.LoadScene("Best");
+        }
+        if (collision.gameObject.tag == "Water")
+        {
+            JumpCount = 999;
+            speed -= 2f ;
+            JumpForce -= 5;
+            
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Water")
+        {
+            Jumps = 2;
+            JumpCount = 2;
+            speed += 2f;
+            JumpForce += 5;
+        }
+    }
 
 }
