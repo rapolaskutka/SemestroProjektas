@@ -34,6 +34,7 @@ public class CharacterMovement : MonoBehaviour
     {
         Jumps = JumpCount;
         rb = GetComponent<Rigidbody2D>();
+        JumpTimeCounter = JumpTime;
 
     }
     void FixedUpdate()
@@ -162,12 +163,12 @@ public class CharacterMovement : MonoBehaviour
     }
     IEnumerator DashMove()
     {
-        speed += 30;
+        speed += 20;
         rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; 
         yield return new WaitForSeconds(.2f);
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        speed -= 30; 
+        speed -= 20; 
     }
     void Flip()
     {
