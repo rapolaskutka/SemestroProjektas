@@ -189,8 +189,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Dead")
         {
-            Scene currentscene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentscene.name);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if (collision.gameObject.tag == "TP")
         {
@@ -202,7 +202,7 @@ public class CharacterMovement : MonoBehaviour
             JumpCount = 9999;
             speed -= 2f ;
             JumpForce -= 3;
-            
+            rb.gravityScale = 2;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -221,6 +221,7 @@ public class CharacterMovement : MonoBehaviour
         JumpCount = 2;
         speed += 2f;
         JumpForce += 3;
+        rb.gravityScale = 4.2f;
         Inwater = false;
     }
     private void OnTriggerStay2D(Collider2D collision)
