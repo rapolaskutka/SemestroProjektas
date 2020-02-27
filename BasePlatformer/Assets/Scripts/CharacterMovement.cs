@@ -26,6 +26,7 @@ public class CharacterMovement : MonoBehaviour
     public float wallSlideSpeed;
     private bool islide;
     public bool HeadHitCheck;
+   public bool Inwater;
 
     public float DashCooldown;
     private float DashCooldownTimer;
@@ -51,7 +52,8 @@ public class CharacterMovement : MonoBehaviour
         CollisionChecks();
         DashCheck();
         JumpCheck();
-        JumpHeightClocker();
+        if (!Inwater) JumpHeightClocker();
+
         if (Input.GetKeyUp(KeyCode.UpArrow)) { Jumping = false; JumpTimeCounter = JumpTime; }
         if (HeadHitCheck)
         {
@@ -107,6 +109,7 @@ public class CharacterMovement : MonoBehaviour
         else
         {
             rb.velocity = Vector2.up * JumpForce;
+            if(!Inwater)
             StartCoroutine("RemoveJump");
         }
     }
@@ -195,9 +198,10 @@ public class CharacterMovement : MonoBehaviour
         }
         if (collision.gameObject.tag == "Water")
         {
-            JumpCount = 999;
+            Jumps = 9999;
+            JumpCount = 9999;
             speed -= 2f ;
-            JumpForce -= 5;
+            JumpForce -= 3;
             
         }
     }
@@ -205,10 +209,25 @@ public class CharacterMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Water")
         {
-            Jumps = 2;
-            JumpCount = 2;
-            speed += 2f;
-            JumpForce += 5;
+            StartCoroutine("Restore");
+        }
+
+    }
+    
+    IEnumerator Restore()
+    {
+        yield return new WaitForSeconds(.1f);
+        Jumps = 2;
+        JumpCount = 2;
+        speed += 2f;
+        JumpForce += 3;
+        Inwater = false;
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Water") 
+        {
+            Inwater = true;
         }
     }
 

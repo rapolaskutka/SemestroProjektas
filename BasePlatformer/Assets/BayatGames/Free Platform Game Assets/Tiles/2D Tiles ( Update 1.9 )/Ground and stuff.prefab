@@ -59,19 +59,45 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: -1, y: 2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: f191da35781a3e24ba712a615aa2181c, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: e8ff188eef5cd1942a8cddcd7514f864, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: b6bae40f0902a1b4899839c0b611dce0, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: fa05555482adae946af3384c2de653a5, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: a50c02fd9bd8995489907357331e744d, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 66803eb4a47f1cf4387d652c3627bf85, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: e17c33bf944d693428c83a80a7735f47, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 929f472c3715341478eced70184ceada, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 2
+  - m_RefCount: 4
     m_Data:
       e00: 1
       e01: 0
@@ -90,13 +116,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 2
+  - m_RefCount: 4
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -1, y: -1, z: 0}
-  m_Size: {x: 1, y: 2, z: 1}
+  m_Size: {x: 1, y: 4, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
