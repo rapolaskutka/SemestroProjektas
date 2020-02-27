@@ -186,17 +186,6 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Dead") 
-        {
-            Scene currentscene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentscene.name);
-        }
-        if (collision.gameObject.tag == "TP") 
-        {
-            SceneManager.LoadScene("Best");
-        }
-    }
+   
 
 }
