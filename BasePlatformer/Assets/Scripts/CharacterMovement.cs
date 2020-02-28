@@ -26,7 +26,9 @@ public class CharacterMovement : MonoBehaviour
     public float wallSlideSpeed;
     private bool islide;
     public bool HeadHitCheck;
-   public bool Inwater;
+    public bool Inwater;
+
+    public Animator animation;
 
     public float DashCooldown;
     private float DashCooldownTimer;
@@ -61,6 +63,9 @@ public class CharacterMovement : MonoBehaviour
             JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
+
+        animation.SetBool("Jump", Input.GetKeyDown(KeyCode.UpArrow));
+        animation.SetFloat("Vertical_speed", Mathf.Abs(rb.velocity.y));
     }
     private void CollisionChecks()
     {
