@@ -14,7 +14,7 @@ public class Hat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       if(collision.name != "Character")
-       Destroy(gameObject);
+        rb.velocity *= -1;
+        if (collision.name == "Character") Destroy(gameObject);
     }
 }
