@@ -27,13 +27,7 @@ public class CharacterMovement : MonoBehaviour
     private bool islide;
     public bool HeadHitCheck;
     public bool Inwater;
-<<<<<<< HEAD
-
     public Animator animation;
-=======
-    public int DiveSpeed;
->>>>>>> dec68d10354bdbe214c1be74fde3c13d37a8cdbc
-
     public float DashCooldown;
     private float DashCooldownTimer;
     private void Start()
@@ -60,28 +54,24 @@ public class CharacterMovement : MonoBehaviour
         DashCheck();
         JumpCheck();
         if (!Inwater) JumpHeightClocker();
-
-        if (Input.GetKeyUp(KeyCode.UpArrow)) { Jumping = false; JumpTimeCounter = JumpTime; }
+        if (Input.GetKey(KeyCode.DownArrow) && Inwater) rb.gravityScale = 6;
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            Jumping = false; 
+            JumpTimeCounter = JumpTime;
+          
+        }
+        if (Input.GetKeyUp(KeyCode.DownArrow) && Inwater)rb.gravityScale =1f;
         if (HeadHitCheck)
         {
             JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
-<<<<<<< HEAD
 
         animation.SetBool("Jump", Input.GetKeyDown(KeyCode.UpArrow));
         animation.SetFloat("Vertical_speed", Mathf.Abs(rb.velocity.y));
-=======
-        if(Input.GetKeyDown(KeyCode.DownArrow) && Inwater)
-        {
-            Diving();
-        }
     }
-    private void Diving()
-    {
-        rb.velocity = Vector2.down * DiveSpeed;
->>>>>>> dec68d10354bdbe214c1be74fde3c13d37a8cdbc
-    }
+
     private void CollisionChecks()
     {
         HeadHitCheck = Physics2D.OverlapCircle(CeilingCheck.position, 0.1f, WhatIsGround);
@@ -130,8 +120,8 @@ public class CharacterMovement : MonoBehaviour
         else
         {
             rb.velocity = Vector2.up * JumpForce;
-            if(!Inwater)
-            StartCoroutine("RemoveJump");
+            if (!Inwater)
+                StartCoroutine("RemoveJump");
         }
     }
 
@@ -184,11 +174,11 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator DashMove()
     {
         speed += 20;
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation; 
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         yield return new WaitForSeconds(.2f);
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        speed -= 20; 
+        speed -= 20;
     }
     void Flip()
     {
@@ -221,7 +211,7 @@ public class CharacterMovement : MonoBehaviour
         {
             Jumps = 9999;
             JumpCount = 9999;
-            speed -= 2f ;
+            speed -= 2f;
             JumpForce -= 3;
             rb.gravityScale = 1;
         }
@@ -234,11 +224,11 @@ public class CharacterMovement : MonoBehaviour
         }
 
     }
-    
+
     IEnumerator Restore()
     {
         yield return new WaitForSeconds(.1f);
-        Jumps = 2;
+        Jumps = 1;
         JumpCount = 2;
         speed += 2f;
         JumpForce += 3;
@@ -247,7 +237,7 @@ public class CharacterMovement : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Water") 
+        if (collision.gameObject.tag == "Water")
         {
             Inwater = true;
         }
