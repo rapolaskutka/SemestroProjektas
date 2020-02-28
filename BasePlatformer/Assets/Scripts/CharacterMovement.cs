@@ -26,7 +26,8 @@ public class CharacterMovement : MonoBehaviour
     public float wallSlideSpeed;
     private bool islide;
     public bool HeadHitCheck;
-   public bool Inwater;
+    public bool Inwater;
+    public int DiveSpeed;
 
     public float DashCooldown;
     private float DashCooldownTimer;
@@ -61,6 +62,14 @@ public class CharacterMovement : MonoBehaviour
             JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
+        if(Input.GetKeyDown(KeyCode.DownArrow) && Inwater)
+        {
+            Diving();
+        }
+    }
+    private void Diving()
+    {
+        rb.velocity = Vector2.down * DiveSpeed;
     }
     private void CollisionChecks()
     {
@@ -203,7 +212,7 @@ public class CharacterMovement : MonoBehaviour
             JumpCount = 9999;
             speed -= 2f ;
             JumpForce -= 3;
-            rb.gravityScale = 2;
+            rb.gravityScale = 1;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
