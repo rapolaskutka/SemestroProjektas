@@ -7,7 +7,11 @@ public class Hat : MonoBehaviour
     
     public float speed = 15f;
     private Rigidbody2D rb;
-   
+    private Throwing throwclass;
+    void Awake()
+    {
+        throwclass = GameObject.FindObjectOfType<Throwing>();
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,7 +24,7 @@ public class Hat : MonoBehaviour
         if (collision.name == "Character")
         {
             Destroy(gameObject);
-          
+            throwclass.RemoveCooldown(); 
         }
     }
 }
