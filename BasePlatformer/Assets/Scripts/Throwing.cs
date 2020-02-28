@@ -5,18 +5,23 @@ using UnityEngine;
 public class Throwing : MonoBehaviour
 {
     public Transform StartPoint;
+    public float Cooldown;
+    private float CooldownTimer;
 
     public GameObject HatPrefab;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (CooldownTimer > 0) CooldownTimer -= Time.deltaTime;
+        if (CooldownTimer < 0) CooldownTimer = 0;
+        if (Input.GetKeyDown(KeyCode.Z) && CooldownTimer == 0)
         {
-            Shoot();
+            Instantiate(HatPrefab, StartPoint.position, StartPoint.rotation);
+            CooldownTimer = Cooldown;
         }
         
     }
-    void Shoot() 
+    public void RemoveCooldown() 
     {
-        Instantiate(HatPrefab, StartPoint.position, StartPoint.rotation);
+        CooldownTimer = 0;
     }
 }
