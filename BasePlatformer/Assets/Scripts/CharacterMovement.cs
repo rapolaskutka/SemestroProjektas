@@ -28,7 +28,7 @@ public class CharacterMovement : MonoBehaviour
     private bool islide;
     public bool HeadHitCheck;
     public bool Inwater;
-   // public Animator animation;
+   public Animator animatorss;
     public float DashCooldown;
     private float DashCooldownTimer;
     private void Start()
@@ -49,19 +49,18 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-        if (Grounded || TouchLeft || TouchRight) Jumps = JumpCount;
+        if (Grounded) { Jumps = JumpCount; Jumping = false; }
         if (TouchLeft || TouchRight) Jumps = JumpCount-1;
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
         JumpCheck();
         if (!Inwater) JumpHeightClocker();
-        if (Input.GetKey(KeyCode.DownArrow) && Inwater) rb.gravityScale = 6;
+       
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            Jumping = false; 
+            Jumping = true;
             JumpTimeCounter = JumpTime;
-          
         }
         if (Input.GetKeyUp(KeyCode.DownArrow) && Inwater)rb.gravityScale =1f;
         if (HeadHitCheck )
@@ -69,9 +68,8 @@ public class CharacterMovement : MonoBehaviour
             JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
-
-      //  animation.SetBool("Jump", Input.GetKeyDown(KeyCode.UpArrow));
-     //   animation.SetFloat("Vertical_speed", Mathf.Abs(rb.velocity.y));
+        if (Input.GetKey(KeyCode.DownArrow) && Inwater) rb.gravityScale = 6;
+        animatorss.SetBool("Jumping", Jumping);
     }
 
     private void CollisionChecks()
@@ -79,27 +77,23 @@ public class CharacterMovement : MonoBehaviour
         HeadHitCheck = Physics2D.OverlapCircle(CeilingCheck.position, 0.1f, WhatIsCeiling);
         Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
         if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
-        {
             islide = true;
-        }
         else
-        {
             islide = false;
-        }
         TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
         TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
 
     }
     private void JumpHeightClocker()
     {
-        if (Input.GetKey(KeyCode.UpArrow) && Jumping)
+        if (Input.GetKey(KeyCode.UpArrow))
         {
+            Jumping = true;
             if (JumpTimeCounter > 0)
             {
                 rb.velocity = Vector2.up * JumpForce;
                 JumpTimeCounter -= Time.deltaTime;
             }
-            else Jumping = false;
 
         }
     }
@@ -108,7 +102,6 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
-            Jumping = true;
             Jump();
         }
     }

@@ -26,6 +26,8 @@ public class TutorialMovement1 : MonoBehaviour
     private bool Inwater;
     public float DashCooldown;
     private float DashCooldownTimer;
+    public Animator animatorss;
+
     private bool enabledDash = false;
     private void Start()
     {
@@ -43,6 +45,7 @@ public class TutorialMovement1 : MonoBehaviour
     }
     void Update()
     {
+        animatorss.SetBool("Jumping", Jumping);
         if (Grounded ) Jumps = JumpCount;
         CoolDownTicker();
         CollisionChecks();
