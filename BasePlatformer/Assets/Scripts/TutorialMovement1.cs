@@ -152,14 +152,12 @@ public class TutorialMovement1 : MonoBehaviour
         }
         if (collision.gameObject.tag == "EnableDash")
         {
-
             enabledDash = true;
         }
         if (collision.gameObject.tag == "EnableDoubleJump")
         {
 
             JumpCount = 2;
-            Debug.Log("ok");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
