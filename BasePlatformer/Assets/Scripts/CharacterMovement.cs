@@ -49,6 +49,7 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         if (Grounded || TouchLeft || TouchRight) Jumps = JumpCount;
+        if (TouchLeft || TouchRight) Jumps = JumpCount-1;
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
@@ -149,18 +150,20 @@ public class CharacterMovement : MonoBehaviour
         islide = false;
         if (TouchRight)
         {
-            for (int i = 0; i < 24; i++)
+            for (int i = 0; i < 30; i++)
             {
-                rb.AddForce(Vector2.left * WallJumpForce);
+                rb.AddForce(new Vector2(-WallJumpForce, 0));
                 yield return new WaitForSeconds(0.005f);
+               
             }
         }
         else
         {
-            for (int i = 0; i < 24; i++)
+            for (int i = 0; i < 30; i++)
             {
-                rb.AddForce(Vector2.right * WallJumpForce);
+                rb.AddForce(new Vector2(WallJumpForce,0));
                 yield return new WaitForSeconds(0.005f);
+               
             }
         }
         StartCoroutine("RemoveJump");
@@ -232,7 +235,7 @@ public class CharacterMovement : MonoBehaviour
         JumpCount = 2;
         speed += 2f;
         JumpForce += 3;
-        rb.gravityScale = 4.2f;
+        rb.gravityScale = 3f;
         Inwater = false;
     }
     private void OnTriggerStay2D(Collider2D collision)
