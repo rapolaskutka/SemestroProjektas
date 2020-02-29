@@ -14,6 +14,7 @@ public class CharacterMovement : MonoBehaviour
     public Transform GroundCheck;
     public Transform CeilingCheck;
     public LayerMask WhatIsGround;
+    public LayerMask WhatIsCeiling;
     public LayerMask WhatIsWall;
     private int Jumps;
     public int JumpCount;
@@ -27,7 +28,7 @@ public class CharacterMovement : MonoBehaviour
     private bool islide;
     public bool HeadHitCheck;
     public bool Inwater;
-    public Animator animation;
+   // public Animator animation;
     public float DashCooldown;
     private float DashCooldownTimer;
     private void Start()
@@ -63,19 +64,19 @@ public class CharacterMovement : MonoBehaviour
           
         }
         if (Input.GetKeyUp(KeyCode.DownArrow) && Inwater)rb.gravityScale =1f;
-        if (HeadHitCheck)
+        if (HeadHitCheck )
         {
             JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
 
-        animation.SetBool("Jump", Input.GetKeyDown(KeyCode.UpArrow));
-        animation.SetFloat("Vertical_speed", Mathf.Abs(rb.velocity.y));
+      //  animation.SetBool("Jump", Input.GetKeyDown(KeyCode.UpArrow));
+     //   animation.SetFloat("Vertical_speed", Mathf.Abs(rb.velocity.y));
     }
 
     private void CollisionChecks()
     {
-        HeadHitCheck = Physics2D.OverlapCircle(CeilingCheck.position, 0.1f, WhatIsGround);
+        HeadHitCheck = Physics2D.OverlapCircle(CeilingCheck.position, 0.1f, WhatIsCeiling);
         Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
         if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
         {
@@ -85,8 +86,8 @@ public class CharacterMovement : MonoBehaviour
         {
             islide = false;
         }
-        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.45f, transform.position.y - 0.1f), WhatIsWall);
-        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.45f, transform.position.y - 0.1f), WhatIsWall);
+        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
+        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
 
     }
     private void JumpHeightClocker()
