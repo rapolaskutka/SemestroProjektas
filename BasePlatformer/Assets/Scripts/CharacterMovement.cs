@@ -10,24 +10,25 @@ public class CharacterMovement : MonoBehaviour
     private float MoveInput;
     private Rigidbody2D rb;
     private bool facingRight = true;
-    private bool Grounded;
+    [SerializeField] bool Grounded;
     public Transform GroundCheck;
     public Transform CeilingCheck;
     public LayerMask WhatIsGround;
+    public LayerMask WhatIsCeiling;
     public LayerMask WhatIsWall;
-    private int Jumps;
+    [SerializeField] int Jumps;
     public int JumpCount;
     private float JumpTimeCounter;
     public float JumpTime;
     private bool Jumping;
     public float WallJumpForce;
-    private bool TouchRight;
-    private bool TouchLeft;
+    [SerializeField] bool TouchRight;
+    [SerializeField] bool TouchLeft;
     public float wallSlideSpeed;
     private bool islide;
     public bool HeadHitCheck;
     public bool Inwater;
-    public Animator animation;
+    public Animator animatorss;
     public float DashCooldown;
     private float DashCooldownTimer;
     private void Start()
@@ -44,48 +45,45 @@ public class CharacterMovement : MonoBehaviour
         if (!facingRight && MoveInput > 0) Flip();
         else if (facingRight && MoveInput < 0) Flip();
         ApplySliding();
-
     }
     void Update()
     {
-        if (Grounded || TouchLeft || TouchRight) Jumps = JumpCount;
+        if (Grounded) Jumps = JumpCount;
+        if (TouchLeft || TouchRight) Jumps = JumpCount - 1;
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
         JumpCheck();
         if (!Inwater) JumpHeightClocker();
-        if (Input.GetKey(KeyCode.DownArrow) && Inwater) rb.gravityScale = 6;
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        if (Input.GetKeyUp(KeyCode.UpArrow) && Jumps > 0)
         {
-            Jumping = false; 
+            Jumping = false;
             JumpTimeCounter = JumpTime;
-          
         }
-        if (Input.GetKeyUp(KeyCode.DownArrow) && Inwater)rb.gravityScale =1f;
+        if (Input.GetKey(KeyCode.DownArrow) && Inwater) rb.gravityScale = 6;
+        if (Input.GetKeyUp(KeyCode.DownArrow) && Inwater) rb.gravityScale = 1f;
         if (HeadHitCheck)
         {
             JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
 
-        animation.SetBool("Jump", Input.GetKeyDown(KeyCode.UpArrow));
-        animation.SetFloat("Vertical_speed", Mathf.Abs(rb.velocity.y));
+        animatorss.SetBool("Dashing", Dashing);
+        animatorss.SetFloat("Moving", Mathf.Abs(MoveInput));
+        
     }
 
     private void CollisionChecks()
     {
-        HeadHitCheck = Physics2D.OverlapCircle(CeilingCheck.position, 0.1f, WhatIsGround);
+        HeadHitCheck = Physics2D.OverlapCircle(CeilingCheck.position, 0.1f, WhatIsCeiling);
         Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
         if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
-        {
             islide = true;
-        }
         else
-        {
             islide = false;
-        }
-        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.45f, transform.position.y - 0.1f), WhatIsWall);
-        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.45f, transform.position.y - 0.1f), WhatIsWall);
+        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
+
+        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
 
     }
     private void JumpHeightClocker()
@@ -98,7 +96,6 @@ public class CharacterMovement : MonoBehaviour
                 JumpTimeCounter -= Time.deltaTime;
             }
             else Jumping = false;
-
         }
     }
 
@@ -106,8 +103,10 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
+            animatorss.SetTrigger("Trigger");
             Jumping = true;
             Jump();
+
         }
     }
     public void Jump()
@@ -120,8 +119,8 @@ public class CharacterMovement : MonoBehaviour
         else
         {
             rb.velocity = Vector2.up * JumpForce;
-            if (!Inwater)
-                StartCoroutine("RemoveJump");
+            if (!Inwater) StartCoroutine("RemoveJump");
+
         }
     }
 
@@ -149,18 +148,20 @@ public class CharacterMovement : MonoBehaviour
         islide = false;
         if (TouchRight)
         {
-            for (int i = 0; i < 24; i++)
+            for (int i = 0; i < 30; i++)
             {
-                rb.AddForce(Vector2.left * WallJumpForce);
+                rb.AddForce(new Vector2(-WallJumpForce, 0));
                 yield return new WaitForSeconds(0.005f);
+
             }
         }
         else
         {
-            for (int i = 0; i < 24; i++)
+            for (int i = 0; i < 30; i++)
             {
-                rb.AddForce(Vector2.right * WallJumpForce);
+                rb.AddForce(new Vector2(WallJumpForce, 0));
                 yield return new WaitForSeconds(0.005f);
+
             }
         }
         StartCoroutine("RemoveJump");
@@ -171,14 +172,17 @@ public class CharacterMovement : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         Jumps--;
     }
+    private bool Dashing = false;
     IEnumerator DashMove()
     {
+        Dashing = true;
         speed += 20;
         rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         yield return new WaitForSeconds(.2f);
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         speed -= 20;
+        Dashing = false;
     }
     void Flip()
     {
@@ -232,7 +236,7 @@ public class CharacterMovement : MonoBehaviour
         JumpCount = 2;
         speed += 2f;
         JumpForce += 3;
-        rb.gravityScale = 4.2f;
+        rb.gravityScale = 3f;
         Inwater = false;
     }
     private void OnTriggerStay2D(Collider2D collision)

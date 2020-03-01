@@ -7,6 +7,9 @@ TagManager:
   - Dead
   - TP
   - Water
+  - OWP
+  - EnableDoubleJump
+  - EnableDash
   layers:
   - Default
   - TransparentFX
