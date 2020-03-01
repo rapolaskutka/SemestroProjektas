@@ -5,45 +5,57 @@ using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour
 {
-    public float speed;
-    public float JumpForce;
+
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float JumpForce;
+    [SerializeField]
+    private Transform GroundCheck;
+    [SerializeField]
+    private Transform CeilingCheck;
+    [SerializeField]
+    private LayerMask WhatIsGround;
+    [SerializeField]
+    private LayerMask WhatIsCeiling;
+    [SerializeField]
+    private LayerMask WhatIsWall;
+    [SerializeField]
+    private int JumpCount;
+    [SerializeField]
+    private float JumpTime;
+    [SerializeField]
+    private float WallJumpForce;
+    [SerializeField]
+    private float wallSlideSpeed;
+    [SerializeField]
+
+    private float DashCooldown;
+    private Animator animatorss;
+    private bool Grounded;
     private float MoveInput;
     private Rigidbody2D rb;
     private bool facingRight = true;
-    [SerializeField] bool Grounded;
-    public Transform GroundCheck;
-    public Transform CeilingCheck;
-    public LayerMask WhatIsGround;
-    public LayerMask WhatIsCeiling;
-    public LayerMask WhatIsWall;
-    [SerializeField] int Jumps;
-    public int JumpCount;
     private float JumpTimeCounter;
-    public float JumpTime;
     private bool Jumping;
-    public float WallJumpForce;
-    [SerializeField] bool TouchRight;
-    [SerializeField] bool TouchLeft;
-    public float wallSlideSpeed;
+    private bool TouchRight;
+    private bool TouchLeft;
     private bool islide;
-    public bool HeadHitCheck;
-    public bool Inwater;
-    public Animator animatorss;
-    public float DashCooldown;
+    private bool HeadHitCheck;
+    private bool Inwater;
     private float DashCooldownTimer;
+    private int Jumps;
     private void Start()
     {
-        Jumps = JumpCount;
         rb = GetComponent<Rigidbody2D>();
+        animatorss = GetComponent<Animator>();
         JumpTimeCounter = JumpTime;
-
+        Jumps = JumpCount;
     }
     void FixedUpdate()
     {
         MoveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
-        if (!facingRight && MoveInput > 0) Flip();
-        else if (facingRight && MoveInput < 0) Flip();
         ApplySliding();
     }
     void Update()
@@ -53,8 +65,14 @@ public class CharacterMovement : MonoBehaviour
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
-        JumpCheck();
-        if (!Inwater) JumpHeightClocker();
+        // JumpCheck();
+        if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
+        {
+            Jumping = true;
+            StartCoroutine("RemoveJump");
+        }
+        JumpHeightClocker();
+
         if (Input.GetKeyUp(KeyCode.UpArrow) && Jumps > 0)
         {
             Jumping = false;
@@ -70,21 +88,8 @@ public class CharacterMovement : MonoBehaviour
 
         animatorss.SetBool("Dashing", Dashing);
         animatorss.SetFloat("Moving", Mathf.Abs(MoveInput));
-
-    }
-
-    private void CollisionChecks()
-    {
-        HeadHitCheck = Physics2D.OverlapCircle(CeilingCheck.position, 0.1f, WhatIsCeiling);
-        Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
-        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
-            islide = true;
-        else
-            islide = false;
-        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
-
-        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
-
+        if (!facingRight && MoveInput > 0) Flip();
+        else if (facingRight && MoveInput < 0) Flip();
     }
     private void JumpHeightClocker()
     {
@@ -99,13 +104,28 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+
+    private void CollisionChecks()
+    {
+        HeadHitCheck = Physics2D.OverlapCircle(CeilingCheck.position, 0.1f, WhatIsCeiling);
+        Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
+            islide = true;
+        else
+            islide = false;
+        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
+
+        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
+
+    }
+   
     private void JumpCheck()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
-            animatorss.SetTrigger("Trigger");
             Jumping = true;
             Jump();
+            animatorss.SetTrigger("Trigger");
 
         }
     }

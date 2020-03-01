@@ -133,10 +133,8 @@ GameObject:
   - component: {fileID: 215553787}
   - component: {fileID: 215553786}
   - component: {fileID: 215553785}
-  - component: {fileID: 215553784}
   - component: {fileID: 215553783}
   - component: {fileID: 215553782}
-  - component: {fileID: 215553781}
   m_Layer: 8
   m_Name: Character
   m_TagString: Player
@@ -144,33 +142,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &215553781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215553780}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aae610c92c7c234ab968976628b073f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  JumpForce: 8
-  GroundCheck: {fileID: 1056869584}
-  CeilingCheck: {fileID: 1987561997}
-  WhatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
-  WhatIsCeiling:
-    serializedVersion: 2
-    m_Bits: 512
-  WhatIsWall:
-    serializedVersion: 2
-    m_Bits: 1024
-  JumpTime: 0.2
-  DashCooldown: 3
 --- !u!114 &215553782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +149,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215553780}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7bd83e749ccb604ca4c03751dda9439, type: 3}
   m_Name: 
@@ -195,7 +166,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215553780}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: cfd460cf105a273408f4b3bace592061, type: 2}
   m_CullingMode: 0
@@ -206,38 +177,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &215553784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215553780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a205eed33a92a945a15039512434923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  JumpForce: 8
-  GroundCheck: {fileID: 1056869584}
-  CeilingCheck: {fileID: 1987561997}
-  WhatIsGround:
-    serializedVersion: 2
-    m_Bits: 1536
-  WhatIsCeiling:
-    serializedVersion: 2
-    m_Bits: 1024
-  WhatIsWall:
-    serializedVersion: 2
-    m_Bits: 1024
-  JumpCount: 2
-  JumpTime: 0.2
-  WallJumpForce: 240
-  wallSlideSpeed: 0
-  HeadHitCheck: 0
-  Inwater: 0
-  DashCooldown: 3
 --- !u!61 &215553785
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -502,7 +441,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751699284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8578944, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: 2.1340659, y: 0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1802,7 +1741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973024509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8578944, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: 2.1340659, y: 0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1036497682}
@@ -1853,7 +1792,7 @@ GameObject:
   - component: {fileID: 2064281073}
   - component: {fileID: 2064281072}
   - component: {fileID: 2064281071}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: MainGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
