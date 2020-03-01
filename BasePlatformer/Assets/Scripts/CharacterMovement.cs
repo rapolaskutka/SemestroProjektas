@@ -51,8 +51,9 @@ public class CharacterMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+
         MoveInput = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
+       rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         ApplySliding();
 
     }
@@ -85,15 +86,14 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
-            Jumping = true;
-            rb.velocity = Vector2.up * JumpForce;
             StartCoroutine("RemoveJump");
             animatorss.SetTrigger("Trigger");
+            Jumping = true;
 
         }
         if (Input.GetKey(KeyCode.UpArrow) && Jumping && JumpTimeCounter > 0)
         {
-            rb.velocity = Vector2.up * JumpForce;
+            rb.velocity = new Vector2(rb.velocity.x, JumpForce);
             JumpTimeCounter -= Time.deltaTime;
         }
         if (Input.GetKeyUp(KeyCode.UpArrow) && Jumps > 0)
