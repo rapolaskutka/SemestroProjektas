@@ -45,7 +45,7 @@ public class TutorialMovement1 : MonoBehaviour
     }
     void Update()
     {
-        animatorss.SetBool("Jumping", Jumping);
+       
         if (Grounded ) Jumps = JumpCount;
         CoolDownTicker();
         CollisionChecks();
@@ -65,6 +65,8 @@ public class TutorialMovement1 : MonoBehaviour
             JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
+        animatorss.SetBool("Dashing", Dashing);
+        animatorss.SetFloat("Moving", Mathf.Abs(MoveInput));
     }
 
     private void CollisionChecks()
@@ -93,6 +95,7 @@ public class TutorialMovement1 : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
+            animatorss.SetTrigger("Trigger");
             Jumping = true;
             rb.velocity = Vector2.up * JumpForce;
             if (!Inwater)
@@ -120,14 +123,17 @@ public class TutorialMovement1 : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         Jumps--;
     }
+    private bool Dashing = false;
     IEnumerator DashMove()
     {
+        Dashing = true;
         speed += 20;
         rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
         yield return new WaitForSeconds(.2f);
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         speed -= 20;
+        Dashing = false;
     }
     void Flip()
     {
