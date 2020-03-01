@@ -32,6 +32,7 @@ public class CharacterMovement : MonoBehaviour
 
     private float DashCooldown;
     private Animator animatorss;
+    [SerializeField]
     private bool Grounded;
     private float MoveInput;
     private Rigidbody2D rb;
@@ -57,54 +58,48 @@ public class CharacterMovement : MonoBehaviour
         MoveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         ApplySliding();
+        
     }
     void Update()
     {
-        if (Grounded) Jumps = JumpCount;
+        if (Grounded) {Jumps = JumpCount; JumpTimeCounter = JumpTime; }
         if (TouchLeft || TouchRight) Jumps = JumpCount - 1;
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
-        // JumpCheck();
-        if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
-        {
-            Jumping = true;
-            StartCoroutine("RemoveJump");
-        }
+        JumpCheck();
         JumpHeightClocker();
-
-        if (Input.GetKeyUp(KeyCode.UpArrow) && Jumps > 0)
-        {
-            Jumping = false;
-            JumpTimeCounter = JumpTime;
-        }
-        if (Input.GetKey(KeyCode.DownArrow) && Inwater) rb.gravityScale = 6;
-        if (Input.GetKeyUp(KeyCode.DownArrow) && Inwater) rb.gravityScale = 1f;
+        WaterDive();
         if (HeadHitCheck)
         {
             JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
-
         animatorss.SetBool("Dashing", Dashing);
         animatorss.SetFloat("Moving", Mathf.Abs(MoveInput));
         if (!facingRight && MoveInput > 0) Flip();
         else if (facingRight && MoveInput < 0) Flip();
     }
-    private void JumpHeightClocker()
+
+    private void WaterDive()
     {
-        if (Input.GetKey(KeyCode.UpArrow) && Jumping)
-        {
-            if (JumpTimeCounter > 0)
-            {
-                rb.velocity = Vector2.up * JumpForce;
-                JumpTimeCounter -= Time.deltaTime;
-            }
-            else Jumping = false;
-        }
+        if (Input.GetKey(KeyCode.DownArrow) && Inwater) rb.gravityScale = 6;
+        if (Input.GetKeyUp(KeyCode.DownArrow) && Inwater) rb.gravityScale = 1f;
     }
 
-
+    private void JumpHeightClocker()
+    {
+        if (Input.GetKey(KeyCode.UpArrow) && Jumping && JumpTimeCounter > 0)
+        {
+            rb.velocity = Vector2.up * JumpForce;
+            JumpTimeCounter -= Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow) && Jumps > 0)
+        {
+            Jumping = false;
+            JumpTimeCounter = JumpTime;
+        }
+    }
     private void CollisionChecks()
     {
         HeadHitCheck = Physics2D.OverlapCircle(CeilingCheck.position, 0.1f, WhatIsCeiling);
@@ -118,7 +113,7 @@ public class CharacterMovement : MonoBehaviour
         TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
 
     }
-   
+
     private void JumpCheck()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
@@ -129,7 +124,7 @@ public class CharacterMovement : MonoBehaviour
 
         }
     }
-    public void Jump()
+    private void Jump()
     {
 
         if ((TouchLeft || TouchRight))
@@ -189,7 +184,7 @@ public class CharacterMovement : MonoBehaviour
     }
     IEnumerator RemoveJump()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
         Jumps--;
     }
     private bool Dashing = false;

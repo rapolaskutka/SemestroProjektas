@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 215553786}
   - component: {fileID: 215553785}
   - component: {fileID: 215553783}
+  - component: {fileID: 215553781}
   - component: {fileID: 215553782}
   m_Layer: 8
   m_Name: Character
@@ -142,6 +143,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &215553781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215553780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a205eed33a92a945a15039512434923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  JumpForce: 8
+  GroundCheck: {fileID: 1056869584}
+  CeilingCheck: {fileID: 1987561997}
+  WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 512
+  WhatIsCeiling:
+    serializedVersion: 2
+    m_Bits: 1536
+  WhatIsWall:
+    serializedVersion: 2
+    m_Bits: 1024
+  JumpCount: 2
+  JumpTime: 0.2
+  WallJumpForce: 200
+  wallSlideSpeed: 0
+  DashCooldown: 3
+  Grounded: 0
 --- !u!114 &215553782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +198,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215553780}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: cfd460cf105a273408f4b3bace592061, type: 2}
   m_CullingMode: 0
@@ -441,7 +473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751699284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1340659, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: 2.1346533, y: 0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1741,7 +1773,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973024509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1340659, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: 2.1346533, y: 0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1036497682}
