@@ -25,17 +25,13 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private float JumpTime;
     [SerializeField]
-    private float WallJumpForce;
-    [SerializeField]
     private float wallSlideSpeed;
     [SerializeField]
-
     private float DashCooldown;
     private Animator animatorss;
-    [SerializeField]
+    private Rigidbody2D rb;
     private bool Grounded;
     private float MoveInput;
-    private Rigidbody2D rb;
     private bool facingRight = true;
     private float JumpTimeCounter;
     private bool Jumping;
@@ -58,23 +54,21 @@ public class CharacterMovement : MonoBehaviour
         MoveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         ApplySliding();
-        
+
     }
     void Update()
     {
-        if (Grounded) {Jumps = JumpCount; JumpTimeCounter = JumpTime; }
-        if (TouchLeft || TouchRight) Jumps = JumpCount - 1;
+        if (Grounded) { Jumps = JumpCount; JumpTimeCounter = JumpTime; }
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
-        JumpCheck();
-        JumpHeightClocker();
+        Jump();
         WaterDive();
-        if (HeadHitCheck)
-        {
-            JumpTimeCounter = 0;
-            rb.velocity = Vector2.zero;
-        }
+        Animations();
+    }
+
+    private void Animations()
+    {
         animatorss.SetBool("Dashing", Dashing);
         animatorss.SetFloat("Moving", Mathf.Abs(MoveInput));
         if (!facingRight && MoveInput > 0) Flip();
@@ -87,8 +81,16 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.DownArrow) && Inwater) rb.gravityScale = 1f;
     }
 
-    private void JumpHeightClocker()
+    private void Jump()
     {
+        if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
+        {
+            Jumping = true;
+            rb.velocity = Vector2.up * JumpForce;
+            StartCoroutine("RemoveJump");
+            animatorss.SetTrigger("Trigger");
+
+        }
         if (Input.GetKey(KeyCode.UpArrow) && Jumping && JumpTimeCounter > 0)
         {
             rb.velocity = Vector2.up * JumpForce;
@@ -103,6 +105,11 @@ public class CharacterMovement : MonoBehaviour
     private void CollisionChecks()
     {
         HeadHitCheck = Physics2D.OverlapCircle(CeilingCheck.position, 0.1f, WhatIsCeiling);
+        if (HeadHitCheck)
+        {
+            JumpTimeCounter = 0;
+            rb.velocity = Vector2.zero;
+        }
         Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
         if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
             islide = true;
@@ -113,33 +120,6 @@ public class CharacterMovement : MonoBehaviour
         TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
 
     }
-
-    private void JumpCheck()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
-        {
-            Jumping = true;
-            Jump();
-            animatorss.SetTrigger("Trigger");
-
-        }
-    }
-    private void Jump()
-    {
-
-        if ((TouchLeft || TouchRight))
-        {
-            StartCoroutine("WallJump");
-        }
-        else
-        {
-            rb.velocity = Vector2.up * JumpForce;
-            if (!Inwater) StartCoroutine("RemoveJump");
-
-        }
-    }
-
-
     private void DashCheck()
     {
         if (Input.GetKeyDown(KeyCode.Space) && DashCooldownTimer == 0)
@@ -153,34 +133,6 @@ public class CharacterMovement : MonoBehaviour
     {
         if (DashCooldownTimer > 0) DashCooldownTimer -= Time.deltaTime;
         if (DashCooldownTimer < 0) DashCooldownTimer = 0;
-    }
-
-
-
-    IEnumerator WallJump()
-    {
-
-        islide = false;
-        if (TouchRight)
-        {
-            for (int i = 0; i < 30; i++)
-            {
-                rb.AddForce(new Vector2(-WallJumpForce, 0));
-                yield return new WaitForSeconds(0.005f);
-
-            }
-        }
-        else
-        {
-            for (int i = 0; i < 30; i++)
-            {
-                rb.AddForce(new Vector2(WallJumpForce, 0));
-                yield return new WaitForSeconds(0.005f);
-
-            }
-        }
-        StartCoroutine("RemoveJump");
-
     }
     IEnumerator RemoveJump()
     {
@@ -243,7 +195,6 @@ public class CharacterMovement : MonoBehaviour
         }
 
     }
-
     IEnumerator Restore()
     {
         yield return new WaitForSeconds(.1f);

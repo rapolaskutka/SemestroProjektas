@@ -380,7 +380,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   JumpForce: 8
-  Grounded: 0
   GroundCheck: {fileID: 1910050409}
   CeilingCheck: {fileID: 494357670}
   WhatIsGround:
@@ -392,16 +391,9 @@ MonoBehaviour:
   WhatIsWall:
     serializedVersion: 2
     m_Bits: 1024
-  Jumps: 0
   JumpCount: 2
   JumpTime: 0.2
-  WallJumpForce: 240
-  TouchRight: 0
-  TouchLeft: 0
   wallSlideSpeed: 0
-  HeadHitCheck: 0
-  Inwater: 0
-  animatorss: {fileID: 355680776}
   DashCooldown: 0
 --- !u!95 &355680776
 Animator:
@@ -569,7 +561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357462702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.542934, y: -25.302, z: -10}
+  m_LocalPosition: {x: -13.541964, y: -25.302, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2554,7 +2546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971183057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.542934, y: -25.302, z: -10}
+  m_LocalPosition: {x: -13.541964, y: -25.302, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1564479708}
