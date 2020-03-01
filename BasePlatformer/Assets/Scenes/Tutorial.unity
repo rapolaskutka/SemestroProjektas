@@ -227,7 +227,7 @@ Transform:
   m_LocalScale: {x: 0.14927717, y: 0.09705508, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &355680770
 GameObject:
@@ -364,7 +364,7 @@ Transform:
   - {fileID: 494357670}
   - {fileID: 1882561184}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &355680775
 MonoBehaviour:
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355680770}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a205eed33a92a945a15039512434923, type: 3}
   m_Name: 
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355680770}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7aae610c92c7c234ab968976628b073f, type: 3}
   m_Name: 
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_Bits: 1024
   JumpTime: 0.2
   DashCooldown: 3
-  animatorss: {fileID: 0}
+  animatorss: {fileID: 355680776}
 --- !u!1 &357462702
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,15 +569,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357462702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD:BasePlatformer/Assets/Scenes/SampleScene.unity
-  m_LocalPosition: {x: -13.545464, y: -25.302, z: -10}
-=======
-  m_LocalPosition: {x: -12.819105, y: -25.302, z: -10}
->>>>>>> levels:BasePlatformer/Assets/Scenes/Tutorial.unity
+  m_LocalPosition: {x: -13.542934, y: -25.302, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &359398951
 GameObject:
@@ -775,7 +771,7 @@ Transform:
   - {fileID: 851724572}
   - {fileID: 1666180296}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &756010275
 GameObject:
@@ -2558,16 +2554,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971183057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD:BasePlatformer/Assets/Scenes/SampleScene.unity
-  m_LocalPosition: {x: -13.545464, y: -25.302, z: -10}
-=======
-  m_LocalPosition: {x: -12.819105, y: -25.302, z: -10}
->>>>>>> levels:BasePlatformer/Assets/Scenes/Tutorial.unity
+  m_LocalPosition: {x: -13.542934, y: -25.302, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1564479708}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &986453618
 GameObject:

@@ -40,7 +40,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        MoveInput = Input.GetAxis("Horizontal");
+        MoveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         if (!facingRight && MoveInput > 0) Flip();
         else if (facingRight && MoveInput < 0) Flip();
@@ -70,7 +70,7 @@ public class CharacterMovement : MonoBehaviour
 
         animatorss.SetBool("Dashing", Dashing);
         animatorss.SetFloat("Moving", Mathf.Abs(MoveInput));
-        
+
     }
 
     private void CollisionChecks()
@@ -144,7 +144,6 @@ public class CharacterMovement : MonoBehaviour
 
     IEnumerator WallJump()
     {
-
 
         islide = false;
         if (TouchRight)
