@@ -31,8 +31,6 @@ public class CharacterMovement : MonoBehaviour
     public Animator animatorss;
     public float DashCooldown;
     private float DashCooldownTimer;
-    public bool Jumped;
-
     private void Start()
     {
         Jumps = JumpCount;
@@ -50,14 +48,6 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-        if (Jumped == true)
-        {
-            animatorss.Play("Jump");
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Jumped = true;
-        }
         if (Grounded) Jumps = JumpCount;
         if (TouchLeft || TouchRight) Jumps = JumpCount - 1;
         CoolDownTicker();
@@ -80,6 +70,7 @@ public class CharacterMovement : MonoBehaviour
 
         animatorss.SetBool("Dashing", Dashing);
         animatorss.SetFloat("Moving", Mathf.Abs(MoveInput));
+        
     }
 
     private void CollisionChecks()
@@ -112,6 +103,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
+            animatorss.SetTrigger("Trigger");
             Jumping = true;
             Jump();
 
