@@ -40,7 +40,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        MoveInput = Input.GetAxisRaw("Horizontal");
+        MoveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         if (!facingRight && MoveInput > 0) Flip();
         else if (facingRight && MoveInput < 0) Flip();
@@ -145,31 +145,31 @@ public class CharacterMovement : MonoBehaviour
 
 
 
-    IEnumerator WallJump()
-    {
+    //IEnumerator WallJump()
+    //{
 
-        islide = false;
-        if (TouchRight)
-        {
-            for (int i = 0; i < 30; i++)
-            {
-                rb.AddForce(new Vector2(-WallJumpForce, 0));
-                yield return new WaitForSeconds(0.005f);
+    //    islide = false;
+    //    if (TouchRight)
+    //    {
+    //        for (int i = 0; i < 30; i++)
+    //        {
+    //            rb.AddForce(new Vector2(-WallJumpForce, 0));
+    //            yield return new WaitForSeconds(0.005f);
                
-            }
-        }
-        else
-        {
-            for (int i = 0; i < 30; i++)
-            {
-                rb.AddForce(new Vector2(WallJumpForce,0));
-                yield return new WaitForSeconds(0.005f);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < 30; i++)
+    //        {
+    //            rb.AddForce(new Vector2(WallJumpForce,0));
+    //            yield return new WaitForSeconds(0.005f);
                
-            }
-        }
-        StartCoroutine("RemoveJump");
+    //        }
+    //    }
+    //    StartCoroutine("RemoveJump");
 
-    }
+    //}
     IEnumerator RemoveJump()
     {
         yield return new WaitForSeconds(.1f);
