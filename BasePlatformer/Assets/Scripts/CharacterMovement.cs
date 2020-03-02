@@ -42,6 +42,7 @@ public class CharacterMovement : MonoBehaviour
     private bool Inwater;
     private float DashCooldownTimer;
     private int Jumps;
+    private bool Moving;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,7 +54,7 @@ public class CharacterMovement : MonoBehaviour
     {
 
         MoveInput = Input.GetAxisRaw("Horizontal");
-       rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
+        rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
         ApplySliding();
 
     }
@@ -70,8 +71,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void Animations()
     {
+        if (MoveInput != 0) Moving = true;
+        else Moving = false;
+        animatorss.SetBool("Moving", Moving);
         animatorss.SetBool("Dashing", Dashing);
-        animatorss.SetFloat("Moving", Mathf.Abs(MoveInput));
         if (!facingRight && MoveInput > 0) Flip();
         else if (facingRight && MoveInput < 0) Flip();
     }
