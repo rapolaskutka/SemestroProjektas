@@ -18,7 +18,6 @@ public class PauseMenu : MonoBehaviour
             if (Paused) Resume();
             else Pause();
         }
-        Debug.Log(Paused);
     }
     public void Resume()
     {
