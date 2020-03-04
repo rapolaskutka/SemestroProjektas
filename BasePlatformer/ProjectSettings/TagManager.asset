@@ -10,6 +10,7 @@ TagManager:
   - OWP
   - EnableDoubleJump
   - EnableDash
+  - BG
   layers:
   - Default
   - TransparentFX
