@@ -21,11 +21,11 @@ public class Hat : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.name == "Character")
+        if (collision.CompareTag("Player"))
         {
             Destroy(gameObject);
             throwclass.RemoveCooldown();
         }
-        if (!collision.CompareTag("Water") && !collision.CompareTag("BG")) rb.velocity = (GameObject.Find("Character").transform.position - transform.position).normalized * speed;
+        if (collision.CompareTag("Ground")) rb.velocity = (GameObject.Find("Character").transform.position - transform.position).normalized * speed;
     }
 }

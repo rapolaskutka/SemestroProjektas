@@ -5,9 +5,18 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     private GM gamemaster;
+    private Rigidbody2D rb;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) { gamemaster.CheckpointPos = transform.position; }
+        rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        if (collision.CompareTag("Hat")) { gamemaster.CheckpointPos = transform.position; }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        rb.WakeUp();
+        if (collision.CompareTag("Player") && Input.GetKey(KeyCode.DownArrow)) { 
+            gamemaster.CheckpointPos = transform.position;
+        }
     }
     void Start() 
     {

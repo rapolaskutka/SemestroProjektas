@@ -12,6 +12,8 @@ TagManager:
   - EnableDash
   - BG
   - GM
+  - Hat
+  - Ground
   layers:
   - Default
   - TransparentFX
