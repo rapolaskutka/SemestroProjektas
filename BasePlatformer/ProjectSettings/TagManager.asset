@@ -11,6 +11,7 @@ TagManager:
   - EnableDoubleJump
   - EnableDash
   - BG
+  - GM
   layers:
   - Default
   - TransparentFX
