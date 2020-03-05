@@ -25,9 +25,8 @@ public class CharacterMovement : MonoBehaviour
     private Animator animatorss;
     private Rigidbody2D rb;
     private bool Grounded;
-    private float MoveInput;
-    private bool facingRight = true;
-    private float JumpTimeCounter;
+    public float MoveInput;
+    public float JumpTimeCounter;
     private bool Jumping;
     private bool HeadHitCheck;
     private bool Inwater;
@@ -35,6 +34,9 @@ public class CharacterMovement : MonoBehaviour
     private int Jumps;
     private bool Moving;
     public float JumpForce;
+    public bool facingRight = true;
+    public bool top;
+
 
     //private float wallSlideSpeed;
     //private bool TouchRight;
@@ -203,14 +205,7 @@ public class CharacterMovement : MonoBehaviour
             Inwater = true;
         }
     }
-    private bool top = false;
-    public void Rotation()
-    {
-        if (top == false) transform.eulerAngles = new Vector3(0, 0, 180f);
-        else transform.eulerAngles = Vector3.zero;
-        facingRight = !facingRight;
-        top = !top;
-    }
+   
 
 }
 //public void ApplySliding()
