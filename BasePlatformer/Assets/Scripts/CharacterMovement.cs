@@ -9,11 +9,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField]
-    private float JumpForce;
-    [SerializeField]
     private Transform GroundCheck;
-    [SerializeField]
-    private Transform CeilingCheck;
     [SerializeField]
     private LayerMask WhatIsGround;
     [SerializeField]
@@ -38,6 +34,8 @@ public class CharacterMovement : MonoBehaviour
     private float DashCooldownTimer;
     private int Jumps;
     private bool Moving;
+    public float JumpForce;
+
     //private float wallSlideSpeed;
     //private bool TouchRight;
     //private bool TouchLeft;
@@ -204,6 +202,14 @@ public class CharacterMovement : MonoBehaviour
         {
             Inwater = true;
         }
+    }
+    private bool top = false;
+    public void Rotation()
+    {
+        if (top == false) transform.eulerAngles = new Vector3(0, 0, 180f);
+        else transform.eulerAngles = Vector3.zero;
+        facingRight = !facingRight;
+        top = !top;
     }
 
 }
