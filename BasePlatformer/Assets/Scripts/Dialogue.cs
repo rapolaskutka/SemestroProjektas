@@ -11,9 +11,10 @@ public class Dialogue : MonoBehaviour
     [SerializeField]
     private float TypingSpeed;
     private bool allowed;
+    public GameObject dialog;
     void Start()
     {
-        StartCoroutine(Typing());
+        dialog.SetActive(false);
     }
     private void Update()
     {
@@ -28,7 +29,7 @@ public class Dialogue : MonoBehaviour
             yield return new WaitForSeconds(TypingSpeed);
         }
     }
-    public void NextSentence() 
+    public void NextSentence()
     {
         allowed = false;
         if (index < sentences.Length - 1)
@@ -37,6 +38,12 @@ public class Dialogue : MonoBehaviour
             TextMesh.text = "";
             StartCoroutine(Typing());
         }
-        else TextMesh.text = "";
+        else dialog.SetActive(false);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player")) dialog.SetActive(true);
+        StartCoroutine(Typing());
+
     }
 }
