@@ -15,9 +15,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private LayerMask WhatIsCeiling;
     [SerializeField]
-    private LayerMask WhatIsWall;
-    [SerializeField]
-    private int JumpCount;
+    private int ExtraJumpCount;
     [SerializeField]
     private float JumpTime;
     [SerializeField]
@@ -25,8 +23,6 @@ public class CharacterMovement : MonoBehaviour
     private Animator animatorss;
     private Rigidbody2D rb;
     private bool Grounded;
-    public float MoveInput;
-    public float JumpTimeCounter;
     private bool Jumping;
     private bool HeadHitCheck;
     private bool Inwater;
@@ -34,9 +30,16 @@ public class CharacterMovement : MonoBehaviour
     private int Jumps;
     private bool Moving;
     public float JumpForce;
+    [HideInInspector]
     public bool facingRight = true;
-    public bool top;
+    [HideInInspector]
+    public float MoveInput;
+    [HideInInspector]
+    public float JumpTimeCounter;
 
+
+    //[SerializeField]
+    //private LayerMask WhatIsWall;
 
     //private float wallSlideSpeed;
     //private bool TouchRight;
@@ -48,7 +51,7 @@ public class CharacterMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animatorss = GetComponent<Animator>();
         JumpTimeCounter = JumpTime;
-        Jumps = JumpCount;
+        Jumps = ExtraJumpCount;
     }
     void FixedUpdate()
     {
@@ -60,13 +63,14 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-        if (Grounded) { Jumps = JumpCount; JumpTimeCounter = JumpTime; }
+
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
         Jump();
         WaterDive();
         Animations();
+        if (Grounded) { Jumps = ExtraJumpCount; JumpTimeCounter = JumpTime; }
     }
 
     private void Animations()
@@ -89,10 +93,9 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
-            StartCoroutine("RemoveJump");
             animatorss.SetTrigger("Trigger");
             Jumping = true;
-
+            Jumps--;
         }
         if (Input.GetKey(KeyCode.UpArrow) && Jumping && JumpTimeCounter > 0)
         {
@@ -119,9 +122,7 @@ public class CharacterMovement : MonoBehaviour
         //else
         //    islide = false;
         //TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
-
         //TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
-
     }
     private void DashCheck()
     {
@@ -131,16 +132,10 @@ public class CharacterMovement : MonoBehaviour
             DashCooldownTimer = DashCooldown;
         }
     }
-
     private void CoolDownTicker()
     {
         if (DashCooldownTimer > 0) DashCooldownTimer -= Time.deltaTime;
         if (DashCooldownTimer < 0) DashCooldownTimer = 0;
-    }
-    IEnumerator RemoveJump()
-    {
-        yield return new WaitForSeconds(.05f);
-        Jumps--;
     }
     private bool Dashing = false;
     IEnumerator DashMove()
@@ -159,12 +154,10 @@ public class CharacterMovement : MonoBehaviour
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Dead")
         {
-
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if (collision.gameObject.tag == "TP")
@@ -174,7 +167,7 @@ public class CharacterMovement : MonoBehaviour
         if (collision.gameObject.tag == "Water")
         {
             Jumps = 9999;
-            JumpCount = 9999;
+            ExtraJumpCount = 9999;
             speed -= 2f;
             JumpForce -= 3;
             rb.gravityScale = 1;
@@ -186,13 +179,12 @@ public class CharacterMovement : MonoBehaviour
         {
             StartCoroutine("Restore");
         }
-
     }
     IEnumerator Restore()
     {
         yield return new WaitForSeconds(.1f);
         Jumps = 1;
-        JumpCount = 2;
+        ExtraJumpCount = 2;
         speed += 2f;
         JumpForce += 3;
         rb.gravityScale = 3f;
@@ -205,7 +197,7 @@ public class CharacterMovement : MonoBehaviour
             Inwater = true;
         }
     }
-   
+
 
 }
 //public void ApplySliding()

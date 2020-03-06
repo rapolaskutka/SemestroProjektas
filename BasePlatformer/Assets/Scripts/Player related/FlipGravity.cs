@@ -8,7 +8,6 @@ public class FlipGravity : MonoBehaviour
     private Rigidbody2D rb;
     private bool isColliding = false;
     private bool top;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         movementclass = GameObject.FindObjectOfType<CharacterMovement>();

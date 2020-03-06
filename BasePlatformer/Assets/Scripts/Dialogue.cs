@@ -5,12 +5,12 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-    public TextMeshProUGUI TextMesh;
-    public string[] sentences;
-    private int index = 0;
     [SerializeField]
     private float TypingSpeed;
     private bool allowed;
+    private int index = 0;
+    public TextMeshProUGUI TextMesh;
+    public string[] sentences;
     public GameObject dialog;
     void Start()
     {
