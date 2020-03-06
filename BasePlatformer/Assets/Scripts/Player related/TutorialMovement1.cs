@@ -145,7 +145,7 @@ public class TutorialMovement1 : MonoBehaviour
         if (collision.gameObject.tag == "Dead")
         {
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+          
         }
         if (collision.gameObject.tag == "TP")
         {

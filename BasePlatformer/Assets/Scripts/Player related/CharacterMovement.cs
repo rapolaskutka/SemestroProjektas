@@ -36,6 +36,7 @@ public class CharacterMovement : MonoBehaviour
     public float MoveInput;
     [HideInInspector]
     public float JumpTimeCounter;
+    public GameObject blood;
 
 
     //[SerializeField]
@@ -158,7 +159,8 @@ public class CharacterMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Dead")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Instantiate(blood, transform.position, Quaternion.identity);
+           // SceneManager.LosadScene(SceneManager.GetActiveScene().name);
         }
         if (collision.gameObject.tag == "TP")
         {
