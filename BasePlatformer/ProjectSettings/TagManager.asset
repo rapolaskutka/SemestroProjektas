@@ -15,6 +15,7 @@ TagManager:
   - Hat
   - Ground
   - Flip
+  - DScreen
   layers:
   - Default
   - TransparentFX
