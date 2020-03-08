@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
-     public void PlayGame() 
+    public Animator transition;
+    private float WaitTime = 1f;
+    public void PlayGame()
     {
-        SceneManager.LoadScene("Tutorial");
+        StartCoroutine(LoadLevel("Tutorial"));
     }
     public void Quit()
     {
@@ -16,6 +17,12 @@ public class MainMenu : MonoBehaviour
     }
     public void OptionsMenu()
     {
-        SceneManager.LoadScene("Best");
+        StartCoroutine(LoadLevel("Best"));
+    }
+    private IEnumerator LoadLevel(string levelname)
+    {
+        transition.SetTrigger("Transition");
+        yield return new WaitForSeconds(WaitTime);
+        SceneManager.LoadScene(levelname);
     }
 }
