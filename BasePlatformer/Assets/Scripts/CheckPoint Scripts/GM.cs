@@ -5,7 +5,7 @@ using UnityEngine;
 public class GM : MonoBehaviour
 {
     private static GM instance;
-    public Vector2 CheckpointPos;
+    public Vector2 StartingPos;
 
     void Awake()
     {

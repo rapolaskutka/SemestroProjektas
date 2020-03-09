@@ -65,8 +65,12 @@ public class TutorialMovement1 : MonoBehaviour
             JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
+        if (MoveInput != 0) Moving = true;
+        else Moving = false;
+        animatorss.SetBool("Moving", Moving);
         animatorss.SetBool("Dashing", Dashing);
-        animatorss.SetFloat("Moving", Mathf.Abs(MoveInput));
+        if (!facingRight && MoveInput > 0) Flip();
+        else if (facingRight && MoveInput < 0) Flip();
     }
 
     private void CollisionChecks()
@@ -124,6 +128,8 @@ public class TutorialMovement1 : MonoBehaviour
         Jumps--;
     }
     private bool Dashing = false;
+    private bool Moving;
+
     IEnumerator DashMove()
     {
         Dashing = true;
@@ -142,11 +148,6 @@ public class TutorialMovement1 : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Dead")
-        {
-
-          
-        }
         if (collision.gameObject.tag == "TP")
         {
             SceneManager.LoadScene("Best");

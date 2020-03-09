@@ -8,6 +8,6 @@ public class PlayerPos : MonoBehaviour
     void Start()
     {
         gamemaster = GameObject.FindGameObjectWithTag("GM").GetComponent<GM>();
-        transform.position = gamemaster.CheckpointPos;
+        transform.position = gamemaster.StartingPos;
     }
 }
