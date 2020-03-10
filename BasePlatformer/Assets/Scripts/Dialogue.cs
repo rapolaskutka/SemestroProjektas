@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
+using UnityEngine.SceneManagement;
 
 public class Dialogue : MonoBehaviour
 {
@@ -10,15 +12,21 @@ public class Dialogue : MonoBehaviour
     private bool allowed;
     private int index = 0;
     public TextMeshProUGUI TextMesh;
+    public TextMeshProUGUI ContinueText;
     public string[] sentences;
     public GameObject dialog;
     void Start()
     {
+        ContinueText.text = "";
         dialog.SetActive(false);
     }
     private void Update()
     {
-        if (TextMesh.text.CompareTo(sentences[index]) == 0) allowed = true;
+        if (TextMesh.text.CompareTo(sentences[index]) == 0) {
+            allowed = true;
+            ContinueText.text = "Press C to continue";
+        }
+
         if (Input.GetKeyDown(KeyCode.C) && allowed) NextSentence();
     }
     IEnumerator Typing()
@@ -32,18 +40,19 @@ public class Dialogue : MonoBehaviour
     public void NextSentence()
     {
         allowed = false;
+        ContinueText.text = "";
         if (index < sentences.Length - 1)
         {
             index++;
             TextMesh.text = "";
             StartCoroutine(Typing());
         }
-        else dialog.SetActive(false);
+        else if (SceneManager.GetActiveScene().name == "FirstLevel") SceneManager.LoadScene("Tutorial"); //Ignore this line
+        else dialog.SetActive(false); 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) dialog.SetActive(true);
         StartCoroutine(Typing());
-
     }
 }
