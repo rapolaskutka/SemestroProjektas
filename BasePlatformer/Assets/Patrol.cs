@@ -8,6 +8,7 @@ public class Patrol : MonoBehaviour
     private bool movingRight = true;
     public Transform Ground;
     private int layer_mask;
+    public GameObject deathparticles;
     private void Start()
     {
         layer_mask = LayerMask.GetMask("Walls");
@@ -29,5 +30,12 @@ public class Patrol : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, -0, 0);
                 movingRight = true;
             }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Hat"))
+        {
+            Instantiate(deathparticles, transform.position, Quaternion.identity);
+        }
     }
 }

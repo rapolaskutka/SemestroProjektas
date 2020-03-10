@@ -17,6 +17,7 @@ TagManager:
   - Flip
   - DScreen
   - Blood
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1060516762}
   m_Layer: 0
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   Ground: {fileID: 7002568095856865885}
+  deathparticles: {fileID: 6788784707137936555, guid: 33cadfe3867680a42b3e6741b1cc350c,
+    type: 3}
 --- !u!114 &1060516762
 MonoBehaviour:
   m_ObjectHideFlags: 0
