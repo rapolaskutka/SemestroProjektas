@@ -115,6 +115,7 @@ public class CharacterMovement : MonoBehaviour
         HeadHitCheck = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.10f, transform.position.y + 0.2f), new Vector2(transform.position.x + 0.2f, transform.position.y + 0.25f), WhatIsCeiling);
         if (HeadHitCheck)
         {
+            if(JumpTimeCounter != JumpTime)
             JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
