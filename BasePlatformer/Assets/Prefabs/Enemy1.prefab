@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   Ground: {fileID: 7002568095856865885}
-  deathparticles: {fileID: 6788784707137936555, guid: 33cadfe3867680a42b3e6741b1cc350c,
+  deathparticles: {fileID: 2282467160219633195, guid: 1cc6e794c9740814db8b173713321ba8,
     type: 3}
 --- !u!114 &1060516762
 MonoBehaviour:

@@ -3498,6 +3498,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066b32972204f8447a78836fd468cf93, type: 3}
+--- !u!1 &1196353581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 534431919121287770, guid: 81c46df200fdaf243adfd60203ad2615,
+    type: 3}
+  m_PrefabInstance: {fileID: 1727743095}
+  m_PrefabAsset: {fileID: 0}
+--- !u!68 &1196353582
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196353581}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 13.742477, y: 29.109064}
+  - {x: 11.919895, y: 29.336885}
+  - {x: 12.364841, y: -1.0849838}
+  - {x: 90.85235, y: -0.9357796}
 --- !u!1001 &1727743095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3513,12 +3539,12 @@ PrefabInstance:
     - target: {fileID: 534431919121287772, guid: 81c46df200fdaf243adfd60203ad2615,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.32
+      value: -49.4
       objectReference: {fileID: 0}
     - target: {fileID: 534431919121287772, guid: 81c46df200fdaf243adfd60203ad2615,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.31
+      value: -36.4
       objectReference: {fileID: 0}
     - target: {fileID: 534431919121287772, guid: 81c46df200fdaf243adfd60203ad2615,
         type: 3}
@@ -3565,7 +3591,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 534431919121287773, guid: 81c46df200fdaf243adfd60203ad2615, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 81c46df200fdaf243adfd60203ad2615, type: 3}
 --- !u!1 &1853811951 stripped
 GameObject:
@@ -3686,12 +3713,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7002568094753316032, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: deathparticles
-      value: 
-      objectReference: {fileID: 2282467160219633195, guid: 1cc6e794c9740814db8b173713321ba8,
-        type: 3}
     - target: {fileID: 7002568094753316033, guid: 94673c8ca8329384cb81b7390abd8a4b,
         type: 3}
       propertyPath: m_LocalPosition.x
