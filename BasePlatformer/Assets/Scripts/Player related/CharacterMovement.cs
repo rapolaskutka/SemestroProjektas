@@ -36,17 +36,12 @@ public class CharacterMovement : MonoBehaviour
     public float MoveInput;
     [HideInInspector]
     public float JumpTimeCounter;
-
-
-
     //[SerializeField]
     //private LayerMask WhatIsWall;
-
     //private float wallSlideSpeed;
     //private bool TouchRight;
     //private bool TouchLeft;
     //private bool islide;
-
     private void Start()
     {
 
@@ -65,14 +60,13 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-
+        if (Grounded) { Jumps = ExtraJumpCount; JumpTimeCounter = JumpTime; }
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
         Jump();
         WaterDive();
         Animations();
-        if (Grounded) { Jumps = ExtraJumpCount; JumpTimeCounter = JumpTime; }
     }
 
     private void Animations()
@@ -97,7 +91,6 @@ public class CharacterMovement : MonoBehaviour
         {
             animatorss.SetTrigger("Trigger");
             Jumping = true;
-            Jumps--;
         }
         if (Input.GetKey(KeyCode.UpArrow) && Jumping && JumpTimeCounter > 0)
         {
@@ -108,7 +101,14 @@ public class CharacterMovement : MonoBehaviour
         {
             Jumping = false;
             JumpTimeCounter = JumpTime;
+            Jumps--;
+
         }
+    }
+    IEnumerator RJump() 
+    {
+        yield return new WaitForSeconds(0.2f);
+        Jumps--;
     }
     private void CollisionChecks()
     {
@@ -156,6 +156,14 @@ public class CharacterMovement : MonoBehaviour
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
     }
+   
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Water")
+        {
+            StartCoroutine("Restore");
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "TP")
@@ -168,14 +176,7 @@ public class CharacterMovement : MonoBehaviour
             ExtraJumpCount = 9999;
             speed -= 2f;
             JumpForce -= 3;
-            rb.gravityScale = 1;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Water")
-        {
-            StartCoroutine("Restore");
+            rb.gravityScale = 1f;
         }
     }
     IEnumerator Restore()
