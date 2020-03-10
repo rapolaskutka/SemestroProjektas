@@ -105,7 +105,6 @@ GameObject:
   - component: {fileID: 8174128301727010515}
   - component: {fileID: 8174128301727010524}
   - component: {fileID: 8174128301727010525}
-  - component: {fileID: 8174128301727010526}
   - component: {fileID: 8174128301727010517}
   - component: {fileID: 8174128301727010516}
   m_Layer: 8
@@ -124,7 +123,7 @@ Transform:
   m_GameObject: {fileID: 8174128301727010518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.639, y: -25.298, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.17, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.17, z: 1}
   m_Children:
   - {fileID: 8174128301108724413}
   - {fileID: 8174128301588332658}
@@ -292,34 +291,6 @@ MonoBehaviour:
   Cooldown: 5
   HatPrefab: {fileID: 5249428274427813579, guid: 4005403033fc00e44adb8088648b8e46,
     type: 3}
---- !u!114 &8174128301727010526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8174128301727010518}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aae610c92c7c234ab968976628b073f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  JumpForce: 8
-  GroundCheck: {fileID: 8174128301108724413}
-  CeilingCheck: {fileID: 8174128301588332658}
-  WhatIsGround:
-    serializedVersion: 2
-    m_Bits: 1024
-  WhatIsCeiling:
-    serializedVersion: 2
-    m_Bits: 512
-  WhatIsWall:
-    serializedVersion: 2
-    m_Bits: 1024
-  JumpTime: 0.25
-  DashCooldown: 3
-  animatorss: {fileID: 8174128301727010524}
 --- !u!114 &8174128301727010517
 MonoBehaviour:
   m_ObjectHideFlags: 0

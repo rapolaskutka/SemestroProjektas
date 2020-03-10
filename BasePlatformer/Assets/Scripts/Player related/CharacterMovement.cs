@@ -36,7 +36,7 @@ public class CharacterMovement : MonoBehaviour
     public float MoveInput;
     [HideInInspector]
     public float JumpTimeCounter;
-    public GameObject blood;
+
 
 
     //[SerializeField]
@@ -49,6 +49,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
+
         rb = GetComponent<Rigidbody2D>();
         animatorss = GetComponent<Animator>();
         JumpTimeCounter = JumpTime;
@@ -157,11 +158,6 @@ public class CharacterMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Dead")
-        {
-            Instantiate(blood, transform.position, Quaternion.identity);
-           // SceneManager.LosadScene(SceneManager.GetActiveScene().name);
-        }
         if (collision.gameObject.tag == "TP")
         {
             SceneManager.LoadScene("Best");

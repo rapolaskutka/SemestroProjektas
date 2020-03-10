@@ -16,6 +16,7 @@ TagManager:
   - Ground
   - Flip
   - DScreen
+  - Blood
   layers:
   - Default
   - TransparentFX
