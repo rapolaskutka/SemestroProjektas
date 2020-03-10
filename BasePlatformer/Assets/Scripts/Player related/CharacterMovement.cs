@@ -102,8 +102,9 @@ public class CharacterMovement : MonoBehaviour
             Jumping = false;
             JumpTimeCounter = JumpTime;
             Jumps--;
-
         }
+        if (!Grounded && Jumps == 2 && Jumping == false) Jumps = 1;
+
     }
     IEnumerator RJump() 
     {
