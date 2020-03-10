@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6788784707137936557}
   - component: {fileID: 6788784707137936556}
   m_Layer: 0
-  m_Name: Blood Splash
+  m_Name: BloodSplash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6788784707137936555}
   m_LocalRotation: {x: -0.8433915, y: 0, z: 0, w: 0.53729963}
-  m_LocalPosition: {x: -13.183172, y: -20.774714, z: -3.4101562}
+  m_LocalPosition: {x: -13.183172, y: -20.774714, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

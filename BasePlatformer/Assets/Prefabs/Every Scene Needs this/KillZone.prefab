@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 534431919121287772}
   - component: {fileID: 534431919121287773}
-  - component: {fileID: 534431919121287775}
+  - component: {fileID: 1713977388}
   m_Layer: 0
   m_Name: KillZone
   m_TagString: Dead
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534431919121287770}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.27, y: -31.49, z: -1.7166163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -58,7 +58,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 107.32701, y: 8.589031}
   m_EdgeRadius: 0
---- !u!114 &534431919121287775
+--- !u!114 &1713977388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,6 +67,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 534431919121287770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e91063983ecfde4ca9f00f3ed4079ac, type: 3}
+  m_Script: {fileID: 11500000, guid: 767d1df32962851469a4bed63598db45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blood: {fileID: 6788784707137936555, guid: 33cadfe3867680a42b3e6741b1cc350c, type: 3}

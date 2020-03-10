@@ -6,27 +6,27 @@ using UnityEngine.SceneManagement;
 public class DeathScreen : MonoBehaviour
 {
     private GameObject UI;
-    private GameObject blood;
+    public GameObject blood;
     private Transform PlayerPosition;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            UI.SetActive(true);
             Instantiate(blood, PlayerPosition.position, Quaternion.identity);
             Destroy(GameObject.FindGameObjectWithTag("Player")); 
-            UI.SetActive(true);
         }
 
     }
     private void Awake()
     {
-        PlayerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        blood = (GameObject)Resources.Load("BloodSplash", typeof(GameObject));
         UI = GameObject.FindGameObjectWithTag("DScreen");
+        PlayerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
+
     private void Start()
     {
-
+      
         UI.SetActive(false);
     }
     void Update()

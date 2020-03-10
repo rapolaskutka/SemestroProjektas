@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MoveScenes : MonoBehaviour
 {
-    [SerializeField] private string newLevel;
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(newLevel);
+            Destroy(GameObject.FindGameObjectWithTag("GM"));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
     }
