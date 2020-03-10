@@ -3804,7 +3804,7 @@ PrefabInstance:
     - target: {fileID: 7002568094753316033, guid: 94673c8ca8329384cb81b7390abd8a4b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -30.545
+      value: -30.845
       objectReference: {fileID: 0}
     - target: {fileID: 7002568094753316033, guid: 94673c8ca8329384cb81b7390abd8a4b,
         type: 3}
@@ -3855,17 +3855,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7002568094753316046, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: cf92216ad71a438498797a39eca008a5,
-        type: 3}
-    - target: {fileID: 7002568094753316046, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94673c8ca8329384cb81b7390abd8a4b, type: 3}
