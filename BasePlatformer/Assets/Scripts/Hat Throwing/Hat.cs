@@ -8,6 +8,7 @@ public class Hat : MonoBehaviour
     public float speed = 15f;
     private Rigidbody2D rb;
     private Throwing throwclass;
+    public GameObject impact;
     void Awake()
     {
         throwclass = GameObject.FindObjectOfType<Throwing>();
@@ -22,6 +23,7 @@ public class Hat : MonoBehaviour
     {
         if (collision.CompareTag("Enemy")) 
         {
+            Instantiate(impact, transform.position, Quaternion.identity);
             Destroy(GameObject.FindGameObjectWithTag("Enemy"));
             rb.velocity = (GameObject.Find("Character").transform.position - transform.position).normalized * speed;
         }
@@ -30,6 +32,11 @@ public class Hat : MonoBehaviour
             Destroy(gameObject);
             throwclass.RemoveCooldown();
         }
-        if (collision.CompareTag("Ground")) rb.velocity = (GameObject.Find("Character").transform.position - transform.position).normalized * speed;
+        if (collision.CompareTag("Ground"))
+        {
+            Instantiate(impact, transform.position, Quaternion.identity);
+            rb.velocity = (GameObject.Find("Character").transform.position - transform.position).normalized * speed;
+        }
+       
     }
 }
