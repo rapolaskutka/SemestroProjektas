@@ -1,5 +1,5 @@
 # Patent Pending
-SneakyBox KTU 2020
+
 A game project assignment for KTU, collaboration with SneakyBox.
 
 ## Installing
