@@ -1,3 +1,5 @@
+<img src="https://cdn.discordapp.com/attachments/677905644170510348/684868641459535915/Asset_1-100.jpg" width="200" />
+
 # Patent Pending
 
 A game project assignment for KTU, collaboration with SneakyBox.
