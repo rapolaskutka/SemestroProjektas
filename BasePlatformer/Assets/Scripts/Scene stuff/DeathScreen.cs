@@ -8,13 +8,17 @@ public class DeathScreen : MonoBehaviour
     private GameObject UI;
     public GameObject blood;
     private Transform PlayerPosition;
+    public HealthControl healthscript;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            UI.SetActive(true);
+           // UI.SetActive(true);
             Instantiate(blood, PlayerPosition.position, Quaternion.identity);
+            healthscript.GetDamage(2, false, 3.0);
+            /*
             Destroy(GameObject.FindGameObjectWithTag("Player")); 
+            */
         }
 
     }
@@ -26,7 +30,7 @@ public class DeathScreen : MonoBehaviour
 
     private void Start()
     {
-      
+        healthscript = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthControl>();
         UI.SetActive(false);
     }
     void Update()
