@@ -13,15 +13,12 @@ public class DeathScreen : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-           // UI.SetActive(true);
-            //Instantiate(blood, PlayerPosition.position, Quaternion.identity);
+        
             if(healthscript.GetDamage(2, false, 3.0))
             {
                 Instantiate(blood, PlayerPosition.position, Quaternion.identity);
             }
-            /*
-            Destroy(GameObject.FindGameObjectWithTag("Player")); 
-            */
+
         }
 
     }

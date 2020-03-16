@@ -44,6 +44,7 @@ public class HealthControl : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Player"));
             health = 0;
             UI.SetActive(true);
+            return true;
         }
         else
         {
@@ -52,11 +53,12 @@ public class HealthControl : MonoBehaviour
                 if (i + amount >= health)
                 {
                     healths[i].enabled = false;
+                    
                 }
             }
             health -= amount;;
         }
-        return true;
+        return false ;
     }
     private void Awake()
     {
