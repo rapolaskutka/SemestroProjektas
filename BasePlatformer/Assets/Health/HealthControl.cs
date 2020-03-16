@@ -25,14 +25,16 @@ public class HealthControl : MonoBehaviour
 
         }
     }
-    public void GetDamage(int amount, bool knockback, double dCool)
+    public bool GetDamage(int amount, bool knockback, double dCool)
     {
         if (hCool >= Time.time)
-            return;
+            return false;
 
         hCool = Time.time + (float)dCool;
-
-
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        SpriteRenderer sprite = player.GetComponent<SpriteRenderer>();
+        StartCoroutine(DamageIndicator(sprite, (float)dCool));
+        sprite.enabled = true;
         if (amount >= health)
         {
             for (int i = 0; i < amount; i++)
@@ -52,17 +54,27 @@ public class HealthControl : MonoBehaviour
                     healths[i].enabled = false;
                 }
             }
-            health -= amount;
-            DamageCooldown(5.0);
+            health -= amount;;
         }
+        return true;
     }
     private void Awake()
     {
         UI = GameObject.FindGameObjectWithTag("DScreen");
     }
-    IEnumerator DamageCooldown(double dCool)
+    private IEnumerator DamageIndicator(SpriteRenderer sprite, float second)
     {
-        yield return new WaitForSeconds(3f);
+        int total = (((int)second * 10) / 4);
+        for (int i = 0; i < total; i++)
+        {
+            for (int b = 0; b < 1; b++)
+            {
+                sprite.enabled = false;
+                yield return new WaitForSeconds(.1f);
+            }
+            sprite.enabled = true;
+            yield return new WaitForSeconds(.3f);
+        }
     }
     // Update is called once per frame
     void Update()
