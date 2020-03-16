@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class HealthControl : MonoBehaviour
 {
     public int health;
-    List<SpriteRenderer> healths = new List<SpriteRenderer>();
+    private List<SpriteRenderer> healths = new List<SpriteRenderer>();
     private GameObject UI;
     private float hCool;
     void Start()
