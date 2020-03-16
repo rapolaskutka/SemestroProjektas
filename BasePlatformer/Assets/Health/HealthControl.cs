@@ -17,7 +17,7 @@ public class HealthControl : MonoBehaviour
         healths.Add(rend);
         for (int i = 0; i < health - 1; i++)
         {
-            x += 0.3;
+            x += 0.7;
             SpriteRenderer obje = GameObject.Instantiate(rend);
             obje.transform.position = new Vector3(rend.transform.position.x + (float)x, rend.transform.position.y, rend.transform.position.z);
             healths.Add(obje);
