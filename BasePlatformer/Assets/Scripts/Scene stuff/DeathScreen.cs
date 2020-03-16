@@ -8,19 +8,18 @@ public class DeathScreen : MonoBehaviour
     private GameObject UI;
     public GameObject blood;
     private Transform PlayerPosition;
-    public HealthControl healthscript;
+    private HealthControl healthscript;
+    [SerializeField]
+    private int damage;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-        
-            if(healthscript.GetDamage(2, false, 3.0))
+            if(healthscript.GetDamage(damage, false, 3.0))
             {
                 Instantiate(blood, PlayerPosition.position, Quaternion.identity);
             }
-
         }
-
     }
     private void Awake()
     {
