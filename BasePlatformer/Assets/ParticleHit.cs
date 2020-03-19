@@ -1,7 +1,4 @@
-﻿
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
+﻿using UnityEngine;
 public class ParticleHit : MonoBehaviour
 {
     private HealthControl healthscript;
@@ -26,11 +23,5 @@ public class ParticleHit : MonoBehaviour
     {
         UI.SetActive(false);
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
+  
 }
