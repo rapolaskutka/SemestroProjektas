@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class DestroyObject : MonoBehaviour
 {
+    [SerializeField]
+    private float time = 2;
     void Start()
     {
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, time);
     }
 
 }
