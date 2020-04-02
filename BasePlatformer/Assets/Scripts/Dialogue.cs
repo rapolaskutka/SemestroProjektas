@@ -9,24 +9,22 @@ public class Dialogue : MonoBehaviour
 {
     [SerializeField]
     private float TypingSpeed;
+    [SerializeField]
+    private bool auto;
     private bool allowed;
     private int index = 0;
     public TextMeshProUGUI TextMesh;
-    public TextMeshProUGUI ContinueText;
     public string[] sentences;
-    public GameObject dialog;
+    public GameObject DialogCanvas;
+
     void Start()
     {
-        ContinueText.text = "";
-        dialog.SetActive(false);
+        DialogCanvas.SetActive(false);
     }
     private void Update()
     {
-        if (TextMesh.text.CompareTo(sentences[index]) == 0) {
-            allowed = true;
-            ContinueText.text = "Press C to continue";
-        }
-
+        
+        if (auto && allowed) NextSentence(); 
         if (Input.GetKeyDown(KeyCode.C) && allowed) NextSentence();
     }
     IEnumerator Typing()
@@ -36,23 +34,28 @@ public class Dialogue : MonoBehaviour
             TextMesh.text += item;
             yield return new WaitForSeconds(TypingSpeed);
         }
+            StartCoroutine(Pause());
+    }
+    IEnumerator Pause()
+    {
+        yield return new WaitForSeconds(0.5f);
+        allowed = true;
     }
     public void NextSentence()
     {
         allowed = false;
-        ContinueText.text = "";
-        if (index < sentences.Length - 1)
+        if (index < sentences.Length - 1 )
         {
             index++;
             TextMesh.text = "";
             StartCoroutine(Typing());
         }
-        else if (SceneManager.GetActiveScene().name == "FirstLevel") SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1); //Ignore this line
-        else dialog.SetActive(false); 
+        else if (SceneManager.GetActiveScene().name == "Intro") SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //Ignore this line
+        else DialogCanvas.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) dialog.SetActive(true);
+        if (collision.CompareTag("Player")) DialogCanvas.SetActive(true);
         StartCoroutine(Typing());
     }
 }
