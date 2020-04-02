@@ -50,7 +50,7 @@ public class Dialogue : MonoBehaviour
             TextMesh.text = "";
             StartCoroutine(Typing());
         }
-        else if (SceneManager.GetActiveScene().name == "FirstLevel") SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //Ignore this line
+        else if (SceneManager.GetActiveScene().name == "Intro") SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //Ignore this line
         else DialogCanvas.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)

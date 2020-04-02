@@ -186,7 +186,7 @@ PrefabInstance:
     - target: {fileID: 6209044560242185012, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
       propertyPath: sentences.Array.size
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6209044560242185012, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
@@ -211,12 +211,12 @@ PrefabInstance:
     - target: {fileID: 6209044560242185012, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
       propertyPath: sentences.Array.data[1]
-      value: Just some text
+      value: Bottom Text
       objectReference: {fileID: 0}
     - target: {fileID: 6209044560242185012, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
       propertyPath: sentences.Array.data[2]
-      value: Good
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6209044560242185012, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
@@ -233,6 +233,11 @@ PrefabInstance:
       propertyPath: sentences.Array.data[4]
       value: My Dude
       objectReference: {fileID: 0}
+    - target: {fileID: 6209044560242185012, guid: a1052b847bc3dd24eb9196a479298612,
+        type: 3}
+      propertyPath: DialogCanvas
+      value: 
+      objectReference: {fileID: 1890352499}
     - target: {fileID: 6209044560242185013, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
       propertyPath: m_Offset.x
@@ -439,7 +444,7 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.23749161, y: 0.04317856}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 2.25, y: 0, z: 2.79, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 8.13, y: 0.64}
     newSize: {x: 8.13, y: 0.64}
