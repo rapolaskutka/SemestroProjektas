@@ -18,6 +18,7 @@ TagManager:
   - DScreen
   - Blood
   - Enemy
+  - BackGround
   layers:
   - Default
   - TransparentFX

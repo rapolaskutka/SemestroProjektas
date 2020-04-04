@@ -1,0 +1,12 @@
+READ ME
+-------
+Asset: HandPainted Lava Textures 
+Version: 1.0
+Date: 26/11/2019 
+
+- This asset is based on 2D Hand Painted Art.
+- This asset includes Albedo Textures.
+- Textures should be used with shader<<mobile<<diffuse for actual results.
+- The package includes Four Lava textures:
+
+Copyright 2019, Innovana Techlabs Limited. All rights reserved.
