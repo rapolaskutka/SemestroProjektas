@@ -34,5 +34,6 @@ public class Fireball : MonoBehaviour
             }
 
         }
+        if (collision.CompareTag("Ground")) Destroy(gameObject); 
     }
 }

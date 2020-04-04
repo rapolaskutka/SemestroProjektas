@@ -20139,6 +20139,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 8331949978238638497, guid: 1662de5a3242f6c458ce70f3cc76aaf0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 8331949978238638499, guid: 1662de5a3242f6c458ce70f3cc76aaf0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20940,11 +20945,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7002568094753316032, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: Hitswhat.m_Bits
-      value: 1280
-      objectReference: {fileID: 0}
     - target: {fileID: 7002568094753316033, guid: 94673c8ca8329384cb81b7390abd8a4b,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d71898e9c9b4ce499a22f35920f5636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
   Ground: {fileID: 7002568095856865885}
   deathparticles: {fileID: 2282467160219633195, guid: 1cc6e794c9740814db8b173713321ba8,
     type: 3}
@@ -133,7 +133,7 @@ MonoBehaviour:
   PlayerMask:
     serializedVersion: 2
     m_Bits: 256
-  Shooting: 1
+  Shooting: 0
   StartPoint: {fileID: 7002568095856865885}
   FireballPrefab: {fileID: 4192075312750584742, guid: 71a8edc0aa626c64b89ea140e898a20c,
     type: 3}
