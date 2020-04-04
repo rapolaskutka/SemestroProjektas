@@ -22,7 +22,7 @@ public class Patrol : MonoBehaviour
     private float Cooldown;
     private float CooldownTimer;
     private float DetectionRange;
-
+   private RaycastHit2D ground, personright, personleft;
 
 
     private void Start() 
@@ -33,19 +33,27 @@ public class Patrol : MonoBehaviour
 
     private void Update()
     {
-        if (CooldownTimer > 0) CooldownTimer -= Time.deltaTime ;
-        if (CooldownTimer < 0) CooldownTimer = 0;
-        Debug.Log(CooldownTimer);
+        CoolDownTicker();
         transform.Translate(Vector2.right * speed * Time.deltaTime);
-        RaycastHit2D ground = Physics2D.Raycast(Ground.position, Vector2.down, 2f, Hitswhat);
-        RaycastHit2D personright = Physics2D.Raycast(Ground.position, Vector2.right, DetectionRange, PlayerMask);
-        RaycastHit2D personleft = Physics2D.Raycast(Ground.position, Vector2.left, DetectionRange, PlayerMask);
-        if (ground.collider == false) Collision();
-        if ((personright.collider  == true || personleft.collider == true) && !Shooting) Collision();
-        if ((personright.collider == true || personleft.collider == true) && Shooting) Shoot();
+        CollisionDetection();
+        if (ground.collider == false) Flip();
+        if ((personright.collider == true || personleft.collider == true) && !Shooting) Flip();
+        ShootingMechanics();
+    }
+    private void CollisionDetection()
+    {
+        ground = Physics2D.Raycast(Ground.position, Vector2.down, 2f, Hitswhat);
+        personright = Physics2D.Raycast(Ground.position, Vector2.right, DetectionRange, PlayerMask);
+        personleft = Physics2D.Raycast(Ground.position, Vector2.left, DetectionRange, PlayerMask);
     }
 
-    private void Collision()
+    private void CoolDownTicker()
+    {
+        if (CooldownTimer > 0) CooldownTimer -= Time.deltaTime;
+        if (CooldownTimer < 0) CooldownTimer = 0;
+    }
+
+    private void Flip()
     {
             if (movingRight == true)
             {
@@ -58,13 +66,19 @@ public class Patrol : MonoBehaviour
                 movingRight = true;
             }
     }
-    private void Shoot()
+    private void ShootingMechanics()
     {
-        if (CooldownTimer == 0)
+        if ((personright.collider == true || personleft.collider == true) && Shooting)
         {
-            Instantiate(FireballPrefab, StartPoint.position, StartPoint.rotation);
-            CooldownTimer = Cooldown; }
-       
+            if ((personright.collider == true && movingRight == false)) Flip();
+            if ((personleft.collider == true && movingRight == true)) Flip();
+            if (CooldownTimer == 0)
+            {
+                Instantiate(FireballPrefab, StartPoint.position, StartPoint.rotation);
+                CooldownTimer = Cooldown;
+            }
+            speed = 0f;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
