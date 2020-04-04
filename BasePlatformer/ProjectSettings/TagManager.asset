@@ -19,6 +19,7 @@ TagManager:
   - Blood
   - Enemy
   - BackGround
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX

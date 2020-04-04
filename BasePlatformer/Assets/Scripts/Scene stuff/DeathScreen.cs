@@ -18,6 +18,7 @@ public class DeathScreen : MonoBehaviour
             if(healthscript.GetDamage(damage, false, 3.0))
             {
                 Instantiate(blood, PlayerPosition.position, Quaternion.identity);
+                Destroy(GameObject.FindGameObjectWithTag("Player"));
             }
         }
     }

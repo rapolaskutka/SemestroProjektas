@@ -41,7 +41,6 @@ public class HealthControl : MonoBehaviour
             {
                 healths[i].enabled = false;
             }
-            Destroy(GameObject.FindGameObjectWithTag("Player"));
             health = 0;
             UI.SetActive(true);
             return true;
