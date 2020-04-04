@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5559305494112690823}
   - component: {fileID: 7112570712291039986}
   - component: {fileID: 7148389947781790480}
+  - component: {fileID: -4336973800637081072}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: EnemyAttack
@@ -146,3 +147,16 @@ MonoBehaviour:
   speed: 10
   blood: {fileID: 6788784707137936555, guid: 33cadfe3867680a42b3e6741b1cc350c, type: 3}
   damage: 1
+--- !u!114 &-4336973800637081072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4192075312750584742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f924d5f14338f5a4694e3fd31c4acab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 2

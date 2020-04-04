@@ -23,8 +23,6 @@ public class Patrol : MonoBehaviour
     private float CooldownTimer;
     private float DetectionRange;
    private RaycastHit2D ground, personright, personleft;
-
-
     private void Start() 
     {
         if (Shooting) DetectionRange = 10f;
@@ -36,9 +34,10 @@ public class Patrol : MonoBehaviour
         CoolDownTicker();
         transform.Translate(Vector2.right * speed * Time.deltaTime);
         CollisionDetection();
-        if (ground.collider == false) Flip();
-        if ((personright.collider == true || personleft.collider == true) && !Shooting) Flip();
+       if (ground.collider == false) Flip();
+       if ((personright.collider == true || personleft.collider == true) && !Shooting) Flip();
         ShootingMechanics();
+        if ((personright.collider == false && personleft.collider == false)) speed = 1f;
     }
     private void CollisionDetection()
     {
@@ -70,8 +69,9 @@ public class Patrol : MonoBehaviour
     {
         if ((personright.collider == true || personleft.collider == true) && Shooting)
         {
-            if ((personright.collider == true && movingRight == false)) Flip();
-            if ((personleft.collider == true && movingRight == true)) Flip();
+          
+            if ((personright.collider == true && movingRight == false) ) Flip();
+            if ((personleft.collider == true && movingRight == true) ) Flip();
             if (CooldownTimer == 0)
             {
                 Instantiate(FireballPrefab, StartPoint.position, StartPoint.rotation);
