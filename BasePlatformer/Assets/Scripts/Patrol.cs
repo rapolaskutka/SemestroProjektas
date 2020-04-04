@@ -33,7 +33,7 @@ public class Patrol : MonoBehaviour
 
     private void Update()
     {
-        if (CooldownTimer > 0) CooldownTimer -= Time.deltaTime;
+        if (CooldownTimer > 0) CooldownTimer -= Time.deltaTime ;
         if (CooldownTimer < 0) CooldownTimer = 0;
         Debug.Log(CooldownTimer);
         transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -60,8 +60,11 @@ public class Patrol : MonoBehaviour
     }
     private void Shoot()
     {
-        if(CooldownTimer == 0) Instantiate(FireballPrefab, StartPoint.position, StartPoint.rotation);
-        CooldownTimer = Cooldown;
+        if (CooldownTimer == 0)
+        {
+            Instantiate(FireballPrefab, StartPoint.position, StartPoint.rotation);
+            CooldownTimer = Cooldown; }
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

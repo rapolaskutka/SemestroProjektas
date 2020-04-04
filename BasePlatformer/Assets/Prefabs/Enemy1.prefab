@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: cf92216ad71a438498797a39eca008a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -123,13 +123,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d71898e9c9b4ce499a22f35920f5636, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   Ground: {fileID: 7002568095856865885}
-  Hitswhat:
-    serializedVersion: 2
-    m_Bits: 1280
   deathparticles: {fileID: 2282467160219633195, guid: 1cc6e794c9740814db8b173713321ba8,
     type: 3}
+  Hitswhat:
+    serializedVersion: 2
+    m_Bits: 1024
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  Shooting: 1
+  StartPoint: {fileID: 7002568095856865885}
+  FireballPrefab: {fileID: 4192075312750584742, guid: 71a8edc0aa626c64b89ea140e898a20c,
+    type: 3}
+  Cooldown: 2
 --- !u!114 &1060516762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: {fileID: 6788784707137936555, guid: 33cadfe3867680a42b3e6741b1cc350c, type: 3}
+  damage: 1
 --- !u!1 &7002568095856865882
 GameObject:
   m_ObjectHideFlags: 0

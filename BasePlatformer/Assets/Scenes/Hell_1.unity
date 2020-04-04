@@ -21021,41 +21021,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1060516762, guid: 94673c8ca8329384cb81b7390abd8a4b, type: 3}
-      propertyPath: damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7002568094753316032, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: FireballPrefab
-      value: 
-      objectReference: {fileID: 4192075312750584742, guid: 71a8edc0aa626c64b89ea140e898a20c,
-        type: 3}
-    - target: {fileID: 7002568094753316032, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: Shooting
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7002568094753316032, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7002568094753316032, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: StartPoint
-      value: 
-      objectReference: {fileID: 1521530556}
-    - target: {fileID: 7002568094753316032, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: PlayerMask.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 7002568094753316032, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: Hitswhat.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
     - target: {fileID: 7002568094753316033, guid: 94673c8ca8329384cb81b7390abd8a4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21115,11 +21080,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7002568094753316046, guid: 94673c8ca8329384cb81b7390abd8a4b,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94673c8ca8329384cb81b7390abd8a4b, type: 3}
@@ -21391,12 +21351,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8174128301727010514, guid: e992e9c61016ba144b2c81413f55ee5b,
     type: 3}
   m_PrefabInstance: {fileID: 583575881}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1521530556 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7002568095856865885, guid: 94673c8ca8329384cb81b7390abd8a4b,
-    type: 3}
-  m_PrefabInstance: {fileID: 707700264}
   m_PrefabAsset: {fileID: 0}
 --- !u!213 &1620087081
 Sprite:
