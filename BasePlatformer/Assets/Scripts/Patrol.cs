@@ -36,7 +36,7 @@ public class Patrol : MonoBehaviour
         CollisionDetection();
         if (ground.collider == false) Flip(); // if no ground, turns around
         if ((personright.collider == true || personleft.collider == true) && !Shooting) Flip(); // avoids player if shooting turned off
-        ShootingMechanics();
+       ShootingMechanics();
 
     }
     private void CollisionDetection()
@@ -70,18 +70,16 @@ public class Patrol : MonoBehaviour
         if (Shooting)
         {
             if ((personright.collider == false && personleft.collider == false)) speed = 1f; // moves if nobody is detected
-            if ((personright.collider == true || personleft.collider == true))
+            if ((personright.collider == true || personleft.collider == true)) 
             {
-
-                if ((personright.collider == true && movingRight == false)) Flip();
-                if ((personleft.collider == true && movingRight == true)) Flip();
+                 if ((personright.collider == true && movingRight == false)) Flip();
+                 if ((personleft.collider == true && movingRight == true)) Flip();
                 if (CooldownTimer == 0)
                 {
                     Instantiate(FireballPrefab, StartPoint.position, StartPoint.rotation);
                     CooldownTimer = Cooldown;
                 }
-                speed = 0f; 
-
+                speed = 0f;
             }
         }
        
