@@ -30,6 +30,7 @@ public class Patrol : MonoBehaviour
     private bool turning;
     [SerializeField]
     private float RotateTime;
+    private bool isShoot;
 
 
     private void Start()
@@ -46,7 +47,8 @@ public class Patrol : MonoBehaviour
         transform.Translate(Vector2.right * speed * Time.deltaTime); // move
 
         CollisionDetection();
-        if (ground.collider == false && !turning)
+
+        if (ground.collider == false && !turning && !isShoot)
         {
             turning = true;
             StartCoroutine(TurnAround());
@@ -58,7 +60,9 @@ public class Patrol : MonoBehaviour
     {
         yield return new WaitForSeconds(RotateTime);
 
+        if(!isShoot)
         Flip();
+
         turning = false;
     }
     private void CollisionDetection()
@@ -111,13 +115,17 @@ public class Patrol : MonoBehaviour
             {
                 if ((personright.collider == true && movingRight) || (personleft.collider == true && !movingRight))
                 {
-                    Debug.Log("testas");
+                    isShoot = true;
                     if (CooldownTimer == 0)
                     {
                         Instantiate(FireballPrefab, StartPoint.position, StartPoint.rotation);
                         CooldownTimer = Cooldown;
                     }
                     speed = 0f;
+                }
+                else
+                {
+                    isShoot = false;
                 }
             }
            
