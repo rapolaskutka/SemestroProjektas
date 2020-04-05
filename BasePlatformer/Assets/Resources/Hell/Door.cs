@@ -5,12 +5,12 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     getItem Item;
-    BoxCollider2D door;
+    private BoxCollider2D door;
     // Start is called before the first frame update
     void Start()
     {
         Item = GameObject.FindGameObjectWithTag("Player").GetComponent<getItem>();
-        door = GameObject.FindObjectOfType<BoxCollider2D>();
+        door = GameObject.FindGameObjectWithTag("Door").GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class Door : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(Item.Contain_Item("Key") && !door.isTrigger)
+        if (Item.Contain_Item("Key") && !door.isTrigger)
         {
             door.isTrigger = true;
             Item.Remove_Item("Key");
