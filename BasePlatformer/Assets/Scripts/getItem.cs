@@ -77,6 +77,7 @@ public class getItem : MonoBehaviour
             {
                 items.Remove(item);
                 Object.Destroy(item.render);
+                break;
             }
         }
     }
