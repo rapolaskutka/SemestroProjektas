@@ -12,6 +12,7 @@ public class Lava_Damage : MonoBehaviour
     private int damage;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        healthscript = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthControl>();
         if (collision.CompareTag("Player"))
         {
             if (healthscript.GetDamage(damage, false, 3.0))
@@ -21,8 +22,5 @@ public class Lava_Damage : MonoBehaviour
             }
         }
     }
-    private void Start()
-    {
-        healthscript = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthControl>();
-    }
+
 }

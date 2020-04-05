@@ -13,7 +13,7 @@ public class Patrol : MonoBehaviour
     [SerializeField]
     private LayerMask PlayerMask;
     [SerializeField]
-    private bool Shooting;
+    private bool CanShoot;
     [SerializeField]
     private Transform StartPoint;
     [SerializeField]
@@ -31,13 +31,17 @@ public class Patrol : MonoBehaviour
     [SerializeField]
     private float RotateTime;
     private bool isShoot;
+    [SerializeField]
+    private bool Stationary;
 
 
     private void Start()
     {
         if (!StartsLookingRight) Flip();
-        if (Shooting) DetectionRange = 10f;
+        if (CanShoot) DetectionRange = 10f;
+        if (Stationary) speed = 0;
         else DetectionRange = 0.3f;
+        
     }
 
     private void Update()
@@ -53,7 +57,7 @@ public class Patrol : MonoBehaviour
             turning = true;
             StartCoroutine(TurnAround());
         }
-        if ((personright.collider == true || personleft.collider == true) && !Shooting) Flip(); // avoids player if shooting turned off
+        if ((personright.collider == true || personleft.collider == true) && !CanShoot) Flip(); // avoids player if shooting turned off
         ShootingMechanics();
     }
     private IEnumerator TurnAround()
@@ -93,9 +97,9 @@ public class Patrol : MonoBehaviour
     }
     private void ShootingMechanics()
     {
-        if (Shooting)
+        if (CanShoot)
         {
-            if ((personright.collider == false && personleft.collider == false)) speed = 1f; // moves if nobody is detected
+            if ((personright.collider == false && personleft.collider == false) && !Stationary) speed = 1f; // moves if nobody is detected
 
             if (CanSeeBehind)
             {
