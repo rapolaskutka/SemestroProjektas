@@ -15,11 +15,7 @@ public class Lava_Damage : MonoBehaviour
         healthscript = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthControl>();
         if (collision.CompareTag("Player"))
         {
-            if (healthscript.GetDamage(damage, false, 3.0))
-            {
-                Instantiate(blood, PlayerPosition.position, Quaternion.identity);
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
-            }
+            healthscript.GetDamage(damage, false, 3.0);
         }
     }
 

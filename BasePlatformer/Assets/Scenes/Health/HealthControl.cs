@@ -8,6 +8,8 @@ public class HealthControl : MonoBehaviour
     public int health;
     private List<SpriteRenderer> healths = new List<SpriteRenderer>();
     private GameObject UI;
+    public GameObject blood;
+    private Transform PlayerPosition;
     private float hCool;
     void Start()
     {
@@ -24,6 +26,8 @@ public class HealthControl : MonoBehaviour
             obje.transform.parent = camera.transform;
 
         }
+        PlayerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        UI.SetActive(false);
     }
     public bool GetDamage(int amount, bool knockback, double dCool)
     {
@@ -42,6 +46,8 @@ public class HealthControl : MonoBehaviour
                 healths[i].enabled = false;
             }
             health = 0;
+            Destroy(GameObject.FindGameObjectWithTag("Player"));
+            Instantiate(blood, PlayerPosition.position, Quaternion.identity);
             UI.SetActive(true);
             return true;
         }
@@ -78,8 +84,4 @@ public class HealthControl : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
