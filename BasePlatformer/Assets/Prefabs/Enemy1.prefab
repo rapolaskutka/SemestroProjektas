@@ -138,6 +138,7 @@ MonoBehaviour:
   FireballPrefab: {fileID: 4192075312750584742, guid: 71a8edc0aa626c64b89ea140e898a20c,
     type: 3}
   Cooldown: 2
+  CanSeeBehind: 0
 --- !u!114 &1060516762
 MonoBehaviour:
   m_ObjectHideFlags: 0

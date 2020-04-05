@@ -22,11 +22,15 @@ public class Patrol : MonoBehaviour
     private float Cooldown;
     [SerializeField]
     private bool CanSeeBehind;
+    [SerializeField]
+    private bool StartsLookingRight;
     private float CooldownTimer;
     private float DetectionRange;
     private RaycastHit2D ground, personright, personleft;
+   
     private void Start()
     {
+        if (!StartsLookingRight) Flip();
         if (Shooting) DetectionRange = 10f;
         else DetectionRange = 0.3f;
     }
