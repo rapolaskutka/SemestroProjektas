@@ -20948,7 +20948,12 @@ PrefabInstance:
     - target: {fileID: 7002568094753316032, guid: 94673c8ca8329384cb81b7390abd8a4b,
         type: 3}
       propertyPath: StartsLookingRight
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002568094753316032, guid: 94673c8ca8329384cb81b7390abd8a4b,
+        type: 3}
+      propertyPath: RotateTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7002568094753316033, guid: 94673c8ca8329384cb81b7390abd8a4b,
         type: 3}
@@ -21042,7 +21047,7 @@ PrefabInstance:
     - target: {fileID: 4741174540008634800, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.794556
+      value: -12.734849
       objectReference: {fileID: 0}
     - target: {fileID: 4741174540008634800, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}

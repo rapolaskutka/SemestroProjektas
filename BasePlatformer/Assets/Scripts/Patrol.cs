@@ -27,7 +27,11 @@ public class Patrol : MonoBehaviour
     private float CooldownTimer;
     private float DetectionRange;
     private RaycastHit2D ground, personright, personleft;
-   
+    private bool turning;
+    [SerializeField]
+    private float RotateTime;
+
+
     private void Start()
     {
         if (!StartsLookingRight) Flip();
@@ -38,12 +42,24 @@ public class Patrol : MonoBehaviour
     private void Update()
     {
         CoolDownTicker();
+        if(!turning)
         transform.Translate(Vector2.right * speed * Time.deltaTime); // move
-        CollisionDetection();
-        if (ground.collider == false) Flip(); // if no ground, turns around
-        if ((personright.collider == true || personleft.collider == true) && !Shooting) Flip(); // avoids player if shooting turned off
-       ShootingMechanics();
 
+        CollisionDetection();
+        if (ground.collider == false && !turning)
+        {
+            turning = true;
+            StartCoroutine(TurnAround());
+        }
+        if ((personright.collider == true || personleft.collider == true) && !Shooting) Flip(); // avoids player if shooting turned off
+        ShootingMechanics();
+    }
+    private IEnumerator TurnAround()
+    {
+        yield return new WaitForSeconds(RotateTime);
+
+        Flip();
+        turning = false;
     }
     private void CollisionDetection()
     {
