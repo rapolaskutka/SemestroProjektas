@@ -20,6 +20,8 @@ public class Patrol : MonoBehaviour
     private GameObject FireballPrefab;
     [SerializeField]
     private float Cooldown;
+    [SerializeField]
+    private bool CanSeeBehind;
     private float CooldownTimer;
     private float DetectionRange;
     private RaycastHit2D ground, personright, personleft;
@@ -70,17 +72,35 @@ public class Patrol : MonoBehaviour
         if (Shooting)
         {
             if ((personright.collider == false && personleft.collider == false)) speed = 1f; // moves if nobody is detected
-            if ((personright.collider == true || personleft.collider == true)) 
+
+            if (CanSeeBehind)
             {
-                 if ((personright.collider == true && movingRight == false)) Flip();
-                 if ((personleft.collider == true && movingRight == true)) Flip();
-                if (CooldownTimer == 0)
+                if ((personright.collider == true || personleft.collider == true))
                 {
-                    Instantiate(FireballPrefab, StartPoint.position, StartPoint.rotation);
-                    CooldownTimer = Cooldown;
+                    if ((personright.collider == true && movingRight == false)) Flip();
+                    if ((personleft.collider == true && movingRight == true)) Flip();
+                    if (CooldownTimer == 0)
+                    {
+                        Instantiate(FireballPrefab, StartPoint.position, StartPoint.rotation);
+                        CooldownTimer = Cooldown;
+                    }
+                    speed = 0f;
                 }
-                speed = 0f;
             }
+            else 
+            {
+                if ((personright.collider == true && movingRight) || (personleft.collider == true && !movingRight))
+                {
+                    Debug.Log("testas");
+                    if (CooldownTimer == 0)
+                    {
+                        Instantiate(FireballPrefab, StartPoint.position, StartPoint.rotation);
+                        CooldownTimer = Cooldown;
+                    }
+                    speed = 0f;
+                }
+            }
+           
         }
        
     }
