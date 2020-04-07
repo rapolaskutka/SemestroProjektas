@@ -26,7 +26,7 @@ public class Patrol : MonoBehaviour
     private bool StartsLookingRight;
     private float CooldownTimer;
     private float DetectionRange;
-    private RaycastHit2D ground, personright, personleft;
+    private RaycastHit2D ground, personright, personleft,Wall;
     private bool turning;
     [SerializeField]
     private float RotateTime;
@@ -39,8 +39,9 @@ public class Patrol : MonoBehaviour
     {
         if (!StartsLookingRight) Flip();
         if (CanShoot) DetectionRange = 10f;
-        if (Stationary) speed = 0;
         else DetectionRange = 0.3f;
+        if (Stationary) speed = 0;
+
         
     }
 
@@ -53,6 +54,11 @@ public class Patrol : MonoBehaviour
         CollisionDetection();
 
         if (ground.collider == false && !turning && !isShoot)
+        {
+            turning = true;
+            StartCoroutine(TurnAround());
+        }
+        if (Wall.collider == true && !turning && !isShoot)
         {
             turning = true;
             StartCoroutine(TurnAround());
@@ -71,7 +77,8 @@ public class Patrol : MonoBehaviour
     }
     private void CollisionDetection()
     {
-        ground = Physics2D.Raycast(Ground.position, Vector2.down, 2f, Hitswhat);
+        ground = Physics2D.Raycast(Ground.position, Vector2.down, 0.7f, Hitswhat);
+        Wall = Physics2D.Raycast(Ground.position, Vector2.right, 1f, Hitswhat);
         personright = Physics2D.Raycast(Ground.position, Vector2.right, DetectionRange, PlayerMask);
         personleft = Physics2D.Raycast(Ground.position, Vector2.left, DetectionRange, PlayerMask);
     }
@@ -137,7 +144,7 @@ public class Patrol : MonoBehaviour
        
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Hat"))
         {
