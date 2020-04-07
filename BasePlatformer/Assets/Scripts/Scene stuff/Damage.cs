@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DeathScreen : MonoBehaviour
+public class Damage : MonoBehaviour
 {
     private HealthControl healthscript;
-    [SerializeField]
-    private int damage;
+    [SerializeField] private int damage;
+    [SerializeField] private bool OneShotDeath;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            healthscript.GetDamage(damage, false, 3.0);
+            healthscript.GetDamage(damage, false);
         }
     }
 
     private void Start()
     {
         healthscript = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthControl>();
+        if (OneShotDeath) 
+        {
+            damage = healthscript.health;
+        }
     }
 }

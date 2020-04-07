@@ -27,10 +27,9 @@ public class Fireball : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Destroy(gameObject);
-            if (healthscript.GetDamage(damage, false, 3.0))
+            if (healthscript.GetDamage(damage, false))
             {
                 Instantiate(blood, Playerpostion.position, Quaternion.identity);
-                Destroy(GameObject.FindGameObjectWithTag("Player"));
             }
 
         }

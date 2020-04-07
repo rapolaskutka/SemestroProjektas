@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class HealthControl : MonoBehaviour
 {
-    public int health;
+
+    [SerializeField] private float DamageCooldown;
+    [SerializeField] public int health;
+    [SerializeField] private GameObject blood;
     private List<SpriteRenderer> healths = new List<SpriteRenderer>();
     private GameObject UI;
-    public GameObject blood;
     private Transform PlayerPosition;
     private float hCool;
+
     void Start()
     {
         GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -29,15 +32,15 @@ public class HealthControl : MonoBehaviour
         PlayerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         UI.SetActive(false);
     }
-    public bool GetDamage(int amount, bool knockback, double dCool)
+    public bool GetDamage(int amount, bool knockback)
     {
         if (hCool >= Time.time)
             return false;
 
-        hCool = Time.time + (float)dCool;
+        hCool = Time.time + DamageCooldown;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         SpriteRenderer sprite = player.GetComponent<SpriteRenderer>();
-        StartCoroutine(DamageIndicator(sprite, (float)dCool));
+        StartCoroutine(DamageIndicator(sprite, DamageCooldown));
         sprite.enabled = true;
         if (amount >= health)
         {
@@ -83,5 +86,4 @@ public class HealthControl : MonoBehaviour
             yield return new WaitForSeconds(.3f);
         }
     }
-    // Update is called once per frame
 }

@@ -7,7 +7,7 @@ public class ParticleHit : MonoBehaviour
     private GameObject UI;
     void OnParticleCollision(GameObject other) 
     {
-        if (healthscript.GetDamage(1, false, 3.0))
+        if (healthscript.GetDamage(1, false))
         {
             Instantiate(blood, PlayerPosition.position, Quaternion.identity);
         }

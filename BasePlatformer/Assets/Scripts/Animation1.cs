@@ -42,7 +42,6 @@ public class Animation1 : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         Main_Sprite.sprite = Starting;
-        Debug.Log(Main_Sprite.sprite);
         index = 0;
     }
 }

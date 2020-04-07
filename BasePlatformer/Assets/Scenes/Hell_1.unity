@@ -24932,6 +24932,21 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 583575881}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &219209281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219209280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a92195749eae7ae4090b39d2cb3e346f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageCooldown: 1
+  health: 5
+  blood: {fileID: 6788784707137936555, guid: 33cadfe3867680a42b3e6741b1cc350c, type: 3}
 --- !u!114 &219209290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25470,7 +25485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5811440647555782229, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
+    - {fileID: 8174128301727010516, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
+    - {fileID: 8174128301727010517, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
 --- !u!1 &635126178 stripped
 GameObject:
@@ -25613,6 +25631,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1060516762, guid: 94673c8ca8329384cb81b7390abd8a4b, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7002568094753316033, guid: 94673c8ca8329384cb81b7390abd8a4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25673,7 +25695,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ENEMYPREFAB_INSERTOWNSPRITE DON'T CREATE NEW
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1060516762, guid: 94673c8ca8329384cb81b7390abd8a4b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 94673c8ca8329384cb81b7390abd8a4b, type: 3}
 --- !u!1001 &1030708885
 PrefabInstance:
@@ -25954,6 +25977,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 583575881}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1408008220 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7002568094753316045, guid: 94673c8ca8329384cb81b7390abd8a4b,
+    type: 3}
+  m_PrefabInstance: {fileID: 707700264}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1408008221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408008220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8160d93a6fe57044389e4afe36564b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 3
+  OneShotDeath: 0
 --- !u!213 &1620087081
 Sprite:
   m_ObjectHideFlags: 0
@@ -26712,11 +26755,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2117960757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3cc08216910cbf47b352f5ff1c897f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8160d93a6fe57044389e4afe36564b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: {fileID: 6788784707137936555, guid: 33cadfe3867680a42b3e6741b1cc350c, type: 3}
-  damage: 5
+  damage: 5555
+  OneShotDeath: 1
 --- !u!1001 &6591253133136086688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26732,7 +26775,7 @@ PrefabInstance:
     - target: {fileID: 1924405737808911534, guid: 271c5be4ed1056742b9b5b54c8e62bc7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.793887
+      value: -12.794556
       objectReference: {fileID: 0}
     - target: {fileID: 1924405737808911534, guid: 271c5be4ed1056742b9b5b54c8e62bc7,
         type: 3}
