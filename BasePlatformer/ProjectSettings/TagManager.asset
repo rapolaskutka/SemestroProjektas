@@ -18,6 +18,10 @@ TagManager:
   - DScreen
   - Blood
   - Enemy
+  - BackGround
+  - EnemyAttack
+  - Item
+  - Door
   layers:
   - Default
   - TransparentFX

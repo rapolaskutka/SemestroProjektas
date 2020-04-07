@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7002568094753316046}
   - component: {fileID: 7002568094753316047}
   - component: {fileID: 7002568094753316032}
-  - component: {fileID: 1060516762}
+  - component: {fileID: 6858899522335698963}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7002568094753316045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -27.29, y: -30.545, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: -1}
   m_Children:
   - {fileID: 7002568095856865885}
   m_Father: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: cf92216ad71a438498797a39eca008a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -125,12 +125,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   Ground: {fileID: 7002568095856865885}
-  Hitswhat:
-    serializedVersion: 2
-    m_Bits: 1280
   deathparticles: {fileID: 2282467160219633195, guid: 1cc6e794c9740814db8b173713321ba8,
     type: 3}
---- !u!114 &1060516762
+  Hitswhat:
+    serializedVersion: 2
+    m_Bits: 512
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  CanShoot: 1
+  StartPoint: {fileID: 7002568095856865885}
+  FireballPrefab: {fileID: 4192075312750584742, guid: 71a8edc0aa626c64b89ea140e898a20c,
+    type: 3}
+  Cooldown: 2
+  CanSeeBehind: 1
+  StartsLookingRight: 0
+  RotateTime: 1
+  Stationary: 0
+--- !u!114 &6858899522335698963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,10 +151,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7002568094753316045}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767d1df32962851469a4bed63598db45, type: 3}
+  m_Script: {fileID: 11500000, guid: 8160d93a6fe57044389e4afe36564b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: {fileID: 6788784707137936555, guid: 33cadfe3867680a42b3e6741b1cc350c, type: 3}
+  damage: 1
+  OneShotDeath: 0
 --- !u!1 &7002568095856865882
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +168,7 @@ GameObject:
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -167,7 +180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7002568095856865882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.374, y: -0.004, z: 0}
+  m_LocalPosition: {x: 0.41, y: -0.004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7002568094753316033}

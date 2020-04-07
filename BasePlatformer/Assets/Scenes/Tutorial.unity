@@ -405,19 +405,6 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 2727844398607982531}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &447519308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447519300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a92195749eae7ae4090b39d2cb3e346f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
 --- !u!114 &447519309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2370,6 +2357,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5811440647555782229, guid: e992e9c61016ba144b2c81413f55ee5b,
+        type: 3}
+      propertyPath: blood
+      value: 
+      objectReference: {fileID: 6788784707137936555, guid: 33cadfe3867680a42b3e6741b1cc350c,
+        type: 3}
+    - target: {fileID: 5811440647555782229, guid: e992e9c61016ba144b2c81413f55ee5b,
+        type: 3}
+      propertyPath: DamageCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8174128301727010512, guid: e992e9c61016ba144b2c81413f55ee5b,
         type: 3}
       propertyPath: m_Offset.y
@@ -2614,8 +2612,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767d1df32962851469a4bed63598db45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: {fileID: 0}
-  damage: 0
 --- !u!1 &8331949976883741856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2739,8 +2735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767d1df32962851469a4bed63598db45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: {fileID: 0}
-  damage: 0
 --- !u!1001 &8702776605173644671
 PrefabInstance:
   m_ObjectHideFlags: 0
