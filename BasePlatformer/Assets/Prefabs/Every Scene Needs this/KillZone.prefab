@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 534431919121287772}
-  - component: {fileID: 1713977388}
   - component: {fileID: 1196353582}
+  - component: {fileID: 4773416868985017903}
   m_Layer: 0
   m_Name: KillZone
   m_TagString: Dead
@@ -32,20 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1713977388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534431919121287770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 767d1df32962851469a4bed63598db45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blood: {fileID: 6788784707137936555, guid: 33cadfe3867680a42b3e6741b1cc350c, type: 3}
-  damage: 5
 --- !u!68 &1196353582
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -69,3 +55,17 @@ EdgeCollider2D:
   - {x: 92.45105, y: -0.17433548}
   - {x: 93.67172, y: 37.20215}
   - {x: 42.924908, y: 40.961174}
+--- !u!114 &4773416868985017903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534431919121287770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8160d93a6fe57044389e4afe36564b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  OneShotDeath: 1

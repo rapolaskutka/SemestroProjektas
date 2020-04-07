@@ -39,7 +39,7 @@ public class Patrol : MonoBehaviour
     {
         if (!StartsLookingRight) Flip();
         if (CanShoot) DetectionRange = 10f;
-        else DetectionRange = 0.3f;
+        else DetectionRange = 0.5f;
         if (Stationary) speed = 0;
 
         
@@ -77,8 +77,8 @@ public class Patrol : MonoBehaviour
     }
     private void CollisionDetection()
     {
-        ground = Physics2D.Raycast(Ground.position, Vector2.down, 0.7f, Hitswhat);
-        Wall = Physics2D.Raycast(Ground.position, Vector2.right, 1f, Hitswhat);
+        ground = Physics2D.Raycast(Ground.position, Vector2.down, 0.5f, Hitswhat);
+        Wall = Physics2D.Raycast(Ground.position, Vector2.right, 0.5f, Hitswhat);
         personright = Physics2D.Raycast(Ground.position, Vector2.right, DetectionRange, PlayerMask);
         personleft = Physics2D.Raycast(Ground.position, Vector2.left, DetectionRange, PlayerMask);
     }
