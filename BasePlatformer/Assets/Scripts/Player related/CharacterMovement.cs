@@ -30,6 +30,7 @@ public class CharacterMovement : MonoBehaviour
     //private bool TouchRight;
     //private bool TouchLeft;
     //private bool islide;
+    private bool JumpRequest;
     private void Start()
     {
 
@@ -42,6 +43,19 @@ public class CharacterMovement : MonoBehaviour
 
         MoveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(MoveInput * speed, rb.velocity.y);
+        if (JumpRequest)
+        {
+            rb.velocity = Vector2.up * JumpForce;
+            JumpRequest = false;
+        }
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
+        }
+        if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
+        {
+            rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
+        }
         //ApplySliding();
 
     }
@@ -72,17 +86,9 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
         {
             animatorss.SetTrigger("Trigger");
-            Jumping = true;
-            rb.velocity = Vector2.up * JumpForce;
+            Jumping = true; JumpRequest = true;
         }
-        if (rb.velocity.y < 0)
-        {
-            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
-        }
-        if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
-        {
-            rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
-        }
+        
         if (Input.GetKeyUp(KeyCode.UpArrow) && Jumps > 0)
         {
             Jumping = false;
