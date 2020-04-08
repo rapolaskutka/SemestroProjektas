@@ -20,6 +20,10 @@ public class CharacterMovement : MonoBehaviour
     private float JumpTime;
     [SerializeField]
     private float DashCooldown;
+    [SerializeField]
+    private float HowFastYouFall;
+    [SerializeField]
+    private float HowFastYouStartJump;
     private Animator animatorss;
     private Rigidbody2D rb;
     private bool Grounded;
@@ -36,6 +40,7 @@ public class CharacterMovement : MonoBehaviour
     public float MoveInput;
     [HideInInspector]
     public float JumpTimeCounter;
+
     //[SerializeField]
     //private LayerMask WhatIsWall;
     //private float wallSlideSpeed;
@@ -65,7 +70,6 @@ public class CharacterMovement : MonoBehaviour
         CollisionChecks();
         DashCheck();
         Jump();
-        WaterDive();
         Animations();
     }
 
@@ -79,11 +83,6 @@ public class CharacterMovement : MonoBehaviour
         else if (facingRight && MoveInput < 0) Flip();
     }
 
-    private void WaterDive()
-    {
-        if (Input.GetKey(KeyCode.DownArrow) && Inwater) rb.gravityScale = 6;
-        if (Input.GetKeyUp(KeyCode.DownArrow) && Inwater) rb.gravityScale = 1f;
-    }
 
     private void Jump()
     {
@@ -91,33 +90,31 @@ public class CharacterMovement : MonoBehaviour
         {
             animatorss.SetTrigger("Trigger");
             Jumping = true;
+            rb.velocity = Vector2.up * JumpForce;
         }
-        if (Input.GetKey(KeyCode.UpArrow) && Jumping && JumpTimeCounter > 0)
+        if (rb.velocity.y < 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, JumpForce);
-            JumpTimeCounter -= Time.deltaTime;
+            rb.velocity += Vector2.up * Physics.gravity.y * (HowFastYouFall - 1) * Time.deltaTime;
+        }
+        if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
+        {
+            rb.velocity += Vector2.up * Physics.gravity.y * (HowFastYouStartJump - 1) * Time.deltaTime;
         }
         if (Input.GetKeyUp(KeyCode.UpArrow) && Jumps > 0)
         {
             Jumping = false;
-            JumpTimeCounter = JumpTime;
             Jumps--;
         }
         if (!Grounded && Jumps == 2 && Jumping == false) Jumps = 1;
 
-    }
-    IEnumerator RJump() 
-    {
-        yield return new WaitForSeconds(0.2f);
-        Jumps--;
     }
     private void CollisionChecks()
     {
         HeadHitCheck = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.10f, transform.position.y + 0.2f), new Vector2(transform.position.x + 0.2f, transform.position.y + 0.25f), WhatIsCeiling);
         if (HeadHitCheck)
         {
-            if(JumpTimeCounter != JumpTime)
-            JumpTimeCounter = 0;
+            if (JumpTimeCounter != JumpTime)
+                JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
         Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
@@ -158,7 +155,7 @@ public class CharacterMovement : MonoBehaviour
         facingRight = !facingRight;
         transform.Rotate(0f, 180f, 0f);
     }
-   
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Water")
@@ -168,10 +165,6 @@ public class CharacterMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "TP")
-        {
-            SceneManager.LoadScene("Best");
-        }
         if (collision.gameObject.tag == "Water")
         {
             Jumps = 9999;
@@ -191,14 +184,6 @@ public class CharacterMovement : MonoBehaviour
         rb.gravityScale = 3f;
         Inwater = false;
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Water")
-        {
-            Inwater = true;
-        }
-    }
-
 
 }
 //public void ApplySliding()
