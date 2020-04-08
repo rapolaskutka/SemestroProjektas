@@ -636,25 +636,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8174128301727010515, guid: e992e9c61016ba144b2c81413f55ee5b,
-        type: 3}
-      propertyPath: lowJumpMultiplierFloat
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8174128301727010515, guid: e992e9c61016ba144b2c81413f55ee5b,
-        type: 3}
-      propertyPath: fallMultiplierFloat
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8174128301727010518, guid: e992e9c61016ba144b2c81413f55ee5b,
         type: 3}
       propertyPath: m_Name
       value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 8174128301727010519, guid: e992e9c61016ba144b2c81413f55ee5b,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}

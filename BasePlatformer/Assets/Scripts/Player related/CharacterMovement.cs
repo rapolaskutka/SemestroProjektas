@@ -5,42 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour
 {
-
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private Transform GroundCheck;
-    [SerializeField]
-    private LayerMask WhatIsGround;
-    [SerializeField]
-    private LayerMask WhatIsCeiling;
-    [SerializeField]
-    private int ExtraJumpCount;
-    [SerializeField]
-    private float JumpTime;
-    [SerializeField]
-    private float DashCooldown;
-    [SerializeField]
-    private float HowFastYouFall;
-    [SerializeField]
-    private float HowFastYouStartJump;
+    [SerializeField] private float speed;
+    [SerializeField] private Transform GroundCheck;
+    [SerializeField] private LayerMask WhatIsGround;
+    [SerializeField] private LayerMask WhatIsCeiling;
+    [SerializeField] private int ExtraJumpCount;
+    [SerializeField] private float DashCooldown;
+    [SerializeField] private float fallMultiplierFloat;
+    [SerializeField] private float lowJumpMultiplierFloat;
+    [HideInInspector] public bool facingRight = true;
     private Animator animatorss;
     private Rigidbody2D rb;
     private bool Grounded;
     private bool Jumping;
     private bool HeadHitCheck;
-    private bool Inwater;
     private float DashCooldownTimer;
     private int Jumps;
     private bool Moving;
     public float JumpForce;
-    [HideInInspector]
-    public bool facingRight = true;
-    [HideInInspector]
-    public float MoveInput;
-    [HideInInspector]
-    public float JumpTimeCounter;
-
+    private float MoveInput;
     //[SerializeField]
     //private LayerMask WhatIsWall;
     //private float wallSlideSpeed;
@@ -52,7 +35,6 @@ public class CharacterMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         animatorss = GetComponent<Animator>();
-        JumpTimeCounter = JumpTime;
         Jumps = ExtraJumpCount;
     }
     void FixedUpdate()
@@ -65,12 +47,13 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-        if (Grounded) { Jumps = ExtraJumpCount; JumpTimeCounter = JumpTime; }
+        if (Grounded) Jumps = ExtraJumpCount;
         CoolDownTicker();
         CollisionChecks();
         DashCheck();
         Jump();
         Animations();
+
     }
 
     private void Animations()
@@ -94,11 +77,11 @@ public class CharacterMovement : MonoBehaviour
         }
         if (rb.velocity.y < 0)
         {
-            rb.velocity += Vector2.up * Physics.gravity.y * (HowFastYouFall - 1) * Time.deltaTime;
+            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
         }
         if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
         {
-            rb.velocity += Vector2.up * Physics.gravity.y * (HowFastYouStartJump - 1) * Time.deltaTime;
+            rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
         }
         if (Input.GetKeyUp(KeyCode.UpArrow) && Jumps > 0)
         {
@@ -113,8 +96,6 @@ public class CharacterMovement : MonoBehaviour
         HeadHitCheck = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.10f, transform.position.y + 0.2f), new Vector2(transform.position.x + 0.2f, transform.position.y + 0.25f), WhatIsCeiling);
         if (HeadHitCheck)
         {
-            if (JumpTimeCounter != JumpTime)
-                JumpTimeCounter = 0;
             rb.velocity = Vector2.zero;
         }
         Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
@@ -182,7 +163,6 @@ public class CharacterMovement : MonoBehaviour
         speed += 2f;
         JumpForce += 3;
         rb.gravityScale = 3f;
-        Inwater = false;
     }
 
 }

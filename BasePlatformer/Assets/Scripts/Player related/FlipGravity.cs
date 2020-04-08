@@ -17,7 +17,6 @@ public class FlipGravity : MonoBehaviour
             if (isColliding) return;
             isColliding = true;
             rb.gravityScale *= -1;
-            movementclass.JumpTimeCounter = 0;
             movementclass.JumpForce *= -1;
             Rotation();
             StartCoroutine(Reset());
