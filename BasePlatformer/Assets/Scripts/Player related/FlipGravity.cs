@@ -12,12 +12,13 @@ public class FlipGravity : MonoBehaviour
     {
         movementclass = GameObject.FindObjectOfType<CharacterMovement>();
         rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
-        if (collision.CompareTag("Flip"))
+        if (collision.CompareTag("Player"))
         {
             if (isColliding) return;
             isColliding = true;
             rb.gravityScale *= -1;
             movementclass.JumpForce *= -1;
+            Physics.gravity *= -1;
             Rotation();
             StartCoroutine(Reset());
         }

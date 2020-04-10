@@ -24,12 +24,11 @@ public class CharacterMovement : MonoBehaviour
     private bool Moving;
     public float JumpForce;
     private float MoveInput;
-    //[SerializeField]
-    //private LayerMask WhatIsWall;
-    //private float wallSlideSpeed;
-    //private bool TouchRight;
-    //private bool TouchLeft;
-    //private bool islide;
+    [SerializeField] private LayerMask WhatIsWall;
+    private float wallSlideSpeed;
+    private bool TouchRight;
+    private bool TouchLeft;
+    private bool islide;
     private bool JumpRequest;
     private void Start()
     {
@@ -48,19 +47,21 @@ public class CharacterMovement : MonoBehaviour
             rb.velocity = Vector2.up * JumpForce;
             JumpRequest = false;
         }
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < 5)
         {
-            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
+            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime ;
         }
         if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
         {
             rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
         }
-        //ApplySliding();
+        ApplySliding();
+        
 
     }
     void Update()
     {
+        Debug.Log(Physics.gravity.y);
         if (Grounded) Jumps = ExtraJumpCount;
         CoolDownTicker();
         CollisionChecks();
@@ -105,12 +106,12 @@ public class CharacterMovement : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
         Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
-        //if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
-        //    islide = true;
-        //else
-        //    islide = false;
-        //TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
-        //TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
+            islide = true;
+        else
+            islide = false;
+        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
+        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
     }
     private void DashCheck()
     {
@@ -170,16 +171,16 @@ public class CharacterMovement : MonoBehaviour
         JumpForce += 3;
         rb.gravityScale = 3f;
     }
+    public void ApplySliding()
+    {
+        if (islide)
+        {
+
+            if (rb.velocity.y < -wallSlideSpeed)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
+            }
+        }
+    }
 
 }
-//public void ApplySliding()
-//{
-//    if (islide)
-//    {
-
-//        if (rb.velocity.y < -wallSlideSpeed)
-//        {
-//            rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
-//        }
-//    }
-//}
