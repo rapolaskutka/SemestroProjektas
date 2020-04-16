@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 8174128301727010525}
   - component: {fileID: 219209281}
   - component: {fileID: 219209290}
+  - component: {fileID: 2607915432207826609}
   m_Layer: 8
   m_Name: Character
   m_TagString: Player
@@ -249,14 +250,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   ExtraJumpCount: 2
-  JumpTime: 0.2
   DashCooldown: 3
   fallMultiplierFloat: 2.5
   lowJumpMultiplierFloat: 4
-  JumpForce: 8
   facingRight: 1
-  MoveInput: 0
-  JumpTimeCounter: 0
+  JumpForce: 8
+  WhatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!95 &8174128301727010524
 Animator:
   serializedVersion: 3
@@ -319,3 +320,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f7fe46f26defe449961505799fd881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2607915432207826609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174128301727010518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fc0514f9e29f74195ca0c384a7097b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FreezeTime: 2
