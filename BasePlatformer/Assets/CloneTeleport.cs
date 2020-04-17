@@ -5,9 +5,7 @@ public class CloneTeleport : MonoBehaviour
     [SerializeField] private float speed = 15f;
     [SerializeField] private GameObject impact;
     private Rigidbody2D rb;
-    private Rigidbody2D PlayerRb;
     private Throwing throwclass;
-    public Vector2 Pos;
     void Start()
     {
         throwclass = FindObjectOfType<Throwing>();
@@ -18,13 +16,14 @@ public class CloneTeleport : MonoBehaviour
     {
         if (collision.CompareTag("Ground"))
         {
-            PlayerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+            CharacterMovement movementclass = FindObjectOfType<CharacterMovement>();
+            Rigidbody2D PlayerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+            movementclass.Jumps = 2;
             Instantiate(impact, transform.position, Quaternion.identity);
             throwclass.RemoveCooldownGhost();
             PlayerRb.velocity = Vector2.zero;
-            if(throwclass.Threwright) throwclass.ChangePos(transform.position - (Vector3.right * 0.3f));
-            else throwclass.ChangePos(transform.position + (Vector3.right * 0.3f));
-
+            if(throwclass.Threwright) throwclass.ChangePos(transform.position - (Vector3.right * 0.7f ));
+            else throwclass.ChangePos(transform.position + (Vector3.right * 0.7f ));
             Destroy(this.gameObject);
         }
 

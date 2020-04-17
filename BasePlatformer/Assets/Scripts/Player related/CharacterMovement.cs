@@ -15,13 +15,14 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float lowJumpMultiplierFloat;
     [HideInInspector] public bool facingRight = true;
     [HideInInspector] public bool top;
+    [HideInInspector] public int Jumps;
     private Animator animatorss;
     private Rigidbody2D rb;
     private bool Grounded;
     private bool Jumping;
     private bool HeadHitCheck;
     private float DashCooldownTimer;
-    private int Jumps;
+
     private bool Moving;
     public float JumpForce;
     private float MoveInput;

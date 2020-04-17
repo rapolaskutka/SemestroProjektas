@@ -14,6 +14,7 @@ public class FlipGravity : MonoBehaviour
         rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         if (collision.CompareTag("Player"))
         {
+            movementclass.Jumps = 2;
             rb.velocity = Vector2.zero;
             if (isColliding) return;
             isColliding = true;
