@@ -57,13 +57,28 @@ public class CharacterMovement : MonoBehaviour
     }
     void FallSpeed()
     {
-        if (rb.velocity.y < 5)
+       
+        if (top)
         {
-            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
+            if (rb.velocity.y < -5)
+            {
+                rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
+            }
+            if (rb.velocity.y < 0 && !Input.GetKey(KeyCode.UpArrow))
+            {
+                rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
+            }
         }
-        if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
+        else
         {
-            rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
+            if (rb.velocity.y < 5)
+            {
+                rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
+            }
+            if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
+            {
+                rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
+            }
         }
     }
 
