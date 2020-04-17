@@ -5,23 +5,44 @@ using UnityEngine;
 public class Throwing : MonoBehaviour
 {
     public Transform StartPoint;
-    public float Cooldown;
+    public float HatCD;
     private float CooldownTimer;
-
+    private float GhostCD;
     public GameObject HatPrefab;
+    public GameObject GhostClone;
+    private CloneTeleport Position;
+
+    void Start()
+    {
+        Position = FindObjectOfType<CloneTeleport>();
+
+    }
     void Update()
     {
-        if (CooldownTimer > 0) CooldownTimer -= Time.deltaTime;
-        if (CooldownTimer < 0) CooldownTimer = 0;
-        if (Input.GetKeyDown(KeyCode.Z) && CooldownTimer == 0)
+        CooldownTimer -= Time.deltaTime;
+        GhostCD -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Z) && CooldownTimer < 0)
         {
             Instantiate(HatPrefab, StartPoint.position, StartPoint.rotation);
-            CooldownTimer = Cooldown;
+            CooldownTimer = HatCD;
         }
-        
+        if (Input.GetKeyDown(KeyCode.X) && GhostCD < 0)
+        {
+            Instantiate(GhostClone, StartPoint.position, StartPoint.rotation);
+            GhostCD = 5f;
+        }
+
     }
-    public void RemoveCooldown() 
+    public void RemoveCooldown()
     {
         CooldownTimer = 0;
+    }
+    public void RemoveCooldownGhost()
+    {
+        GhostCD = 0;
+    }
+    public void ChangePos(Vector3 xd)
+    {
+        transform.position = xd;
     }
 }

@@ -5130,7 +5130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  cooldown: 0
+  cooldown: 1
   OneShotDeath: 0
 --- !u!1 &6219617031363625703
 GameObject:

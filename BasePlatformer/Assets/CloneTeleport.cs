@@ -1,23 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CloneTeleport : MonoBehaviour
 {
-    public float speed = 15f;
+    [SerializeField] private float speed = 15f;
+    [SerializeField] private GameObject impact;
     private Rigidbody2D rb;
     private Throwing throwclass;
-    public GameObject impact;
-    public Transform PlayerPos;
-    void Awake()
-    {
-        throwclass = GameObject.FindObjectOfType<Throwing>();
-    }
+    public Vector2 Pos;
     void Start()
     {
+        throwclass = FindObjectOfType<Throwing>();
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
-        PlayerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,7 +19,9 @@ public class CloneTeleport : MonoBehaviour
         if (collision.CompareTag("Ground"))
         {
             Instantiate(impact, transform.position, Quaternion.identity);
-            PlayerPos = this.transform;
+            throwclass.RemoveCooldownGhost();
+            throwclass.ChangePos(transform.position);
+            Destroy(this.gameObject);
         }
 
     }
