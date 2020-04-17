@@ -14,6 +14,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float fallMultiplierFloat;
     [SerializeField] private float lowJumpMultiplierFloat;
     [HideInInspector] public bool facingRight = true;
+    [HideInInspector] public bool top;
     private Animator animatorss;
     private Rigidbody2D rb;
     private bool Grounded;
@@ -30,7 +31,6 @@ public class CharacterMovement : MonoBehaviour
     private bool TouchLeft;
     private bool islide;
     private bool JumpRequest;
-    public bool top;
     private float DefaultFall;
 
     private void Start()
@@ -173,7 +173,8 @@ public class CharacterMovement : MonoBehaviour
         }
         else if (collision.gameObject.tag.Equals("FallSpeed_In"))
         {
-            fallMultiplierFloat = (float)0.1;
+            fallMultiplierFloat = (float)0.25;
+            Jumps = 0;
         }
         else if (collision.gameObject.tag.Equals("FallSpeed_Out"))
         {

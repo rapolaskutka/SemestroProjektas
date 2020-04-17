@@ -254,6 +254,7 @@ MonoBehaviour:
   fallMultiplierFloat: 2.5
   lowJumpMultiplierFloat: 4
   facingRight: 1
+  top: 0
   JumpForce: 8
   WhatIsWall:
     serializedVersion: 2
