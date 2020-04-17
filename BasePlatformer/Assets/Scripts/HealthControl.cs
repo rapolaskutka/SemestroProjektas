@@ -32,7 +32,7 @@ public class HealthControl : MonoBehaviour
         PlayerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         UI.SetActive(false);
     }
-    public bool GetDamage(int amount, bool knockback)
+    public bool GetDamage(int amount, bool knockback, float DamageCooldown)
     {
         if (hCool >= Time.time)
             return false;
