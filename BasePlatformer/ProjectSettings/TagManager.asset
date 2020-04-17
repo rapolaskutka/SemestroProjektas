@@ -24,6 +24,9 @@ TagManager:
   - Door
   - FallSpeed_In
   - FallSpeed_Out
+  - Damage
+  - Enemy_Health
+  - Heart
   layers:
   - Default
   - TransparentFX
