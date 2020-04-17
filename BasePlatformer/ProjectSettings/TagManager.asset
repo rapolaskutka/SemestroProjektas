@@ -22,6 +22,8 @@ TagManager:
   - EnemyAttack
   - Item
   - Door
+  - FallSpeed_In
+  - FallSpeed_Out
   layers:
   - Default
   - TransparentFX

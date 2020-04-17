@@ -31,6 +31,7 @@ public class CharacterMovement : MonoBehaviour
     private bool islide;
     private bool JumpRequest;
     public bool top;
+    private float DefaultFall;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class CharacterMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animatorss = GetComponent<Animator>();
         Jumps = ExtraJumpCount;
+        DefaultFall = fallMultiplierFloat;
     }
     void FixedUpdate()
     {
@@ -168,6 +170,14 @@ public class CharacterMovement : MonoBehaviour
             speed -= 2f;
             JumpForce -= 3;
             rb.gravityScale = 1f;
+        }
+        else if (collision.gameObject.tag.Equals("FallSpeed_In"))
+        {
+            fallMultiplierFloat = (float)0.1;
+        }
+        else if (collision.gameObject.tag.Equals("FallSpeed_Out"))
+        {
+            fallMultiplierFloat = DefaultFall;
         }
     }
     IEnumerator Restore()
