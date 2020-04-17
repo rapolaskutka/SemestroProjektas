@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  impact: {fileID: 3758063615603309866, guid: 0af9d764901a945478e367f51211ff33, type: 3}
-  PlayerPos: {fileID: 0}
+  impact: {fileID: 6851132260546358027, guid: 80dc4282e6f55284db607e47b8d85b70, type: 3}
+  Pos: {x: 0, y: 0}
 --- !u!50 &5766010987621665257
 Rigidbody2D:
   serializedVersion: 4
