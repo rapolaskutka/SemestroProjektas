@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public GameObject particles;
-    public Vector3 Position;
+    private Vector3 Position;
     void Start()
     {
         Position = transform.position;

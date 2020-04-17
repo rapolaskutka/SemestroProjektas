@@ -7,13 +7,14 @@ public class FlipGravity : MonoBehaviour
     private CharacterMovement movementclass;
     private Rigidbody2D rb;
     private bool isColliding = false;
-    private bool top;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         movementclass = GameObject.FindObjectOfType<CharacterMovement>();
         rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         if (collision.CompareTag("Player"))
         {
+            rb.velocity = Vector2.zero;
             if (isColliding) return;
             isColliding = true;
             rb.gravityScale *= -1;
@@ -31,7 +32,7 @@ public class FlipGravity : MonoBehaviour
     }
     public void Rotation()
     {
-        if (top == false)
+        if (movementclass.top == false)
         {
             movementclass.transform.eulerAngles = new Vector3(0, 0, 180f);
             if (!movementclass.facingRight) movementclass.facingRight = true;
@@ -42,6 +43,7 @@ public class FlipGravity : MonoBehaviour
             movementclass.transform.eulerAngles = Vector3.zero;
         } 
         movementclass.facingRight = !movementclass.facingRight;
-        top = !top;
+        movementclass.top = !movementclass.top;
+        
     }
 }

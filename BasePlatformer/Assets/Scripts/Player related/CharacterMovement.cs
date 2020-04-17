@@ -30,6 +30,8 @@ public class CharacterMovement : MonoBehaviour
     private bool TouchLeft;
     private bool islide;
     private bool JumpRequest;
+    public bool top;
+
     private void Start()
     {
 
@@ -47,21 +49,25 @@ public class CharacterMovement : MonoBehaviour
             rb.velocity = Vector2.up * JumpForce;
             JumpRequest = false;
         }
+
+        FallSpeed();
+        ApplySliding();
+    }
+    void FallSpeed()
+    {
         if (rb.velocity.y < 5)
         {
-            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime ;
+            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
         }
         if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
         {
             rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
         }
-        ApplySliding();
-        
-
     }
+
+
     void Update()
     {
-        Debug.Log(Physics.gravity.y);
         if (Grounded) Jumps = ExtraJumpCount;
         CoolDownTicker();
         CollisionChecks();
@@ -89,7 +95,7 @@ public class CharacterMovement : MonoBehaviour
             animatorss.SetTrigger("Trigger");
             Jumping = true; JumpRequest = true;
         }
-        
+
         if (Input.GetKeyUp(KeyCode.UpArrow) && Jumps > 0)
         {
             Jumping = false;
@@ -127,6 +133,8 @@ public class CharacterMovement : MonoBehaviour
         if (DashCooldownTimer < 0) DashCooldownTimer = 0;
     }
     private bool Dashing = false;
+
+
     IEnumerator DashMove()
     {
         Dashing = true;
