@@ -15,13 +15,14 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float lowJumpMultiplierFloat;
     [HideInInspector] public bool facingRight = true;
     [HideInInspector] public bool top;
+    [HideInInspector] public int Jumps;
     private Animator animatorss;
     private Rigidbody2D rb;
     private bool Grounded;
     private bool Jumping;
     private bool HeadHitCheck;
     private float DashCooldownTimer;
-    private int Jumps;
+
     private bool Moving;
     public float JumpForce;
     private float MoveInput;
@@ -57,13 +58,28 @@ public class CharacterMovement : MonoBehaviour
     }
     void FallSpeed()
     {
-        if (rb.velocity.y < 5)
+       
+        if (top)
         {
-            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
+            if (rb.velocity.y < -5)
+            {
+                rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
+            }
+            if (rb.velocity.y < 0 && !Input.GetKey(KeyCode.UpArrow))
+            {
+                rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
+            }
         }
-        if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
+        else
         {
-            rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
+            if (rb.velocity.y < 5)
+            {
+                rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
+            }
+            if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
+            {
+                rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
+            }
         }
     }
 

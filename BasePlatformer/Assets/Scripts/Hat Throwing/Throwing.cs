@@ -10,13 +10,7 @@ public class Throwing : MonoBehaviour
     private float GhostCD;
     public GameObject HatPrefab;
     public GameObject GhostClone;
-    private CloneTeleport Position;
-
-    void Start()
-    {
-        Position = FindObjectOfType<CloneTeleport>();
-
-    }
+    public bool Threwright;
     void Update()
     {
         CooldownTimer -= Time.deltaTime;
@@ -28,6 +22,7 @@ public class Throwing : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X) && GhostCD < 0)
         {
+            Threwright = FindObjectOfType<CharacterMovement>().facingRight;
             Instantiate(GhostClone, StartPoint.position, StartPoint.rotation);
             GhostCD = 5f;
         }
