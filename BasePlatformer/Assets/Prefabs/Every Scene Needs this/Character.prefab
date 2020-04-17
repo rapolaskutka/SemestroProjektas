@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8174128301139367499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8174128301727010514}
@@ -255,6 +255,7 @@ MonoBehaviour:
   lowJumpMultiplierFloat: 4
   facingRight: 1
   top: 0
+  Jumps: 0
   JumpForce: 8
   WhatIsWall:
     serializedVersion: 2
@@ -296,6 +297,7 @@ MonoBehaviour:
     type: 3}
   GhostClone: {fileID: 5245072577211391918, guid: 33635cd2be360c64d8c1c95e1ef36e50,
     type: 3}
+  Threwright: 0
 --- !u!114 &219209281
 MonoBehaviour:
   m_ObjectHideFlags: 0
