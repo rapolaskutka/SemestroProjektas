@@ -10,7 +10,7 @@ public class Throwing : MonoBehaviour
     private float GhostCD;
     public GameObject HatPrefab;
     public GameObject GhostClone;
-    public bool Threwright;
+  [HideInInspector]  public bool Threwright;
     void Update()
     {
         CooldownTimer -= Time.deltaTime;
@@ -24,7 +24,7 @@ public class Throwing : MonoBehaviour
         {
             Threwright = FindObjectOfType<CharacterMovement>().facingRight;
             Instantiate(GhostClone, StartPoint.position, StartPoint.rotation);
-            GhostCD = 5f;
+            GhostCD = 4f;
         }
 
     }
@@ -34,7 +34,7 @@ public class Throwing : MonoBehaviour
     }
     public void RemoveCooldownGhost()
     {
-        GhostCD = 0;
+        GhostCD = 0.2f;
     }
     public void ChangePos(Vector3 xd)
     {
