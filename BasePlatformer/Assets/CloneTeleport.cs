@@ -18,7 +18,6 @@ public class CloneTeleport : MonoBehaviour
         if (collision.CompareTag("Ground"))
         {
             CharacterMovement movementclass = FindObjectOfType<CharacterMovement>();
-
             throwclass.RemoveCooldownGhost();
             Destroy(this.gameObject);
             if (Vector3.Distance(movementclass.transform.position, transform.position) < 1f)
