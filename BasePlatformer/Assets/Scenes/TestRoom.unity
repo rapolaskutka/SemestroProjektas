@@ -19509,8 +19509,8 @@ SpriteShapeRenderer:
   m_Sprites:
   - {fileID: 21300000, guid: 4e3f560730481a94fb40dd03ff3d6b0a, type: 3}
   m_LocalAABB:
-    m_Center: {x: 8.200001, y: -0.3134827, z: -0.005}
-    m_Extent: {x: 16.52, y: 0.32, z: 0.005}
+    m_Center: {x: 8.200001, y: -0.3134827, z: -0.00005}
+    m_Extent: {x: 16.52, y: 0.32, z: 0.00005}
 --- !u!114 &2326620492342757621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19817,7 +19817,7 @@ MonoBehaviour:
   JumpForce: 8
   WhatIsWall:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!4 &8174128300449791403
 Transform:
   m_ObjectHideFlags: 0
