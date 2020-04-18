@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy_Health : MonoBehaviour
 {
     [SerializeField] public int health;
-    [SerializeField] private GameObject blood;
+    [SerializeField] private GameObject particles;
     private Transform PlayerPosition;
     private float hCool;
     private GameObject mesh;
@@ -39,7 +39,7 @@ public class Enemy_Health : MonoBehaviour
             Destroy(heart);
             Destroy(mesh);
             Destroy(gameObject);
-            Instantiate(blood, PlayerPosition.position, Quaternion.identity);
+            Instantiate(particles, PlayerPosition.position, Quaternion.identity);
         }
         else
         {

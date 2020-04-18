@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7002568094753316047}
   - component: {fileID: 7002568094753316032}
   - component: {fileID: 6858899522335698963}
+  - component: {fileID: 770115655}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +139,7 @@ MonoBehaviour:
   FireballPrefab: {fileID: 4192075312750584742, guid: 71a8edc0aa626c64b89ea140e898a20c,
     type: 3}
   Cooldown: 2
-  CanSeeBehind: 1
+  CanSeeBehind: 0
   StartsLookingRight: 0
   RotateTime: 1
   Stationary: 0
@@ -155,7 +156,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  cooldown: 0
   OneShotDeath: 0
+--- !u!114 &770115655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002568094753316045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b263a9167bd3a4e8a540b6784dc82a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  particles: {fileID: 2282467160219633195, guid: 1cc6e794c9740814db8b173713321ba8,
+    type: 3}
 --- !u!1 &7002568095856865882
 GameObject:
   m_ObjectHideFlags: 0

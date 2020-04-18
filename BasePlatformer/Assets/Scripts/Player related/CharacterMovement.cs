@@ -54,7 +54,8 @@ public class CharacterMovement : MonoBehaviour
         }
 
         FallSpeed();
-        ApplySliding();
+        if(!top) ApplySliding();
+
     }
     void FallSpeed()
     {
@@ -136,6 +137,10 @@ public class CharacterMovement : MonoBehaviour
             islide = false;
         TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
         TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f));
     }
     private void DashCheck()
     {
