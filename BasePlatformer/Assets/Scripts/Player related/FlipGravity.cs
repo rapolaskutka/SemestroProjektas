@@ -7,24 +7,26 @@ public class FlipGravity : MonoBehaviour
     private CharacterMovement movementclass;
     private Rigidbody2D rb;
     private bool isColliding = false;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        movementclass = GameObject.FindObjectOfType<CharacterMovement>();
-        rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         if (collision.CompareTag("Player"))
         {
+            FlipG();
             movementclass.Jumps = 2;
             rb.velocity = Vector2.zero;
             if (isColliding) return;
             isColliding = true;
-            rb.gravityScale *= -1;
-            movementclass.JumpForce *= -1;
             Physics.gravity *= -1;
             Rotation();
             StartCoroutine(Reset());
         }
-
+    }
+    public void FlipG() 
+    {
+        movementclass = GameObject.FindObjectOfType<CharacterMovement>();
+        rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        rb.gravityScale *= -1;
+        movementclass.JumpForce *= -1;
     }
     IEnumerator Reset()
     {
