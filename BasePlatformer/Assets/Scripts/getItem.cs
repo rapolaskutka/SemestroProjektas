@@ -50,7 +50,7 @@ public class getItem : MonoBehaviour
         SpriteRenderer render = collision.gameObject.GetComponent<SpriteRenderer>();
         if (collision.gameObject.tag.Equals("Item") && render != null)
         {
-            SpriteRenderer wow = Instantiate(item);
+            SpriteRenderer wow = item;
             if (items.Count > 0)
             {
                 wow.transform.position = new Vector3((float)items[items.Count - 1].render.transform.position.x, (float)items[items.Count - 1].render.transform.position.y - 1);
