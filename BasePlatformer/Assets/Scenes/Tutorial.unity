@@ -386,6 +386,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cinematic Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 2079095919568578796, guid: 066b32972204f8447a78836fd468cf93,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079095919568578796, guid: 066b32972204f8447a78836fd468cf93,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079095919568578796, guid: 066b32972204f8447a78836fd468cf93,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079095919568578796, guid: 066b32972204f8447a78836fd468cf93,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079095919568578796, guid: 066b32972204f8447a78836fd468cf93,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079095919568578796, guid: 066b32972204f8447a78836fd468cf93,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083925111876090308, guid: 066b32972204f8447a78836fd468cf93,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 066b32972204f8447a78836fd468cf93, type: 3}
 --- !u!1001 &381728120
@@ -2198,6 +2233,24 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1913736094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1066942136560891997, guid: 066b32972204f8447a78836fd468cf93,
+    type: 3}
+  m_PrefabInstance: {fileID: 369159475}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1913736095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913736094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee6c148ffff95a4dafb39e120aa6bf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1915603414
 GameObject:
   m_ObjectHideFlags: 0

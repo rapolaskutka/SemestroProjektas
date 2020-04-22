@@ -78,6 +78,7 @@ public class getItem : MonoBehaviour
             if(item.Name.Equals("Key"))
             {
                 items.Remove(item);
+                item.render.sprite = null;
                 break;
             }
         }
