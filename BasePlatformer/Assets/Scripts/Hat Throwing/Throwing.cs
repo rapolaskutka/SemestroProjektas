@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Throwing : MonoBehaviour
 {
@@ -10,7 +8,8 @@ public class Throwing : MonoBehaviour
     private float GhostCD;
     public GameObject HatPrefab;
     public GameObject GhostClone;
-  [HideInInspector]  public bool Threwright;
+    [HideInInspector] public bool Threwright;
+    private bool TeleportEnabled = false;
     void Update()
     {
         CooldownTimer -= Time.deltaTime;
@@ -20,7 +19,7 @@ public class Throwing : MonoBehaviour
             Instantiate(HatPrefab, StartPoint.position, StartPoint.rotation);
             CooldownTimer = HatCD;
         }
-        if (Input.GetKeyDown(KeyCode.X) && GhostCD < 0)
+        if (Input.GetKeyDown(KeyCode.X) && GhostCD < 0 && TeleportEnabled)
         {
             Threwright = FindObjectOfType<CharacterMovement>().facingRight;
             Instantiate(GhostClone, StartPoint.position, StartPoint.rotation);
@@ -39,5 +38,9 @@ public class Throwing : MonoBehaviour
     public void ChangePos(Vector3 xd)
     {
         transform.position = xd;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnableTeleport")) TeleportEnabled = true;
     }
 }

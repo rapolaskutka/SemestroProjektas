@@ -10,6 +10,10 @@ public class Awake : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        if (collision.gameObject.tag == "Player")
+        {
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            Destroy(gameObject, 10f);
+        }
     }
 }

@@ -33,10 +33,12 @@ public class CharacterMovement : MonoBehaviour
     private bool islide;
     private bool JumpRequest;
     private float DefaultFall;
+    private bool DashEnabled;
+
 
     private void Start()
     {
-
+        DashEnabled = false;
         rb = GetComponent<Rigidbody2D>();
         animatorss = GetComponent<Animator>();
         Jumps = ExtraJumpCount;
@@ -54,7 +56,7 @@ public class CharacterMovement : MonoBehaviour
         }
 
         FallSpeed();
-        if(!top) ApplySliding();
+        //ApplySliding();
 
     }
     void FallSpeed()
@@ -144,7 +146,7 @@ public class CharacterMovement : MonoBehaviour
     }
     private void DashCheck()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && DashCooldownTimer == 0)
+        if (Input.GetKeyDown(KeyCode.Space) && DashCooldownTimer == 0 && DashEnabled)
         {
             StartCoroutine("DashMove");
             DashCooldownTimer = DashCooldown;
@@ -201,6 +203,8 @@ public class CharacterMovement : MonoBehaviour
         {
             fallMultiplierFloat = DefaultFall;
         }
+
+        if (collision.CompareTag("EnableDash")) DashEnabled = true;
     }
     IEnumerator Restore()
     {
