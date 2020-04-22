@@ -62,7 +62,7 @@ public class getItem : MonoBehaviour
             else
             {
             */
-                wow.transform.position = new Vector3(item.transform.position.x, (float)item.gameObject.transform.position.y - items.Count);
+                wow.transform.position = new Vector3(item.transform.position.x, (float)item.gameObject.transform.position.y);
                 wow.sprite = render.sprite;
                 wow.transform.parent = cameras.transform;
                 items.Add(new Item(collision.gameObject.name, render.sprite, 1, wow));
