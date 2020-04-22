@@ -13,25 +13,34 @@ public class HealthControl : MonoBehaviour
     private GameObject UI;
     private Transform PlayerPosition;
     private float hCool;
+    private static GameObject camera;
+    private double HPPosition = 0;
+    private SpriteRenderer rend;
+
 
     void Start()
     {
-        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
-        SpriteRenderer rend = camera.gameObject.GetComponentInChildren<SpriteRenderer>();
-        double x = 0;
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        rend = camera.gameObject.GetComponentInChildren<SpriteRenderer>();
         healths.Add(rend);
         for (int i = 0; i < health - 1; i++)
         {
-            x += 0.7;
-            SpriteRenderer obje = GameObject.Instantiate(rend);
-            obje.transform.position = new Vector3(rend.transform.position.x + (float)x, rend.transform.position.y, rend.transform.position.z);
-            healths.Add(obje);
-            obje.transform.parent = camera.transform;
-
+           AddHealth(false);
         }
         PlayerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         UI.SetActive(false);
     }
+
+    public void AddHealth(bool ExternallyAdded)
+    {
+        HPPosition += 0.7;
+        SpriteRenderer obje = GameObject.Instantiate(rend);
+        obje.transform.position = new Vector3(rend.transform.position.x + (float)HPPosition, rend.transform.position.y, rend.transform.position.z);
+        healths.Add(obje);
+        obje.transform.parent = camera.transform;
+        if (ExternallyAdded) health++;
+    }
+
     public bool GetDamage(int amount, bool knockback, float DamageCooldown)
     {
         if (hCool >= Time.time)
