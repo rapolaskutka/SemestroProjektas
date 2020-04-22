@@ -33,6 +33,7 @@ public class Patrol : MonoBehaviour
     private bool isShoot;
     [SerializeField]
     private bool Stationary;
+    private Enemy_Health health;
 
 
     private void Start()
@@ -41,7 +42,7 @@ public class Patrol : MonoBehaviour
         if (CanShoot) DetectionRange = 10f;
         else DetectionRange = 0.5f;
         if (Stationary) speed = 0;
-
+        health = GetComponent<Enemy_Health>();
         
     }
 
@@ -143,12 +144,11 @@ public class Patrol : MonoBehaviour
         }
        
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Hat"))
         {
-            Instantiate(deathparticles, transform.position, Quaternion.identity);
+            health.GetDamage(30, false, (float)0.1);
         }
     }
 }

@@ -50,7 +50,8 @@ public class getItem : MonoBehaviour
         SpriteRenderer render = collision.gameObject.GetComponent<SpriteRenderer>();
         if (collision.gameObject.tag.Equals("Item") && render != null)
         {
-            SpriteRenderer wow = Instantiate(item);
+            SpriteRenderer wow = item;
+            /*
             if (items.Count > 0)
             {
                 wow.transform.position = new Vector3((float)items[items.Count - 1].render.transform.position.x, (float)items[items.Count - 1].render.transform.position.y - 1);
@@ -60,11 +61,12 @@ public class getItem : MonoBehaviour
             }
             else
             {
-                wow.transform.position = new Vector3(item.transform.position.x, (float)item.gameObject.transform.position.y - items.Count);
+            */
+                wow.transform.position = new Vector3(item.transform.position.x, (float)item.gameObject.transform.position.y);
                 wow.sprite = render.sprite;
                 wow.transform.parent = cameras.transform;
                 items.Add(new Item(collision.gameObject.name, render.sprite, 1, wow));
-            }
+           // }
 
             Object.Destroy(collision.gameObject);
         }
@@ -76,7 +78,7 @@ public class getItem : MonoBehaviour
             if(item.Name.Equals("Key"))
             {
                 items.Remove(item);
-                Object.Destroy(item.render);
+                item.render.sprite = null;
                 break;
             }
         }

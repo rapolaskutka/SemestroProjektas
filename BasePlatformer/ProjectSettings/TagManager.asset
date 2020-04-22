@@ -22,6 +22,12 @@ TagManager:
   - EnemyAttack
   - Item
   - Door
+  - FallSpeed_In
+  - FallSpeed_Out
+  - Damage
+  - Enemy_Health
+  - Heart
+  - EnableTeleport
   layers:
   - Default
   - TransparentFX
@@ -59,9 +65,9 @@ TagManager:
   - name: Background
     uniqueID: 767272133
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Foreground
     uniqueID: 1627166389
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

@@ -1,27 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Throwing : MonoBehaviour
 {
     public Transform StartPoint;
-    public float Cooldown;
+    public float HatCD;
     private float CooldownTimer;
-
+    private float GhostCD;
     public GameObject HatPrefab;
+    public GameObject GhostClone;
+    [HideInInspector] public bool Threwright;
+    private bool TeleportEnabled = false;
     void Update()
     {
-        if (CooldownTimer > 0) CooldownTimer -= Time.deltaTime;
-        if (CooldownTimer < 0) CooldownTimer = 0;
-        if (Input.GetKeyDown(KeyCode.Z) && CooldownTimer == 0)
+        CooldownTimer -= Time.deltaTime;
+        GhostCD -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Z) && CooldownTimer < 0)
         {
             Instantiate(HatPrefab, StartPoint.position, StartPoint.rotation);
-            CooldownTimer = Cooldown;
+            CooldownTimer = HatCD;
         }
-        
+        if (Input.GetKeyDown(KeyCode.X) && GhostCD < 0 && TeleportEnabled)
+        {
+            Threwright = FindObjectOfType<CharacterMovement>().facingRight;
+            Instantiate(GhostClone, StartPoint.position, StartPoint.rotation);
+            GhostCD = 4f;
+        }
+
     }
-    public void RemoveCooldown() 
+    public void RemoveCooldown()
     {
         CooldownTimer = 0;
+    }
+    public void RemoveCooldownGhost()
+    {
+        GhostCD = 0.2f;
+    }
+    public void ChangePos(Vector3 xd)
+    {
+        transform.position = xd;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnableTeleport")) TeleportEnabled = true;
     }
 }
