@@ -4247,47 +4247,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 538512185, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 538512185, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
-      propertyPath: m_AlphaBlendOnOverlap
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 538512185, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
-      propertyPath: m_LightOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 538512185, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
-      propertyPath: m_BlendStyleIndex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 538512185, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[2]
-      value: 1627166389
-      objectReference: {fileID: 0}
-    - target: {fileID: 538512185, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 538512185, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[1]
-      value: 767272133
-      objectReference: {fileID: 0}
-    - target: {fileID: 538512185, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
-      propertyPath: m_ShadowIntensity
-      value: 0.226
-      objectReference: {fileID: 0}
-    - target: {fileID: 538512185, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
-      propertyPath: m_Intensity
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8174128301727010513, guid: e992e9c61016ba144b2c81413f55ee5b,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 8174128301727010514, guid: e992e9c61016ba144b2c81413f55ee5b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4348,8 +4307,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2607915432207826609, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e992e9c61016ba144b2c81413f55ee5b, type: 3}
 --- !u!1001 &1006885931680346094
 PrefabInstance:
@@ -4959,6 +4917,7 @@ MonoBehaviour:
   damage: 1
   cooldown: 1
   OneShotDeath: 0
+  canTakeDamage: 1
 --- !u!114 &5693257086454924408
 MonoBehaviour:
   m_ObjectHideFlags: 0

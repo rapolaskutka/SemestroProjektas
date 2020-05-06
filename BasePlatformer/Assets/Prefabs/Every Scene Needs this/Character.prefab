@@ -47,14 +47,14 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.654
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.9
+  m_Intensity: 0.8
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000c5a4bb2d
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
-  m_LightOrder: 0
+  m_LightOrder: 5
   m_AlphaBlendOnOverlap: 0
-  m_ShadowIntensity: 0
+  m_ShadowIntensity: 0.226
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
@@ -179,7 +179,6 @@ GameObject:
   - component: {fileID: 8174128301727010525}
   - component: {fileID: 219209281}
   - component: {fileID: 219209290}
-  - component: {fileID: 2607915432207826609}
   m_Layer: 8
   m_Name: Character
   m_TagString: Player
@@ -398,16 +397,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f7fe46f26defe449961505799fd881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2607915432207826609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8174128301727010518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41fc0514f9e29f74195ca0c384a7097b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FreezeTime: 1
