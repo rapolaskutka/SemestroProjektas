@@ -20,7 +20,7 @@ public class CloneTeleport : MonoBehaviour
             CharacterMovement movementclass = FindObjectOfType<CharacterMovement>();
             throwclass.RemoveCooldownGhost();
             Destroy(this.gameObject);
-            if (Vector3.Distance(movementclass.transform.position, transform.position) < 0.5f)
+            if (Vector3.Distance(movementclass.transform.position, transform.position) < 0.6f)
             {
                 Instantiate(BadImpact, transform.position, Quaternion.identity);
                 return;
@@ -29,7 +29,7 @@ public class CloneTeleport : MonoBehaviour
             Rigidbody2D PlayerRb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
             movementclass.Jumps = 2;
             PlayerRb.velocity = Vector2.zero;
-            if (throwclass.Threwright) throwclass.ChangePos(transform.position - (Vector3.right * 0.7f));
+            if (throwclass.Threwright) throwclass.ChangePos(transform.position - (Vector3.right * 0.5f));
             else throwclass.ChangePos(transform.position + (Vector3.right * 0.7f));
 
         }

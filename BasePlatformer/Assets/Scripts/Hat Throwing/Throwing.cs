@@ -33,7 +33,7 @@ public class Throwing : MonoBehaviour
     }
     public void RemoveCooldownGhost()
     {
-        GhostCD = 0.2f;
+        GhostCD = 0f;
     }
     public void ChangePos(Vector3 xd)
     {
