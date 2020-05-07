@@ -5518,7 +5518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437018162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90.63, y: 16.25, z: 0}
+  m_LocalPosition: {x: 90.28, y: 16.19, z: 0}
   m_LocalScale: {x: 23, y: 8, z: 1.4372}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5678,7 +5678,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540134298}
   m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
-  m_LocalPosition: {x: 85.58, y: 18.23, z: 0}
+  m_LocalPosition: {x: 85.81, y: 18.35, z: 0}
   m_LocalScale: {x: 23, y: 8, z: 1.4372}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5838,7 +5838,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571673315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 92.43, y: 11.99, z: 0}
+  m_LocalPosition: {x: 92.21, y: 12, z: 0}
   m_LocalScale: {x: 23, y: 8, z: 1.4372}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6723,7 +6723,7 @@ MonoBehaviour:
   damage: 1
   cooldown: 0
   OneShotDeath: 0
-  canTakeDamage: 0
+  canTakeDamage: 1
 --- !u!1 &8331949977450711721
 GameObject:
   m_ObjectHideFlags: 0
