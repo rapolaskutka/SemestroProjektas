@@ -22,7 +22,7 @@ public class Throwing : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && GhostCD < 0 && TeleportEnabled)
         {
             Threwright = FindObjectOfType<CharacterMovement>().facingRight;
-            Instantiate(GhostClone, StartPoint.position, StartPoint.rotation);
+            Instantiate(GhostClone, transform.position, transform.rotation);
             GhostCD = 4f;
         }
 

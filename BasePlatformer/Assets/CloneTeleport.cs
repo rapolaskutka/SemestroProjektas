@@ -20,7 +20,7 @@ public class CloneTeleport : MonoBehaviour
             CharacterMovement movementclass = FindObjectOfType<CharacterMovement>();
             throwclass.RemoveCooldownGhost();
             Destroy(this.gameObject);
-            if (Vector3.Distance(movementclass.transform.position, transform.position) < 1f)
+            if (Vector3.Distance(movementclass.transform.position, transform.position) < 0.5f)
             {
                 Instantiate(BadImpact, transform.position, Quaternion.identity);
                 return;
