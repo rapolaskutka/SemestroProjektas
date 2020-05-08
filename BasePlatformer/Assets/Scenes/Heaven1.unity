@@ -131,12 +131,12 @@ PrefabInstance:
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.03445
+      value: -23.905556
       objectReference: {fileID: 0}
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.12
+      value: -17.2
       objectReference: {fileID: 0}
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 225921973}
   - component: {fileID: 225921972}
   - component: {fileID: 225921971}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: RedSpike
   m_TagString: Dead
   m_Icon: {fileID: 0}
@@ -1278,9 +1278,9 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: c5a4bb2db596fc6000000000
+  m_ApplyToSortingLayers: c5a4bb2d
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -1814,7 +1814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1626801197
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1873,8 +1873,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626801196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 102.4, y: 74.7, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 6692330975682382873}
   m_Father: {fileID: 0}
@@ -2254,7 +2254,7 @@ GameObject:
   - component: {fileID: 5504868686005865700}
   - component: {fileID: 5504868686005865703}
   - component: {fileID: 5504868686005865702}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Spikes2xSize
   m_TagString: Dead
   m_Icon: {fileID: 0}
@@ -14552,18 +14552,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6692330975268592811}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 1
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.667
+  m_FalloffIntensity: 0.508
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.7
   m_LightVolumeOpacity: 0.159
-  m_ApplyToSortingLayers: b596fc6000000000
+  m_ApplyToSortingLayers: b596fc6000000000c5a4bb2d
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -14579,7 +14579,7 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 6
   m_ShapeLightParametricAngleOffset: 211
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 4000
+  m_ShapeLightFalloffSize: 5000
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
   - {x: -109.280426, y: -96.40668, z: 0}
@@ -14879,7 +14879,7 @@ GameObject:
   - component: {fileID: 7352078833956866790}
   - component: {fileID: 7352078833956866789}
   - component: {fileID: 8906790864987443166}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Spikes
   m_TagString: Dead
   m_Icon: {fileID: 0}
@@ -44016,7 +44016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8174128301493382830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 84.19, y: 16.12, z: 0}
+  m_LocalPosition: {x: -26.75, y: -17.2, z: 0}
   m_LocalScale: {x: 0.2, y: 0.17, z: 1}
   m_Children:
   - {fileID: 8174128301947790021}
@@ -44047,7 +44047,7 @@ MonoBehaviour:
     m_Bits: 1536
   ExtraJumpCount: 2
   DashCooldown: 3
-  fallMultiplierFloat: 1.7
+  fallMultiplierFloat: 2.2
   lowJumpMultiplierFloat: 4
   facingRight: 1
   top: 0
