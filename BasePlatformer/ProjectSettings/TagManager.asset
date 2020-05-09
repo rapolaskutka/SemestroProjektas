@@ -28,6 +28,7 @@ TagManager:
   - Enemy_Health
   - Heart
   - EnableTeleport
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

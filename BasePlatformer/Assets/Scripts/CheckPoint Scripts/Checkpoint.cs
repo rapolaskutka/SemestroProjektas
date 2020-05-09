@@ -5,10 +5,13 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     private GM gamemaster;
-    private void OnTriggerStay2D(Collider2D collision)
+    [SerializeField] private GameObject particle;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && Input.GetKey(KeyCode.DownArrow)) { 
+        if (collision.CompareTag("Player"))
+        {
             gamemaster.StartingPos = transform.position;
+            Instantiate(particle, transform.position, Quaternion.identity);
         }
     }
     void Start() 

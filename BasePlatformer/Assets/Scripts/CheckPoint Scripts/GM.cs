@@ -6,8 +6,6 @@ public class GM : MonoBehaviour
 {
     private static GM instance;
     [HideInInspector] public Vector2 StartingPos;
-    [SerializeField] private GameObject particle;
-
     void Awake()
     {
         StartingPos = GameObject.FindGameObjectWithTag("Player").transform.position;
@@ -18,14 +16,5 @@ public class GM : MonoBehaviour
 
         }
         else Destroy(gameObject);
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            StartingPos = transform.position;
-            Instantiate(particle, transform.position, Quaternion.identity);
-
-        }
     }
 }
