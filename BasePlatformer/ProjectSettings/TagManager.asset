@@ -30,6 +30,7 @@ TagManager:
   - EnableTeleport
   - CheckPoint
   - DisableTeleport
+  - Boss
   layers:
   - Default
   - TransparentFX

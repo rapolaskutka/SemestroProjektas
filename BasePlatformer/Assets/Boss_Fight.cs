@@ -29,7 +29,7 @@ public class Boss_Fight : MonoBehaviour
     {
         List<SpriteRenderer> spawns = new List<SpriteRenderer>();
         Enemy enemy = new Enemy();
-        private bool[] availableS = new bool[4];
+        private bool[] availableS = new bool[5];
 
         public Spawns()
         {
@@ -42,20 +42,37 @@ public class Boss_Fight : MonoBehaviour
         {
             spawns.Add(render);
         }
-        public void SpawnEnemys()
+        public void SpawnEnemys(int count = 0)
         {
-            int enemycount = Random.Range(1, 3);
+            int enemycount;
+            if (count == 0)
+            {
+                enemycount = Random.Range(1, 5);
+            }
+            else
+            {
+                enemycount = count;
+            }
+            Debug.Log("Count" + enemycount);
             for (int i = 0; i < enemycount; i++)
             {
                 int flyenemy = Random.Range(0, 100);
-                if (flyenemy >= 50 && availableS[3])
+                if (flyenemy >= 50 && availableS[3] && availableS[4])
                 {
                     GameObject fly = GameObject.Find("Flying_Enemy");
                     GameObject flyer = Instantiate(fly);
                     Debug.Log(spawns.Count);
                     Debug.Log(spawns[3].transform.localPosition);
-                    enemy.AddEnemy(flyer, spawns[3]);
-                    availableS[3] = false;
+                    if (availableS[3])
+                    {
+                        enemy.AddEnemy(flyer, spawns[3]);
+                        availableS[3] = false;
+                    }
+                    else if(availableS[4])
+                    {
+                        enemy.AddEnemy(flyer, spawns[4]);
+                        availableS[4] = false;
+                    }
                 }
                 else
                 {
@@ -143,6 +160,7 @@ public class Boss_Fight : MonoBehaviour
         spawn.AddSpawn(GameObject.Find("Spawn2").GetComponent<SpriteRenderer>());
         spawn.AddSpawn(GameObject.Find("Spawn3").GetComponent<SpriteRenderer>());
         spawn.AddSpawn(GameObject.Find("Spawn4").GetComponent<SpriteRenderer>());
+        spawn.AddSpawn(GameObject.Find("Spawn5").GetComponent<SpriteRenderer>());
         abilitys = new TextMeshPro[3];
         abilitys[0] = GameObject.Find("Lavas").GetComponent<TextMeshPro>();
         abilitys[1] = GameObject.Find("Spawn").GetComponent<TextMeshPro>();
@@ -201,7 +219,19 @@ public class Boss_Fight : MonoBehaviour
     private void Spawn_Enemy()
     {
         Debug.Log("Spawn Enemy");
-        spawn.SpawnEnemys();
+        int boss_health = gameObject.GetComponent<Boss_Health>().health;
+        if(boss_health < 200)
+        {
+            spawn.SpawnEnemys(5);
+        }
+        else if(boss_health < 400)
+        {
+            spawn.SpawnEnemys(4);
+        }
+        else if (boss_health <= 700)
+        {
+            spawn.SpawnEnemys(3);
+        }
         StartCoroutine(Remove_Enemy());
 
     }
@@ -217,7 +247,23 @@ public class Boss_Fight : MonoBehaviour
     private void EmitParticle()
     {
         Debug.Log("Emiting particle");
+        int boss_health = gameObject.GetComponent<Boss_Health>().health;
+        int p_count = 0;
+        if (boss_health < 200)
+        {
+            p_count = 30;
+        }
+        else if (boss_health < 400)
+        {
+            p_count = 20;
+        }
+        else if (boss_health <= 700)
+        {
+            p_count = 15;
+        }
         var disable = particle.emission;
+        var count = particle.main;
+        count.maxParticles = p_count;
         disable.enabled = true;
         CanDoOtherAbility = false;
         StartCoroutine(DisableParticle());
@@ -227,6 +273,7 @@ public class Boss_Fight : MonoBehaviour
         yield return new WaitForSeconds(10);
         var disable = particle.emission;
         disable.enabled = false;
+        Enemy_Time = Time.time + IdleTime;
         CanDoOtherAbility = true;
     }
     private void RiseLava()

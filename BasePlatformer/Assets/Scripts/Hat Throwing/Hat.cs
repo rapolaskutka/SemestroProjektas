@@ -31,9 +31,9 @@ public class Hat : MonoBehaviour
             Instantiate(impact, transform.position, Quaternion.identity);
             rb.velocity = (GameObject.Find("Character").transform.position - transform.position).normalized * speed;
         }
-        if(collision.tag.Equals("Enemy"))
+        if(collision.tag.Equals("Boss"))
         {
-            Enemy_Health health= collision.GetComponent<Enemy_Health>();
+            Boss_Health health= collision.GetComponent<Boss_Health>();
             health.GetDamage(30, true, 5);
         }
        
