@@ -1430,14 +1430,14 @@ MonoBehaviour:
   WhatIsCeiling:
     serializedVersion: 2
     m_Bits: 1536
-  ExtraJumpCount: 0
-  DashCooldown: 0
-  fallMultiplierFloat: 0
-  lowJumpMultiplierFloat: 0
+  ExtraJumpCount: 2
+  DashCooldown: 3
+  fallMultiplierFloat: 2.5
+  lowJumpMultiplierFloat: 4
   facingRight: 1
   top: 0
   Jumps: 0
-  JumpForce: 0
+  JumpForce: 8
   WhatIsWall:
     serializedVersion: 2
     m_Bits: 0
