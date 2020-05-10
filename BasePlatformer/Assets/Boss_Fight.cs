@@ -16,6 +16,7 @@ public class Boss_Fight : MonoBehaviour
     private bool CanDoOtherAbility = false;
     private ParticleSystem particle;
     private TextMeshPro[] abilitys;
+
     enum Boss_Phases
     {
         Spawn,
@@ -253,6 +254,13 @@ public class Boss_Fight : MonoBehaviour
         CanDoOtherAbility = true;
         Enemy_Time = Time.time + IdleTime;
 
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag.Equals("Player"))
+        {
+            collision.gameObject.GetComponent<HealthControl>().GetDamage(5, true, 5);
+        }
     }
 
 }
