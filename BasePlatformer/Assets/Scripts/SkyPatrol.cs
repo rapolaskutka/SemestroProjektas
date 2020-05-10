@@ -18,7 +18,6 @@ public class SkyPatrol : MonoBehaviour
     private Transform StartPoint;
     [SerializeField]
     private GameObject FireballPrefab;
-    [SerializeField]
     private float Cooldown;
     [SerializeField]
     private bool CanSeeBehind;
