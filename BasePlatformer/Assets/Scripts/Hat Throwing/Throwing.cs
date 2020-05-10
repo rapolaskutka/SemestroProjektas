@@ -42,5 +42,7 @@ public class Throwing : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("EnableTeleport")) TeleportEnabled = true;
+        if (collision.CompareTag("DisableTeleport")) TeleportEnabled = false;
+
     }
 }

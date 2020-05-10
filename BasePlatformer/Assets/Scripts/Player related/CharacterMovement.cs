@@ -7,6 +7,8 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Transform GroundCheck;
+    [SerializeField] private Transform CeilingCheck;
+
     [SerializeField] private LayerMask WhatIsGround;
     [SerializeField] private LayerMask WhatIsCeiling;
     [SerializeField] private int ExtraJumpCount;
@@ -55,13 +57,11 @@ public class CharacterMovement : MonoBehaviour
             JumpRequest = false;
         }
 
-        FallSpeed();
-        //ApplySliding();
-
+      FallSpeed();
     }
     void FallSpeed()
     {
-       
+
         if (top)
         {
             if (rb.velocity.y < -5)
@@ -127,18 +127,20 @@ public class CharacterMovement : MonoBehaviour
     }
     private void CollisionChecks()
     {
-        HeadHitCheck = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.10f, transform.position.y + 0.2f), new Vector2(transform.position.x + 0.2f, transform.position.y + 0.25f), WhatIsCeiling);
+        HeadHitCheck = Physics2D.OverlapCircle(GroundCheck.position, 0.05f, WhatIsGround);
         if (HeadHitCheck)
         {
             rb.velocity = Vector2.zero;
         }
         Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
-        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
-            islide = true;
-        else
-            islide = false;
+
         TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
+
         TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
+        //if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
+        //    islide = true;
+        //else
+        //    islide = false;
     }
     private void OnDrawGizmos()
     {
@@ -215,16 +217,16 @@ public class CharacterMovement : MonoBehaviour
         JumpForce += 3;
         rb.gravityScale = 3f;
     }
-    public void ApplySliding()
-    {
-        if (islide)
-        {
+    //public void ApplySliding()
+    //{
+    //    if (islide)
+    //    {
 
-            if (rb.velocity.y < -wallSlideSpeed)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
-            }
-        }
-    }
+    //        if (rb.velocity.y < -wallSlideSpeed)
+    //        {
+    //            rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
+    //        }
+    //    }
+    //}
 
 }

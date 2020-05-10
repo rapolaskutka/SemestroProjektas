@@ -29,6 +29,7 @@ TagManager:
   - Heart
   - EnableTeleport
   - CheckPoint
+  - DisableTeleport
   layers:
   - Default
   - TransparentFX
