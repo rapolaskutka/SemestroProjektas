@@ -127,8 +127,8 @@ public class CharacterMovement : MonoBehaviour
     }
     private void CollisionChecks()
     {
-        HeadHitCheck = Physics2D.OverlapCircle(GroundCheck.position, 0.05f, WhatIsGround);
-        if (HeadHitCheck)
+        HeadHitCheck = Physics2D.OverlapCircle(GroundCheck.position, 0.05f, WhatIsCeiling);
+        if (HeadHitCheck )
         {
             rb.velocity = Vector2.zero;
         }
