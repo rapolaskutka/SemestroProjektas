@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    static string path = @"C:\Users\Public\ignore.txt";
 
     public static bool Paused = false;
     public GameObject UI;
@@ -39,4 +41,17 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Best");
     }
+
+    public  void SaveGame()
+    {
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+        using (StreamWriter file = new StreamWriter(path))
+        {
+            file.WriteLine(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
 }
