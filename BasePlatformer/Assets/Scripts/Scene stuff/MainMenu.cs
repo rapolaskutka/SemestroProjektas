@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    static string path = @"C:\Users\Public\ignore.txt";
+    static string path = @"C:\Users\Public\ignore";
 
     public Animator transition;
     private float WaitTime = 1f;
@@ -39,12 +41,31 @@ public class MainMenu : MonoBehaviour
 
         using (StreamReader file = new StreamReader(path))
         {
-            int value = (int.Parse(file.ReadLine()) - 9127412 ) / 32856875 ;
-            if (value > 0 && value < 15)
-            { SceneManager.LoadScene(value); }
-            else Application.Quit();
-               
+            string value = file.ReadLine();
+           
+            SceneManager.LoadScene(Decrypt(value));
         }
     }
-
+    public static string Decrypt(string cipherText)
+    {
+        string EncryptionKey = "Kurvaneatspesniekas";
+        cipherText = cipherText.Replace(" ", "+");
+        byte[] cipherBytes = Convert.FromBase64String(cipherText);
+        using (Aes encryptor = Aes.Create())
+        {
+            Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+            encryptor.Key = pdb.GetBytes(32);
+            encryptor.IV = pdb.GetBytes(16);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                {
+                    cs.Write(cipherBytes, 0, cipherBytes.Length);
+                    cs.Close();
+                }
+                cipherText = Encoding.Unicode.GetString(ms.ToArray());
+            }
+        }
+        return cipherText;
+    }
 }
