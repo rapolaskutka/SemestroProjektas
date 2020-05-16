@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Security.Cryptography;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -42,16 +43,22 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("Best");
     }
 
-    public  void SaveGame()
+    public void SaveGame()
     {
         if (File.Exists(path))
         {
             File.Delete(path);
+            Debug.Log("wat");
+
         }
+        int value = SceneManager.GetActiveScene().buildIndex * 32856875 + 9127412;
+
         using (StreamWriter file = new StreamWriter(path))
         {
-            file.WriteLine(SceneManager.GetActiveScene().buildIndex);
+            file.WriteLine(value);
         }
+       
+
     }
 
 }

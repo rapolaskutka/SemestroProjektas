@@ -36,9 +36,14 @@ public class MainMenu : MonoBehaviour
             Debug.Log("No File Found");
             return;
         }
+
         using (StreamReader file = new StreamReader(path))
         {
-            SceneManager.LoadScene(int.Parse(file.ReadLine()));
+            int value = (int.Parse(file.ReadLine()) - 9127412 ) / 32856875 ;
+            if (value > 0 && value < 15)
+            { SceneManager.LoadScene(value); }
+            else Application.Quit();
+               
         }
     }
 
