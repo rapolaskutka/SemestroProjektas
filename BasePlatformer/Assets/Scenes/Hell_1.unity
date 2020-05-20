@@ -1663,6 +1663,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7008913189016445931, guid: d421e2064798733408f7ffb48760946e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7008913189016445931, guid: d421e2064798733408f7ffb48760946e,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7008913189016445931, guid: d421e2064798733408f7ffb48760946e,
+        type: 3}
+      propertyPath: m_margin.y
+      value: 928.2694
+      objectReference: {fileID: 0}
     - target: {fileID: 7008913189016445934, guid: d421e2064798733408f7ffb48760946e,
         type: 3}
       propertyPath: m_Name

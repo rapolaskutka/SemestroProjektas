@@ -55,11 +55,12 @@ public class Dialogue : MonoBehaviour
         {
             TextMesh.text = "";
             DialogCanvas.SetActive(false);
+            Destroy(this.gameObject);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !DialogCanvas.activeSelf)
+        if (collision.CompareTag("Player") && !DialogCanvas.activeSelf )
         {
             DialogCanvas.SetActive(true);
             StartCoroutine(Typing());
