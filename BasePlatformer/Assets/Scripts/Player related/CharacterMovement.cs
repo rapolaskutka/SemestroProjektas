@@ -132,7 +132,7 @@ public class CharacterMovement : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
-        Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
+        Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.15f, WhatIsGround);
 
         TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
 
