@@ -206,14 +206,20 @@ public class Boss_Fight : MonoBehaviour
         {
             case Boss_Phases.Spawn:
                 yield return new WaitForSeconds(1);
+                Call_Phase(phases);
                 break;
             case Boss_Phases.Lava:
                 yield return new WaitForSeconds(1);
+                Call_Phase(phases);
                 break;
             case Boss_Phases.Projectiles:
                 yield return new WaitForSeconds(1);
+                Call_Phase(phases);
                 break;
         };
+    }
+    private void Call_Phase(Boss_Phases phases)
+    {
         switch (phases)
         {
             case Boss_Phases.Lava:
