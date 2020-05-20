@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3549,7 +3549,7 @@ PrefabInstance:
     - target: {fileID: 2431785334841588100, guid: 757c127f6ffa7f84c836a5710457f66c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2431785334841588104, guid: 757c127f6ffa7f84c836a5710457f66c,
         type: 3}
@@ -4085,7 +4085,7 @@ PrefabInstance:
     - target: {fileID: 9071146655067367665, guid: 60e6920e9725cd342b9e57769ac609c3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60e6920e9725cd342b9e57769ac609c3, type: 3}
@@ -4257,7 +4257,6 @@ MonoBehaviour:
   StartPoint: {fileID: 842779615}
   FireballPrefab: {fileID: 4192075312750584742, guid: 71a8edc0aa626c64b89ea140e898a20c,
     type: 3}
-  Cooldown: 0
   CanSeeBehind: 0
   StartsLookingRight: 0
   RotateTime: 0
@@ -4682,7 +4681,7 @@ PrefabInstance:
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.119526
+      value: 18.124443
       objectReference: {fileID: 0}
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
@@ -5088,7 +5087,6 @@ MonoBehaviour:
   StartPoint: {fileID: 1800894113}
   FireballPrefab: {fileID: 4192075312750584742, guid: 71a8edc0aa626c64b89ea140e898a20c,
     type: 3}
-  Cooldown: 0
   CanSeeBehind: 0
   StartsLookingRight: 0
   RotateTime: 0
