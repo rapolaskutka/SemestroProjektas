@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1662,21 +1662,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008913189016445931, guid: d421e2064798733408f7ffb48760946e,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008913189016445931, guid: d421e2064798733408f7ffb48760946e,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008913189016445931, guid: d421e2064798733408f7ffb48760946e,
-        type: 3}
-      propertyPath: m_margin.y
-      value: 928.2694
       objectReference: {fileID: 0}
     - target: {fileID: 7008913189016445934, guid: d421e2064798733408f7ffb48760946e,
         type: 3}
