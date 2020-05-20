@@ -13,11 +13,13 @@ public class Boss_Health : MonoBehaviour
     private TextMeshPro object_mesh;
     private GameObject heart;
     private GameObject head;
+    private GameObject cwall;
     void Start()
     {
         PlayerPosition = GetComponent<Transform>();
         mesh = Instantiate(GameObject.FindGameObjectWithTag("Enemy_Health"));
         heart = Instantiate(GameObject.FindGameObjectWithTag("Heart"));
+        cwall = GameObject.Find("Crumble_Wall");
         head = GameObject.Find("Head");
         object_mesh = mesh.GetComponent<TextMeshPro>();
         object_mesh.text = health.ToString();
@@ -42,10 +44,12 @@ public class Boss_Health : MonoBehaviour
         StartCoroutine(DamageIndicator(sprite, DamageCooldown));
         if (amount >= health)
         {
-            health = 0;
-            Destroy(heart);
-            Destroy(mesh);
-            Destroy(gameObject);
+            ParticleSystem system = cwall.GetComponent<ParticleSystem>();
+            ParticleSystem.EmissionModule mod = system.emission;
+            mod.enabled = true;
+            cwall.GetComponent<AudioSource>().Play();
+            StartCoroutine(PlayAndDestroy());
+            object_mesh.text = (int.Parse(object_mesh.text) - amount).ToString();
             Instantiate(particles, PlayerPosition.position, Quaternion.identity);
         }
         else
@@ -54,6 +58,14 @@ public class Boss_Health : MonoBehaviour
             health -= amount;
         }
         return true;
+    }
+    private IEnumerator PlayAndDestroy()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(heart);
+        Destroy(mesh);
+        Destroy(cwall);
+        Destroy(gameObject);
     }
     private IEnumerator DamageIndicator(SpriteRenderer sprite, float second)
     {

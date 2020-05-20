@@ -16,7 +16,7 @@ public class Enemy_Health : MonoBehaviour
     {
         PlayerPosition = GetComponent<Transform>();
         mesh = Instantiate(GameObject.FindGameObjectWithTag("Enemy_Health"));
-        heart = Instantiate(GameObject.FindGameObjectWithTag("Heart"));
+        heart = Instantiate(GameObject.Find("enemy_heart"));
         object_mesh = mesh.GetComponent<TextMeshPro>();
         object_mesh.text = health.ToString();
     }

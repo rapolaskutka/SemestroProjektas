@@ -10,12 +10,14 @@ public class Boss_Fight : MonoBehaviour
     [SerializeField] private int IdleTime;
     [SerializeField] private int riseLavaStepY;
     [SerializeField] private int maxRiseLavalSteps;
+    [SerializeField] private float lavaRiseS;
     private List<GameObject> enemys;
     private GameObject lava;
     private float Enemy_Time = 0;
     private bool CanDoOtherAbility = false;
     private ParticleSystem particle;
     private TextMeshPro[] abilitys;
+    private GameObject tiles;
 
     enum Boss_Phases
     {
@@ -53,7 +55,7 @@ public class Boss_Fight : MonoBehaviour
             {
                 enemycount = count;
             }
-            Debug.Log("Count" + enemycount);
+            Debug.Log("Enemy_Count" + enemycount);
             for (int i = 0; i < enemycount; i++)
             {
                 int flyenemy = Random.Range(0, 100);
@@ -61,7 +63,7 @@ public class Boss_Fight : MonoBehaviour
                 {
                     GameObject fly = GameObject.Find("Flying_Enemy");
                     GameObject flyer = Instantiate(fly);
-                    Debug.Log(spawns.Count);
+                    Debug.Log("Deam" + spawns.Count);
                     Debug.Log(spawns[3].transform.localPosition);
                     if (availableS[3])
                     {
@@ -79,9 +81,8 @@ public class Boss_Fight : MonoBehaviour
                     if (availableS[i])
                     {
                         GameObject enemys = GameObject.Find("Enemy");
-                        Debug.Log(enemys.GetComponent<SpriteRenderer>().name);
                         GameObject enemies = Instantiate(enemys);
-                        Debug.Log(spawns[i].transform.localPosition);
+                        Debug.Log("Spawn Point" + spawns[i].transform.localPosition);
                         enemy.AddEnemy(enemies, spawns[i]);
                         availableS[i] = false;
                     }
@@ -94,7 +95,7 @@ public class Boss_Fight : MonoBehaviour
             {
                 availableS[i] = true;
             }
-            enemy.RemoveAllEnemy();
+            //enemy.RemoveAllEnemy();
         }
     }
     public class Enemy
@@ -156,6 +157,9 @@ public class Boss_Fight : MonoBehaviour
         Debug.Log(particle);
         int phase = Random.Range(0, System.Enum.GetValues(typeof(Boss_Phases)).Length);
         spawn = new Spawns();
+        tiles = GameObject.Find("Platforms");
+        Debug.Log("Huh");
+        tiles.SetActive(false);
         spawn.AddSpawn(GameObject.Find("Spawn1").GetComponent<SpriteRenderer>());
         spawn.AddSpawn(GameObject.Find("Spawn2").GetComponent<SpriteRenderer>());
         spawn.AddSpawn(GameObject.Find("Spawn3").GetComponent<SpriteRenderer>());
@@ -251,15 +255,15 @@ public class Boss_Fight : MonoBehaviour
         int p_count = 0;
         if (boss_health < 200)
         {
-            p_count = 30;
+            p_count = 50;
         }
         else if (boss_health < 400)
         {
-            p_count = 20;
+            p_count = 40;
         }
         else if (boss_health <= 700)
         {
-            p_count = 15;
+            p_count = 30;
         }
         var disable = particle.emission;
         var count = particle.main;
@@ -270,7 +274,7 @@ public class Boss_Fight : MonoBehaviour
     }
     IEnumerator DisableParticle()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(15);
         var disable = particle.emission;
         disable.enabled = false;
         Enemy_Time = Time.time + IdleTime;
@@ -278,6 +282,8 @@ public class Boss_Fight : MonoBehaviour
     }
     private void RiseLava()
     {
+        Debug.Log(tiles);
+        tiles.SetActive(true);
         StartCoroutine(Rise());
     }
     IEnumerator Rise()
@@ -285,7 +291,7 @@ public class Boss_Fight : MonoBehaviour
         for (int i = 0; i < maxRiseLavalSteps; i++)
         {
             Debug.Log("Rising lava");
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(lavaRiseS);
             lava.transform.localScale = new Vector3(lava.transform.localScale.x, lava.transform.localScale.y + riseLavaStepY, lava.transform.localScale.z);
         }
         StartCoroutine(RemoveLava());
@@ -295,9 +301,10 @@ public class Boss_Fight : MonoBehaviour
     {
         for (int i = 0; i < maxRiseLavalSteps; i++)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(lavaRiseS);
             lava.transform.localScale = new Vector3(lava.transform.localScale.x, lava.transform.localScale.y - riseLavaStepY, lava.transform.localScale.z);
         }
+        tiles.SetActive(false);
         CanDoOtherAbility = true;
         Enemy_Time = Time.time + IdleTime;
 
