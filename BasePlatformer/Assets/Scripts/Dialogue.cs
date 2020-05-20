@@ -38,24 +38,31 @@ public class Dialogue : MonoBehaviour
     }
     IEnumerator Pause()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         allowed = true;
     }
     public void NextSentence()
     {
         allowed = false;
-        if (index < sentences.Length - 1 )
+        if (index < sentences.Length - 1)
         {
             index++;
             TextMesh.text = "";
             StartCoroutine(Typing());
         }
         else if (SceneManager.GetActiveScene().name == "Intro") SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //Ignore this line
-        else DialogCanvas.SetActive(false);
+        else
+        {
+            TextMesh.text = "";
+            DialogCanvas.SetActive(false);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) DialogCanvas.SetActive(true);
-        StartCoroutine(Typing());
+        if (collision.CompareTag("Player") && !DialogCanvas.activeSelf)
+        {
+            DialogCanvas.SetActive(true);
+            StartCoroutine(Typing());
+        }
     }
 }
