@@ -59,21 +59,20 @@ public class Boss_Fight : MonoBehaviour
             for (int i = 0; i < enemycount; i++)
             {
                 int flyenemy = Random.Range(0, 100);
-                if (flyenemy >= 50 && availableS[3] && availableS[4])
+                if (flyenemy >= 50 && availableS[4] && availableS[5])
                 {
                     GameObject fly = GameObject.Find("Flying_Enemy");
                     GameObject flyer = Instantiate(fly);
-                    Debug.Log("Deam" + spawns.Count);
-                    Debug.Log(spawns[3].transform.localPosition);
-                    if (availableS[3])
+                    Debug.Log("Fly" + spawns[3].transform.localPosition);
+                    if (availableS[4])
                     {
                         enemy.AddEnemy(flyer, spawns[3]);
-                        availableS[3] = false;
+                        availableS[5] = false;
                     }
-                    else if(availableS[4])
+                    else if(availableS[5])
                     {
                         enemy.AddEnemy(flyer, spawns[4]);
-                        availableS[4] = false;
+                        availableS[5] = false;
                     }
                 }
                 else
@@ -203,7 +202,18 @@ public class Boss_Fight : MonoBehaviour
     }
     IEnumerator Ability(Boss_Phases phases)
     {
-        yield return new WaitForSeconds(5);
+        switch(phases)
+        {
+            case Boss_Phases.Spawn:
+                yield return new WaitForSeconds(1);
+                break;
+            case Boss_Phases.Lava:
+                yield return new WaitForSeconds(1);
+                break;
+            case Boss_Phases.Projectiles:
+                yield return new WaitForSeconds(1);
+                break;
+        };
         switch (phases)
         {
             case Boss_Phases.Lava:
@@ -284,13 +294,17 @@ public class Boss_Fight : MonoBehaviour
     {
         Debug.Log(tiles);
         tiles.SetActive(true);
+        StartCoroutine(ExtraDelay());
+    }
+    IEnumerator ExtraDelay()
+    {
+        yield return new WaitForSeconds(1);
         StartCoroutine(Rise());
     }
     IEnumerator Rise()
     {
         for (int i = 0; i < maxRiseLavalSteps; i++)
         {
-            Debug.Log("Rising lava");
             yield return new WaitForSeconds(lavaRiseS);
             lava.transform.localScale = new Vector3(lava.transform.localScale.x, lava.transform.localScale.y + riseLavaStepY, lava.transform.localScale.z);
         }
