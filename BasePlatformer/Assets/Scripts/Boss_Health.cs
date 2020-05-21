@@ -7,6 +7,7 @@ public class Boss_Health : MonoBehaviour
 {
     [SerializeField] public int health;
     [SerializeField] private GameObject particles;
+    [SerializeField] private AudioClip clip;
     private Transform PlayerPosition;
     private float hCool;
     private GameObject mesh;
@@ -14,6 +15,7 @@ public class Boss_Health : MonoBehaviour
     private GameObject heart;
     private GameObject head;
     private GameObject cwall;
+    private AudioSource source;
     void Start()
     {
         PlayerPosition = GetComponent<Transform>();
@@ -47,7 +49,8 @@ public class Boss_Health : MonoBehaviour
             ParticleSystem system = cwall.GetComponent<ParticleSystem>();
             ParticleSystem.EmissionModule mod = system.emission;
             mod.enabled = true;
-            cwall.GetComponent<AudioSource>().Play();
+            Addsound.AddAudio(clip, false, 0.8f, cwall).Play();
+            
             StartCoroutine(PlayAndDestroy());
             object_mesh.text = (int.Parse(object_mesh.text) - amount).ToString();
             Instantiate(particles, PlayerPosition.position, Quaternion.identity);
