@@ -29,6 +29,6 @@ public class Info : MonoBehaviour
     }
     private void Start()
     {
-        health = -1;
+
     }
 }
