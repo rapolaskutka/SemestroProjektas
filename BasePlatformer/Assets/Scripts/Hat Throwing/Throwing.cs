@@ -17,7 +17,7 @@ public class Throwing : MonoBehaviour
     private void Start()
     {
         throwclip = Resources.Load<AudioClip>("Audio/HatThrow");
-        throwSound = Addsound.AddAudio(throwclip, false, 0.65f, gameObject);
+        throwSound = Addsound.AddAudio(throwclip, false, 0.55f, gameObject);
         throwclip2 = Resources.Load<AudioClip>("Audio/GhostShoot");
         throwSound2 = Addsound.AddAudio(throwclip2, false, 1f, gameObject);
     }
