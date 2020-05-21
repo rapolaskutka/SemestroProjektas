@@ -830,7 +830,7 @@ PrefabInstance:
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.035555
+      value: -24.034716
       objectReference: {fileID: 0}
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
@@ -23595,6 +23595,7 @@ GameObject:
   - component: {fileID: 2131623474}
   - component: {fileID: 8174128301493382832}
   - component: {fileID: 8174128301493382833}
+  - component: {fileID: 8174128301493382834}
   m_Layer: 8
   m_Name: Character
   m_TagString: Player
@@ -23663,6 +23664,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1234665, y: 3.3795676}
   m_EdgeRadius: 0.04
+--- !u!114 &8174128301493382834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174128301493382830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acef1537818240945bc4703437c9c2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8174128301947790020
 GameObject:
   m_ObjectHideFlags: 0
