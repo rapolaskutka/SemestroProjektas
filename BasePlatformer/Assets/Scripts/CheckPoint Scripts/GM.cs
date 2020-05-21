@@ -5,10 +5,10 @@ using UnityEngine;
 public class GM : MonoBehaviour
 {
     private static GM instance;
-    public Vector2 StartingPos;
-
+    [HideInInspector] public Vector2 StartingPos;
     void Awake()
     {
+        StartingPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         if (instance == null)
         {
             instance = this;
@@ -17,5 +17,4 @@ public class GM : MonoBehaviour
         }
         else Destroy(gameObject);
     }
-
 }

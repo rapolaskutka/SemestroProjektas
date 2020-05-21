@@ -10,6 +10,17 @@ public class Throwing : MonoBehaviour
     public GameObject GhostClone;
     [HideInInspector] public bool Threwright;
     private bool TeleportEnabled = false;
+    private AudioSource throwSound;
+    private AudioClip throwclip;
+    private AudioSource throwSound2;
+    private AudioClip throwclip2;
+    private void Start()
+    {
+        throwclip = Resources.Load<AudioClip>("Audio/HatThrow");
+        throwSound = Addsound.AddAudio(throwclip, false, 0.55f, gameObject);
+        throwclip2 = Resources.Load<AudioClip>("Audio/GhostShoot");
+        throwSound2 = Addsound.AddAudio(throwclip2, false, 1f, gameObject);
+    }
     void Update()
     {
         CooldownTimer -= Time.deltaTime;
@@ -18,12 +29,14 @@ public class Throwing : MonoBehaviour
         {
             Instantiate(HatPrefab, StartPoint.position, StartPoint.rotation);
             CooldownTimer = HatCD;
+            throwSound.Play();
         }
         if (Input.GetKeyDown(KeyCode.X) && GhostCD < 0 && TeleportEnabled)
         {
             Threwright = FindObjectOfType<CharacterMovement>().facingRight;
-            Instantiate(GhostClone, StartPoint.position, StartPoint.rotation);
+            Instantiate(GhostClone, transform.position, transform.rotation);
             GhostCD = 4f;
+            throwSound2.Play();
         }
 
     }
@@ -33,7 +46,7 @@ public class Throwing : MonoBehaviour
     }
     public void RemoveCooldownGhost()
     {
-        GhostCD = 0.2f;
+        GhostCD = 0f;
     }
     public void ChangePos(Vector3 xd)
     {
@@ -42,5 +55,7 @@ public class Throwing : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("EnableTeleport")) TeleportEnabled = true;
+        if (collision.CompareTag("DisableTeleport")) TeleportEnabled = false;
+
     }
 }

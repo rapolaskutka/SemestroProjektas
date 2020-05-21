@@ -15,9 +15,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial2.unity
     guid: 41686490842c3d840988e30778a6d64c
   - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: a1c8f18d440d94149b8c0fd16a13385b
+  - enabled: 1
     path: Assets/Scenes/Hell_1.unity
     guid: 41d7ae9520f8d2e4ca78ab204729a853
   - enabled: 1
     path: Assets/Scenes/Hell_2.unity
     guid: 919026be71f7b3040920118870f6e9c6
+  - enabled: 1
+    path: Assets/Scenes/Hell_3.unity
+    guid: 69180ae60cf62d4409df139a19a02842
+  - enabled: 1
+    path: Assets/Scenes/Boss.unity
+    guid: 559cc369a3f860f4e99fb89c9741a182
+  - enabled: 1
+    path: Assets/Scenes/Heaven1.unity
+    guid: e82ad047d73420f41afc22d5664fd8db
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 65afccb6f384f4e439cec16d2aa6d98f
   m_configObjects: {}

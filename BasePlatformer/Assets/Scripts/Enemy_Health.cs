@@ -12,11 +12,16 @@ public class Enemy_Health : MonoBehaviour
     private GameObject mesh;
     private TextMeshPro object_mesh;
     private GameObject heart;
+
+    private AudioSource deathsound;
+    private AudioClip clip;
     void Start()
     {
+        clip = Resources.Load<AudioClip>("Audio/Enemydeath");
+        deathsound = Addsound.AddAudio(clip,false,0.7f,gameObject);
         PlayerPosition = GetComponent<Transform>();
         mesh = Instantiate(GameObject.FindGameObjectWithTag("Enemy_Health"));
-        heart = Instantiate(GameObject.FindGameObjectWithTag("Heart"));
+        heart = Instantiate(GameObject.Find("enemy_heart"));
         object_mesh = mesh.GetComponent<TextMeshPro>();
         object_mesh.text = health.ToString();
     }
@@ -35,6 +40,7 @@ public class Enemy_Health : MonoBehaviour
         hCool = Time.time + DamageCooldown;
         if (amount >= health)
         {
+            deathsound.Play();
             health = 0;
             Destroy(heart);
             Destroy(mesh);

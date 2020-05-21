@@ -15538,7 +15538,7 @@ SpriteRenderer:
   m_Size: {x: 2.59, y: 1.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &936927800
@@ -15821,6 +15821,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066096533}
   m_CullTransparentMesh: 0
+--- !u!1001 &1124630516
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7959677362148175528, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_Name
+      value: One-WayPlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175528, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959677362148175535, guid: 03ff88574242e204b8d4ef797fa55d1b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 03ff88574242e204b8d4ef797fa55d1b, type: 3}
 --- !u!1001 &1216368599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19463,6 +19537,7 @@ MonoBehaviour:
   damage: 1
   cooldown: 5
   OneShotDeath: 0
+  canTakeDamage: 1
 --- !u!1971053207 &2326620492342757620
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -19801,12 +19876,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   GroundCheck: {fileID: 8174128302117401028}
+  CeilingCheck: {fileID: 0}
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 1536
   WhatIsCeiling:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 512
   ExtraJumpCount: 2
   DashCooldown: 3
   fallMultiplierFloat: 2.5
@@ -19854,7 +19930,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: f0d8102c64d92be488db6378c600fa86, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!1 &8174128300449791407
 GameObject:

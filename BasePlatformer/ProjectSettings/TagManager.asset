@@ -28,6 +28,9 @@ TagManager:
   - Enemy_Health
   - Heart
   - EnableTeleport
+  - CheckPoint
+  - DisableTeleport
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -64,6 +67,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 767272133
+    locked: 0
+  - name: Gradient
+    uniqueID: 1761844605
     locked: 0
   - name: Foreground
     uniqueID: 1627166389

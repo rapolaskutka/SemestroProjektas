@@ -138,8 +138,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 8174128301727010514, guid: e992e9c61016ba144b2c81413f55ee5b,
-    type: 3}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 8
@@ -435,6 +434,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7450373813412632017, guid: 2e81e6bcac5bf8449a58e4035e406f75,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 7450373813412632018, guid: 2e81e6bcac5bf8449a58e4035e406f75,
         type: 3}
       propertyPath: m_Name

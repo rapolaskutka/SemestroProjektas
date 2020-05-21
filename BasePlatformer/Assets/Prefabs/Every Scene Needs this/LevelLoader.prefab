@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1863242943881879475}
   - component: {fileID: 1044696606718892440}
   - component: {fileID: 1773147790456869026}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 2293195190293487351}
   - component: {fileID: 3926194016171730611}
   - component: {fileID: 7096968115491823672}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7990425540994013674}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LevelLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}

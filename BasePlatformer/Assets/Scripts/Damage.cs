@@ -9,10 +9,11 @@ public class Damage : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private int cooldown;
     [SerializeField] private bool OneShotDeath;
+    public bool canTakeDamage = true;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && canTakeDamage)
         {
             healthscript.GetDamage(damage, false, cooldown);
         }

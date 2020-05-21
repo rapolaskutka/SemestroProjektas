@@ -7,6 +7,7 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Transform GroundCheck;
+    [SerializeField] private Transform CeilingCheck;
     [SerializeField] private LayerMask WhatIsGround;
     [SerializeField] private LayerMask WhatIsCeiling;
     [SerializeField] private int ExtraJumpCount;
@@ -27,17 +28,20 @@ public class CharacterMovement : MonoBehaviour
     public float JumpForce;
     private float MoveInput;
     [SerializeField] private LayerMask WhatIsWall;
-    private float wallSlideSpeed;
-    private bool TouchRight;
-    private bool TouchLeft;
-    private bool islide;
     private bool JumpRequest;
     private float DefaultFall;
     private bool DashEnabled;
-
+    private AudioSource jumpsound;
+    private AudioClip jumpclip;
+    private AudioSource hitSound;
+    private AudioClip hitclip;
 
     private void Start()
     {
+        jumpclip = Resources.Load<AudioClip>("Audio/JS");
+        hitclip = Resources.Load<AudioClip>("Audio/oof");
+        jumpsound = Addsound.AddAudio(jumpclip, false, 0.8f,gameObject);
+        hitSound = Addsound.AddAudio(hitclip, false, 0.8f,gameObject);
         DashEnabled = false;
         rb = GetComponent<Rigidbody2D>();
         animatorss = GetComponent<Animator>();
@@ -53,15 +57,14 @@ public class CharacterMovement : MonoBehaviour
         {
             rb.velocity = Vector2.up * JumpForce;
             JumpRequest = false;
+            jumpsound.Play();
         }
 
         FallSpeed();
-        //ApplySliding();
-
     }
     void FallSpeed()
     {
-       
+
         if (top)
         {
             if (rb.velocity.y < -5)
@@ -127,18 +130,16 @@ public class CharacterMovement : MonoBehaviour
     }
     private void CollisionChecks()
     {
-        HeadHitCheck = Physics2D.OverlapArea(new Vector2(transform.position.x - 0.10f, transform.position.y + 0.2f), new Vector2(transform.position.x + 0.2f, transform.position.y + 0.25f), WhatIsCeiling);
+        HeadHitCheck = Physics2D.OverlapCircle(GroundCheck.position, 0.05f, WhatIsCeiling);
         if (HeadHitCheck)
         {
             rb.velocity = Vector2.zero;
         }
-        Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.1f, WhatIsGround);
-        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
-            islide = true;
-        else
-            islide = false;
-        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
-        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
+        Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.15f, WhatIsGround);
+
+        // TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
+
+        //    TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
     }
     private void OnDrawGizmos()
     {
@@ -205,6 +206,10 @@ public class CharacterMovement : MonoBehaviour
         }
 
         if (collision.CompareTag("EnableDash")) DashEnabled = true;
+        if (collision.gameObject.tag.Equals("Dead") || collision.gameObject.tag.Equals("Enemy")) 
+        {
+            hitSound.Play();
+        }
     }
     IEnumerator Restore()
     {
@@ -214,17 +219,6 @@ public class CharacterMovement : MonoBehaviour
         speed += 2f;
         JumpForce += 3;
         rb.gravityScale = 3f;
-    }
-    public void ApplySliding()
-    {
-        if (islide)
-        {
-
-            if (rb.velocity.y < -wallSlideSpeed)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
-            }
-        }
     }
 
 }
