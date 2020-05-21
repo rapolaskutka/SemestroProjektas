@@ -642,7 +642,7 @@ PrefabInstance:
     - target: {fileID: 8174128301727010514, guid: e992e9c61016ba144b2c81413f55ee5b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8174128301727010514, guid: e992e9c61016ba144b2c81413f55ee5b,
         type: 3}
@@ -697,12 +697,12 @@ PrefabInstance:
         type: 3}
       propertyPath: TextMesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 603053127}
     - target: {fileID: 7009247859732601224, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
       propertyPath: DialogCanvas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 603053125}
     - target: {fileID: 7009247859732601224, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
       propertyPath: sentences.Array.data[2]
@@ -889,7 +889,7 @@ PrefabInstance:
     - target: {fileID: 3318322873473402000, guid: 31a4c30f3bef900428a2951925ec4af1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3318322873473402000, guid: 31a4c30f3bef900428a2951925ec4af1,
         type: 3}
@@ -3499,12 +3499,12 @@ PrefabInstance:
         type: 3}
       propertyPath: TextMesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 603053127}
     - target: {fileID: 7009247859732601224, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
       propertyPath: DialogCanvas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 603053125}
     - target: {fileID: 7009247859732601226, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
       propertyPath: m_Name
@@ -3727,6 +3727,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
+--- !u!1 &603053125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2738819780873672161, guid: 4f1c0b605788fd74aabc8c5b170359eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1958063123721277650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &603053127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2738819780873672164, guid: 4f1c0b605788fd74aabc8c5b170359eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1958063123721277650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603053125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &719844368
 GameObject:
   m_ObjectHideFlags: 0
@@ -4069,7 +4087,7 @@ PrefabInstance:
     - target: {fileID: 7990425540994013674, guid: 60e6920e9725cd342b9e57769ac609c3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7990425540994013674, guid: 60e6920e9725cd342b9e57769ac609c3,
         type: 3}
@@ -4190,7 +4208,7 @@ PrefabInstance:
     - target: {fileID: 534431919121287772, guid: 81c46df200fdaf243adfd60203ad2615,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 534431919121287772, guid: 81c46df200fdaf243adfd60203ad2615,
         type: 3}
@@ -4354,7 +4372,7 @@ Transform:
   - {fileID: 842779615}
   - {fileID: 1716943109}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1065497612
 PrefabInstance:
@@ -4401,7 +4419,7 @@ PrefabInstance:
     - target: {fileID: 8702776605465006213, guid: db2b824b7f4bb1144bd244853ae6969d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8702776605465006213, guid: db2b824b7f4bb1144bd244853ae6969d,
         type: 3}
@@ -4658,7 +4676,7 @@ PrefabInstance:
     - target: {fileID: 4165179900506046010, guid: 480279e7fe0cffc4baf878b15a223eee,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4165179900506046010, guid: 480279e7fe0cffc4baf878b15a223eee,
         type: 3}
@@ -4759,7 +4777,7 @@ PrefabInstance:
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.125282
+      value: 18.124443
       objectReference: {fileID: 0}
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
@@ -4794,7 +4812,7 @@ PrefabInstance:
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1066942136167507133, guid: 066b32972204f8447a78836fd468cf93,
         type: 3}
@@ -5253,7 +5271,7 @@ Transform:
   - {fileID: 1800894113}
   - {fileID: 1303856125}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1437018162
 GameObject:
@@ -6005,12 +6023,12 @@ PrefabInstance:
         type: 3}
       propertyPath: TextMesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 603053127}
     - target: {fileID: 7009247859732601224, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
       propertyPath: DialogCanvas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 603053125}
     - target: {fileID: 7009247859732601224, guid: a1052b847bc3dd24eb9196a479298612,
         type: 3}
       propertyPath: sentences.Array.data[2]
@@ -6760,7 +6778,7 @@ PrefabInstance:
     - target: {fileID: 1687122423676166480, guid: 393f26205f28ae94caf43de3afab5bbe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1687122423676166480, guid: 393f26205f28ae94caf43de3afab5bbe,
         type: 3}
@@ -6970,7 +6988,7 @@ Transform:
   - {fileID: 502552608}
   - {fileID: 2136230231}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!19719996 &8331949977693830276
 TilemapCollider2D:
