@@ -12,10 +12,14 @@ public class Throwing : MonoBehaviour
     private bool TeleportEnabled = false;
     private AudioSource throwSound;
     private AudioClip throwclip;
+    private AudioSource throwSound2;
+    private AudioClip throwclip2;
     private void Start()
     {
         throwclip = Resources.Load<AudioClip>("Audio/HatThrow");
         throwSound = Addsound.AddAudio(throwclip, false, 0.65f, gameObject);
+        throwclip2 = Resources.Load<AudioClip>("Audio/GhostShoot");
+        throwSound2 = Addsound.AddAudio(throwclip2, false, 1f, gameObject);
     }
     void Update()
     {
@@ -32,6 +36,7 @@ public class Throwing : MonoBehaviour
             Threwright = FindObjectOfType<CharacterMovement>().facingRight;
             Instantiate(GhostClone, transform.position, transform.rotation);
             GhostCD = 4f;
+            throwSound2.Play();
         }
 
     }

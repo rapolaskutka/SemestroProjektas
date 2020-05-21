@@ -49,7 +49,7 @@ public class MainMenu_Load : MonoBehaviour
             save.gameObject.GetComponent<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, looking.rect.height);
             save.gameObject.GetComponent<RectTransform>().anchorMin = looking.anchorMin;
             save.gameObject.GetComponent<RectTransform>().anchorMax = looking.anchorMax;
-            save.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(looking.anchoredPosition.x, looking.anchoredPosition.y - i * 100 + 100);
+            save.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(looking.anchoredPosition.x, looking.anchoredPosition.y - i * 200 + 200);
             save.GetComponentInChildren<TextMeshProUGUI>().text = "Scene Save" + i;
             i++;
             save.GetComponentInChildren<Text>().text = file.FullName;
