@@ -31,27 +31,17 @@ public class CharacterMovement : MonoBehaviour
     private bool JumpRequest;
     private float DefaultFall;
     private bool DashEnabled;
-
-
     private AudioSource jumpsound;
     private AudioClip jumpclip;
     private AudioSource hitSound;
     private AudioClip hitclip;
-    AudioSource AddAudio(AudioClip clipsound, bool loop, float volume)
-    {
-        var audio = gameObject.AddComponent<AudioSource>();
-        audio.clip = clipsound;
-        audio.loop = loop;
-        audio.playOnAwake = false;
-        audio.volume = volume;
-        return audio;
-    }
+
     private void Start()
     {
         jumpclip = Resources.Load<AudioClip>("Audio/JS");
         hitclip = Resources.Load<AudioClip>("Audio/oof");
-        jumpsound = AddAudio(jumpclip, false, 0.8f);
-        hitSound = AddAudio(hitclip, false, 0.8f);
+        jumpsound = Addsound.AddAudio(jumpclip, false, 0.8f,gameObject);
+        hitSound = Addsound.AddAudio(hitclip, false, 0.8f,gameObject);
         DashEnabled = false;
         rb = GetComponent<Rigidbody2D>();
         animatorss = GetComponent<Animator>();

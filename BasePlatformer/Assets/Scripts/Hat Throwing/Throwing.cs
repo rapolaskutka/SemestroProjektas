@@ -10,6 +10,13 @@ public class Throwing : MonoBehaviour
     public GameObject GhostClone;
     [HideInInspector] public bool Threwright;
     private bool TeleportEnabled = false;
+    private AudioSource throwSound;
+    private AudioClip throwclip;
+    private void Start()
+    {
+        throwclip = Resources.Load<AudioClip>("Audio/HatThrow");
+        throwSound = Addsound.AddAudio(throwclip, false, 0.65f, gameObject);
+    }
     void Update()
     {
         CooldownTimer -= Time.deltaTime;
@@ -18,6 +25,7 @@ public class Throwing : MonoBehaviour
         {
             Instantiate(HatPrefab, StartPoint.position, StartPoint.rotation);
             CooldownTimer = HatCD;
+            throwSound.Play();
         }
         if (Input.GetKeyDown(KeyCode.X) && GhostCD < 0 && TeleportEnabled)
         {
