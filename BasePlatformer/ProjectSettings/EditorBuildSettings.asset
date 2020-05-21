@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Boss.unity
     guid: 559cc369a3f860f4e99fb89c9741a182
   - enabled: 1
-    path: Assets/Scenes/Heaven1.unity
+    path: Assets/Scenes/Heaven.unity
     guid: e82ad047d73420f41afc22d5664fd8db
   - enabled: 1
     path: Assets/Scenes/Credits.unity
