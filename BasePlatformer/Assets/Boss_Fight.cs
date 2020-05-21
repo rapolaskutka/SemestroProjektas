@@ -59,10 +59,11 @@ public class Boss_Fight : MonoBehaviour
             for (int i = 0; i < enemycount; i++)
             {
                 int flyenemy = Random.Range(0, 100);
-                if (flyenemy >= 50 && availableS[3] && availableS[4])
+                if (flyenemy >= 50 && (availableS[3] || availableS[4]))
                 {
-                    GameObject fly = GameObject.Find("Flying_Enemy");
+                    GameObject fly = GameObject.Find("Boss").transform.Find("Flying_Enemy").gameObject;
                     GameObject flyer = Instantiate(fly);
+                    flyer.SetActive(true);
                     if (availableS[3])
                     {
                         enemy.AddEnemy(flyer, spawns[3]);
@@ -73,13 +74,15 @@ public class Boss_Fight : MonoBehaviour
                         enemy.AddEnemy(flyer, spawns[4]);
                         availableS[4] = false;
                     }
+                    i--;
                 }
                 else
                 {
                     if (availableS[i])
                     {
-                        GameObject enemys = GameObject.Find("Enemy");
+                        GameObject enemys = GameObject.Find("Boss").transform.Find("Enemy").gameObject;
                         GameObject enemies = Instantiate(enemys);
+                        enemies.SetActive(true);
                         Debug.Log("Spawn Point" + spawns[i].transform.localPosition);
                         enemy.AddEnemy(enemies, spawns[i]);
                         availableS[i] = false;
