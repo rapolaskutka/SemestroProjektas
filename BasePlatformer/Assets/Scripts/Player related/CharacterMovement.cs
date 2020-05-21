@@ -37,7 +37,10 @@ public class CharacterMovement : MonoBehaviour
     private float DefaultFall;
     private bool DashEnabled;
 
-
+    public void Awake()
+    {
+        Debug.Log("Huh");
+    }
     private void Start()
     {
         DashEnabled = false;
