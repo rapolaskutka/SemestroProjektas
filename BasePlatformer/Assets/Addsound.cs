@@ -6,7 +6,7 @@ public class Addsound : MonoBehaviour
 {
   public static AudioSource AddAudio(AudioClip clipsound, bool loop, float volume, GameObject that)
     {
-        var audio = that.AddComponent<AudioSource>();
+        var audio = GameObject.FindGameObjectWithTag("Player").AddComponent<AudioSource>();
         audio.clip = clipsound;
         audio.loop = loop;
         audio.playOnAwake = false;
