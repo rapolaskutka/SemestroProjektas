@@ -5,9 +5,8 @@ using System.IO;
 using UnityEngine.UI;
 using TMPro;
 
-public class Loading_P : MonoBehaviour
+public class MainMenu_Load : MonoBehaviour
 {
-    // Start is called before the first frame update
     private string Directory;
     public static Loading_P instance;
     void Start()
@@ -18,8 +17,8 @@ public class Loading_P : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.Escape))
-       {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             GameObject LoadsGui = GameObject.Find("PauseMenuCanvas").transform.Find("Loads").gameObject;
             LoadsGui.SetActive(false);
         }
@@ -28,11 +27,11 @@ public class Loading_P : MonoBehaviour
     {
         DirectoryInfo directory = new DirectoryInfo(Directory);
         FileInfo[] files = directory.GetFiles("*.txt");
-        GameObject Gui = GameObject.Find("PauseMenuCanvas").transform.Find("Loads").gameObject;
-        GameObject menu = GameObject.Find("Menu");
+        GameObject Gui = GameObject.Find("Canvas").transform.Find("MainLoad").gameObject;
+        GameObject menu = GameObject.Find("MainMenu");
         menu.SetActive(false);
         Gui.SetActive(true);
-        GameObject LoadsGui = GameObject.Find("Loads");
+        GameObject LoadsGui = GameObject.Find("MainLoad");
         //LoadsGui.SetActive(false);
         Debug.Log(LoadsGui.activeSelf);
         GameObject SavesGui = GameObject.Find("LoadSave");
@@ -58,5 +57,4 @@ public class Loading_P : MonoBehaviour
         SavesGui.SetActive(false);
         Debug.Log(i);
     }
-
 }

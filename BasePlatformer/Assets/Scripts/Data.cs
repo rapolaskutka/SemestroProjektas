@@ -13,7 +13,8 @@ public class Data : MonoBehaviour
         {
             GameObject.Find("Character").GetComponent<HealthControl>().health = health;
             GameObject.Find("Character").transform.position = Position;
-            Destroy(GameObject.Find("Info"));
+            GameObject.Find("Info").GetComponent<Info>().health = -1;
+            GameObject.Find("Info").GetComponent<Info>().position = new Vector3();
         }
     }
 

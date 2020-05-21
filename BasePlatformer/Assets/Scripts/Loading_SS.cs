@@ -11,26 +11,19 @@ public class Loading_SS : MonoBehaviour
     public Vector3 position;
     public static Loading_SS instance;
     // Start is called before the first frame update
-    void Start()
-    {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(this.gameObject);
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                GameObject LoadsGui = GameObject.Find("PauseMenuCanvas").transform.Find("Loads").gameObject;
+                LoadsGui.SetActive(false);
+            }
     }
     public void Load()
     {
+        Debug.Log("Click");
         string file = gameObject.GetComponentInChildren<Text>().text;
         string save = File.ReadAllText(file);
         Save info = JsonUtility.FromJson<Save>(save);

@@ -59,20 +59,19 @@ public class Boss_Fight : MonoBehaviour
             for (int i = 0; i < enemycount; i++)
             {
                 int flyenemy = Random.Range(0, 100);
-                if (flyenemy >= 50 && availableS[4] && availableS[5])
+                if (flyenemy >= 50 && availableS[3] && availableS[4])
                 {
                     GameObject fly = GameObject.Find("Flying_Enemy");
                     GameObject flyer = Instantiate(fly);
-                    Debug.Log("Fly" + spawns[3].transform.localPosition);
-                    if (availableS[4])
+                    if (availableS[3])
                     {
                         enemy.AddEnemy(flyer, spawns[3]);
-                        availableS[5] = false;
+                        availableS[3] = false;
                     }
-                    else if(availableS[5])
+                    else if(availableS[4])
                     {
                         enemy.AddEnemy(flyer, spawns[4]);
-                        availableS[5] = false;
+                        availableS[4] = false;
                     }
                 }
                 else
