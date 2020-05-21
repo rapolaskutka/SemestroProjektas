@@ -35,6 +35,8 @@ public class CharacterMovement : MonoBehaviour
 
     private AudioSource jumpsound;
     private AudioClip jumpclip;
+    private AudioSource hitSound;
+    private AudioClip hitclip;
     AudioSource AddAudio(AudioClip clipsound, bool loop, float volume)
     {
         var audio = gameObject.AddComponent<AudioSource>();
@@ -47,7 +49,9 @@ public class CharacterMovement : MonoBehaviour
     private void Start()
     {
         jumpclip = Resources.Load<AudioClip>("Audio/JS");
+        hitclip = Resources.Load<AudioClip>("Audio/oof");
         jumpsound = AddAudio(jumpclip, false, 0.8f);
+        hitSound = AddAudio(hitclip, false, 0.8f);
         DashEnabled = false;
         rb = GetComponent<Rigidbody2D>();
         animatorss = GetComponent<Animator>();
@@ -146,10 +150,6 @@ public class CharacterMovement : MonoBehaviour
         // TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
 
         //    TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
-        //if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
-        //    islide = true;
-        //else
-        //    islide = false;
     }
     private void OnDrawGizmos()
     {
@@ -216,6 +216,10 @@ public class CharacterMovement : MonoBehaviour
         }
 
         if (collision.CompareTag("EnableDash")) DashEnabled = true;
+        if (collision.gameObject.tag.Equals("Dead") || collision.gameObject.tag.Equals("Enemy")) 
+        {
+            hitSound.Play();
+        }
     }
     IEnumerator Restore()
     {
@@ -226,16 +230,5 @@ public class CharacterMovement : MonoBehaviour
         JumpForce += 3;
         rb.gravityScale = 3f;
     }
-    //public void ApplySliding()
-    //{
-    //    if (islide)
-    //    {
-
-    //        if (rb.velocity.y < -wallSlideSpeed)
-    //        {
-    //            rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
-    //        }
-    //    }
-    //}
 
 }
