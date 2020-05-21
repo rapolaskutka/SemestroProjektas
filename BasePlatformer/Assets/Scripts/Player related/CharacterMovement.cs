@@ -8,7 +8,6 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Transform GroundCheck;
     [SerializeField] private Transform CeilingCheck;
-
     [SerializeField] private LayerMask WhatIsGround;
     [SerializeField] private LayerMask WhatIsCeiling;
     [SerializeField] private int ExtraJumpCount;
@@ -29,20 +28,26 @@ public class CharacterMovement : MonoBehaviour
     public float JumpForce;
     private float MoveInput;
     [SerializeField] private LayerMask WhatIsWall;
-    private float wallSlideSpeed;
-    private bool TouchRight;
-    private bool TouchLeft;
-    private bool islide;
     private bool JumpRequest;
     private float DefaultFall;
     private bool DashEnabled;
 
-    public void Awake()
+
+    private AudioSource jumpsound;
+    private AudioClip jumpclip;
+    AudioSource AddAudio(AudioClip clipsound, bool loop, float volume)
     {
-        Debug.Log("Huh");
+        var audio = gameObject.AddComponent<AudioSource>();
+        audio.clip = clipsound;
+        audio.loop = loop;
+        audio.playOnAwake = false;
+        audio.volume = volume;
+        return audio;
     }
     private void Start()
     {
+        jumpclip = Resources.Load<AudioClip>("Audio/JS");
+        jumpsound = AddAudio(jumpclip, false, 0.8f);
         DashEnabled = false;
         rb = GetComponent<Rigidbody2D>();
         animatorss = GetComponent<Animator>();
@@ -58,9 +63,10 @@ public class CharacterMovement : MonoBehaviour
         {
             rb.velocity = Vector2.up * JumpForce;
             JumpRequest = false;
+            jumpsound.Play();
         }
 
-      FallSpeed();
+        FallSpeed();
     }
     void FallSpeed()
     {
@@ -131,15 +137,15 @@ public class CharacterMovement : MonoBehaviour
     private void CollisionChecks()
     {
         HeadHitCheck = Physics2D.OverlapCircle(GroundCheck.position, 0.05f, WhatIsCeiling);
-        if (HeadHitCheck )
+        if (HeadHitCheck)
         {
             rb.velocity = Vector2.zero;
         }
         Grounded = Physics2D.OverlapCircle(GroundCheck.position, 0.15f, WhatIsGround);
 
-        TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
+        // TouchLeft = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x - 0.35f, transform.position.y - 0.1f), WhatIsWall);
 
-        TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
+        //    TouchRight = Physics2D.OverlapArea(new Vector2(transform.position.x, transform.position.y + 0.1f), new Vector2(transform.position.x + 0.35f, transform.position.y - 0.1f), WhatIsWall);
         //if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) && (TouchLeft || TouchRight) && !Grounded && rb.velocity.y < 0)
         //    islide = true;
         //else
