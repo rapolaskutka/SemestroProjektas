@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class Loading_SS : MonoBehaviour
 {
@@ -23,7 +24,6 @@ public class Loading_SS : MonoBehaviour
     }
     public void Load()
     {
-        Debug.Log("Click");
         string file = gameObject.GetComponentInChildren<Text>().text;
         string save = File.ReadAllText(file);
         Save info = JsonUtility.FromJson<Save>(save);
@@ -31,7 +31,6 @@ public class Loading_SS : MonoBehaviour
         GameObject.Find("Info").GetComponent<Info>().position = info.position;
         SceneManager.LoadScene(info.scene);
         Time.timeScale = 1f;
-        Debug.Log(info.scene);
     }
     public class Save
     {
