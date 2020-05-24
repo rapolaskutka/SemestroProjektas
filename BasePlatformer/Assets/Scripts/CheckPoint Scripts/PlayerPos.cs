@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerPos : MonoBehaviour
 {
     private GM gamemaster;
-    void Start()
+    void Awake()
     {
         gamemaster = GameObject.FindGameObjectWithTag("GM").GetComponent<GM>();
+        if(gamemaster.StartingPos.x != 0)
         transform.position = gamemaster.StartingPos;
     }
     [SerializeField] private GameObject particle;

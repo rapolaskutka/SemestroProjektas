@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Loading_P : MonoBehaviour
 {
@@ -51,12 +52,16 @@ public class Loading_P : MonoBehaviour
             save.gameObject.GetComponent<RectTransform>().anchorMin = looking.anchorMin;
             save.gameObject.GetComponent<RectTransform>().anchorMax = looking.anchorMax;
             save.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(looking.anchoredPosition.x, looking.anchoredPosition.y - i * 200 + 200);
-            save.GetComponentInChildren<TextMeshProUGUI>().text = "Scene Save" + i;
-            i++;
+            string name1 = file.Name.Replace(".txt", "");
+            int index = int.Parse(name1);
+            Debug.Log(SceneManager.GetSceneByBuildIndex(index).name);
+            string path = SceneUtility.GetScenePathByBuildIndex(index);
+            string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
+            save.GetComponentInChildren<TextMeshProUGUI>().text = "Load stage:" + sceneName;
             save.GetComponentInChildren<Text>().text = file.FullName;
+            i++;
         }
         SavesGui.SetActive(false);
-        Debug.Log(i);
     }
 
 }

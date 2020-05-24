@@ -7,9 +7,10 @@ public class Data : MonoBehaviour
     // Start is called before the first frame update
     public void Awake()
     {
+        Debug.Log("Player");
         int health = GameObject.Find("Info").GetComponent<Info>().health;
         Vector3 Position = GameObject.Find("Info").GetComponent<Info>().position;
-        if(health != -1)
+        if(health != -1 && Position.x != 0)
         {
             GameObject.Find("Character").GetComponent<HealthControl>().health = health;
             GameObject.Find("Character").transform.position = Position;

@@ -1250,6 +1250,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FreezeTime: 2
+--- !u!114 &583575884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583575882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe958cc07121e424b8c45ac7fff021c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &583575892
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1730,6 +1742,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseMenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3640642051378494692, guid: 4f1c0b605788fd74aabc8c5b170359eb,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710032393805476133, guid: 4f1c0b605788fd74aabc8c5b170359eb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f1c0b605788fd74aabc8c5b170359eb, type: 3}

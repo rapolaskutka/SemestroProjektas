@@ -8,7 +8,7 @@ public class GM : MonoBehaviour
     [HideInInspector] public Vector2 StartingPos;
     void Awake()
     {
-        StartingPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        //StartingPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         if (instance == null)
         {
             instance = this;
