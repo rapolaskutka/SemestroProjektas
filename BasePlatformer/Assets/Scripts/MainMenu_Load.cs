@@ -32,7 +32,7 @@ public class MainMenu_Load : MonoBehaviour
         GameObject menu = GameObject.Find("MainMenu");
         menu.SetActive(false);
         Gui.SetActive(true);
-        GameObject LoadsGui = GameObject.Find("MainLoad");
+        GameObject LoadsGui = GameObject.Find("Loads");
         //LoadsGui.SetActive(false);
         Debug.Log(LoadsGui.activeSelf);
         GameObject SavesGui = GameObject.Find("LoadSave");

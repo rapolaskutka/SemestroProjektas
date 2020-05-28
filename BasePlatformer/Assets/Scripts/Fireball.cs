@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Fireball : MonoBehaviour
     private Rigidbody2D rb;
     private AudioSource fireballsound;
     private AudioClip clip;
+    private bool Collided = false;
     void Start()
     {
         clip = Resources.Load<AudioClip>("Audio/Fireball");
@@ -19,6 +21,20 @@ public class Fireball : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("Player")) Destroy(gameObject); 
+        if ((collision.CompareTag("Ground") || collision.CompareTag("Player")) && !Collided)
+        {
+            GameObject fire = Instantiate(GameObject.Find("Fire_Explosion"));
+            fire.transform.position = gameObject.transform.position;
+            fire.GetComponent<ParticleSystem>().Play();
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            Collided = true;
+            StartCoroutine(Remove(fire));
+        }
+    }
+    IEnumerator Remove(GameObject fire)
+    {
+        yield return new WaitForSeconds((float)0.6);
+        Destroy(fire);
+        Destroy(gameObject);
     }
 }

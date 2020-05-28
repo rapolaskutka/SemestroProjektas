@@ -12,6 +12,7 @@ public class Saves : MonoBehaviour
     // Start is called before the first frame update
     private string Directory;
     private bool bum;
+    private GameObject save_text;
     void Start()
     {
         Directory = Application.dataPath + "/saves/";
@@ -62,6 +63,7 @@ public class Saves : MonoBehaviour
         save_logo.GetComponentInChildren<TextMeshProUGUI>().text = "Saved on " + scene_name;
         save_logo.GetComponentInChildren<TextMeshProUGUI>().fontSize = 50;
         save_logo.GetComponent<UnityEngine.UI.Button>().enabled = false;
+        PauseMenu.GUI_Extra.Add_Gui(save_logo);
         StartCoroutine(Remove(save_logo));
     }
     IEnumerator Remove(GameObject obj)

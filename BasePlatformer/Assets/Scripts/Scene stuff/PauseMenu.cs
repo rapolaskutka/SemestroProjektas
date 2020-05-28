@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Security.Cryptography;
 using System.Text;
 using System;
+using System.Collections.Generic;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,6 +13,27 @@ public class PauseMenu : MonoBehaviour
 
     public static bool Paused = false;
     public GameObject UI;
+    public class GUI_Extra
+    {
+        private static List<GameObject> GUI_Elements = new List<GameObject>();
+
+        public GUI_Extra()
+        {
+
+        }
+        public static void Add_Gui(GameObject gui)
+        {
+            GUI_Elements.Add(gui);
+        }
+        public static void Remove_Gui_All()
+        {
+            foreach(GameObject gui in GUI_Elements)
+            {
+                Destroy(gui);
+            }
+            GUI_Elements.Clear();
+        }
+    }
     private void Start()
     {
       UI.SetActive(false);
@@ -20,6 +42,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GUI_Extra.Remove_Gui_All();
             if (Paused) Resume();
             else Pause();
         }
