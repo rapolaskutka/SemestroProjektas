@@ -66,5 +66,6 @@ public class KeyBinding : MonoBehaviour
     public void ChangeKey(GameObject clicked)
     {
         currentKey = clicked;
+        
     }
 }
