@@ -14,10 +14,10 @@ public class KeyBinding : MonoBehaviour
 
     void Start()
     {
-        keys.Add("Up", KeyCode.W);
-        keys.Add("Down", KeyCode.S);
-        keys.Add("Right", KeyCode.D);
-        keys.Add("Left", KeyCode.A);
+        keys.Add("Up", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W")));
+        keys.Add("Down", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Down", "S")));
+        keys.Add("Right", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Right", "D")));
+        keys.Add("Left", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Left", "A")));
 
         up.text = keys["Up"].ToString();
         down.text = keys["Down"].ToString();
@@ -69,4 +69,13 @@ public class KeyBinding : MonoBehaviour
         currentKey = clicked;
         
     }
+
+    public void SaveKey()
+    {
+        foreach (var item in keys)
+        {
+            PlayerPrefs.SetString(item.Key, item.Value.ToString());
+        }
+    }
+
 }

@@ -71,7 +71,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
             }
-            if (rb.velocity.y < 0 && !Input.GetKey(KeyCode.UpArrow))
+            if (rb.velocity.y < 0 && !Input.GetKey(PlayerPrefs.GetString("Up")))
             {
                 rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
             }
@@ -82,7 +82,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
             }
-            if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow))
+            if (rb.velocity.y > 0 && !Input.GetKey(PlayerPrefs.GetString("Up")))
             {
                 rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
             }
@@ -114,13 +114,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && Jumps > 0)
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W"))) && Jumps > 0)
         {
             animatorss.SetTrigger("Trigger");
             Jumping = true; JumpRequest = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.UpArrow) && Jumps > 0)
+        if (Input.GetKeyUp((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W"))) && Jumps > 0)  //(PlayerPrefs.GetString("Up")) 
         {
             Jumping = false;
             Jumps--;
