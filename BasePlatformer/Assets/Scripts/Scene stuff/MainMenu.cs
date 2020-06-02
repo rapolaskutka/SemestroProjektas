@@ -17,13 +17,17 @@ public class MainMenu : MonoBehaviour
     {
         StartCoroutine(LoadLevel("Tutorial"));
     }
+    public void ExitOptions()
+    {
+        StartCoroutine(LoadLevel("Menu"));
+    }
     public void Quit()
     {
         Application.Quit();
     }
     public void OptionsMenu()
     {
-        StartCoroutine(LoadLevel("Best"));
+        StartCoroutine(LoadLevel("Options"));
     }
     private IEnumerator LoadLevel(string levelname)
     {

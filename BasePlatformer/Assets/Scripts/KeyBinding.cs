@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class KeyBinding : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class KeyBinding : MonoBehaviour
 
     private GameObject currentKey;
 
-    public Text up, left, down, right, jump;
+    public TextMeshProUGUI up, left, down, right, jump;
 
     void Start()
     {
@@ -57,7 +58,7 @@ public class KeyBinding : MonoBehaviour
             if (e.isKey)
             {
                 keys[currentKey.name] = e.keyCode;
-                currentKey.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
+                currentKey.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = e.keyCode.ToString();
                 currentKey = null;
             }
         }
