@@ -28,8 +28,6 @@ public class MainMenu : MonoBehaviour
     public void OptionsMenu()
     {
         StartCoroutine(LoadLevel("Options"));
-        GameObject.Find("Canvas").transform.Find("MainMenu").gameObject.SetActive(false);
-        GameObject.Find("Canvas").transform.Find("Options_menu").gameObject.SetActive(true);
     }
     private IEnumerator LoadLevel(string levelname)
     {

@@ -29,6 +29,7 @@ public class ResumeGame : MonoBehaviour
         Save info = JsonUtility.FromJson<Save>(save);
         GameObject.Find("Info").GetComponent<Info>().health = info.health;
         GameObject.Find("Info").GetComponent<Info>().position = info.position;
+        File.Delete(Directory);
         SceneManager.LoadScene(info.scene);
         Time.timeScale = 1f;
     }

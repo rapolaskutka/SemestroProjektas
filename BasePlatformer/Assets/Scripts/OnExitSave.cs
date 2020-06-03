@@ -36,7 +36,7 @@ public class OnExitSave : MonoBehaviour
         };
         string json = JsonUtility.ToJson(save);
 
-        if (File.Exists(Directory))
+        if (!File.Exists(Directory))
         {
             File.Open(Directory, FileMode.CreateNew);
             File.WriteAllText(Directory, json);
