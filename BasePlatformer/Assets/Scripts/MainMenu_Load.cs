@@ -5,14 +5,19 @@ using System.IO;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Windows;
 
 public class MainMenu_Load : MonoBehaviour
 {
-    private string Directory;
+    private string Directorys;
     public static Loading_P instance;
     void Start()
     {
-        Directory = Application.dataPath + "/saves/";
+        Directorys = Application.dataPath + "/saves/";
+        if (!System.IO.Directory.Exists(Directorys))
+        {
+            System.IO.Directory.CreateDirectory(Directorys);
+        }
     }
 
     // Update is called once per frame
@@ -26,7 +31,7 @@ public class MainMenu_Load : MonoBehaviour
     }
     public void LoadDir()
     {
-        DirectoryInfo directory = new DirectoryInfo(Directory);
+        DirectoryInfo directory = new DirectoryInfo(Directorys);
         FileInfo[] files = directory.GetFiles("*.txt");
         GameObject Gui = GameObject.Find("Canvas").transform.Find("MainLoad").gameObject;
         GameObject menu = GameObject.Find("MainMenu");

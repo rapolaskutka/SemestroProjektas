@@ -11,10 +11,13 @@ public class ResumeGame : MonoBehaviour
     void Start()
     {
         Directory = Application.dataPath + "/resume/";
-        if(File.Exists(Directory + "LastSave.txt"))
+        if (!System.IO.Directory.Exists(Directory))
         {
-            if(File.ReadAllText(Directory + "LastSave.txt").Length != 0)
-            gameObject.transform.Find("Resume").gameObject.SetActive(true);
+            if (File.Exists(Directory + "LastSave.txt"))
+            {
+                if (File.ReadAllText(Directory + "LastSave.txt").Length != 0)
+                    gameObject.transform.Find("Resume").gameObject.SetActive(true);
+            }
         }
     }
 

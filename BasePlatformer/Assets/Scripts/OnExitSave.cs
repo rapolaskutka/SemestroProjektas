@@ -10,7 +10,11 @@ public class OnExitSave : MonoBehaviour
     private string Directory;
     void Start()
     {
-        Directory = Application.dataPath + "/resume/LastSave.txt";
+        Directory = Application.dataPath + "/resume/";
+        if(!System.IO.Directory.Exists(Directory))
+        {
+            System.IO.Directory.CreateDirectory(Directory);
+        }
     }
 
     // Update is called once per frame
@@ -36,9 +40,9 @@ public class OnExitSave : MonoBehaviour
         };
         string json = JsonUtility.ToJson(save);
 
-        if (!File.Exists(Directory))
+        if (!File.Exists(Directory + "/" + "LastSave.txt"))
         {
-            File.Open(Directory, FileMode.CreateNew);
+            File.Open(Directory + "/" + "LastSave.txt", FileMode.CreateNew);
             File.WriteAllText(Directory, json);
         }
         else

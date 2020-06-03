@@ -9,11 +9,15 @@ using UnityEngine.SceneManagement;
 public class Loading_P : MonoBehaviour
 {
     // Start is called before the first frame update
-    private string Directory;
+    private string Directorys;
     public static Loading_P instance;
     void Start()
     {
-        Directory = Application.dataPath + "/saves/";
+        Directorys = Application.dataPath + "/saves/";
+        if (!System.IO.Directory.Exists(Directorys))
+        {
+            System.IO.Directory.CreateDirectory(Directorys);
+        }
     }
 
     // Update is called once per frame
@@ -27,7 +31,7 @@ public class Loading_P : MonoBehaviour
     }
     public void LoadDir()
     {
-        DirectoryInfo directory = new DirectoryInfo(Directory);
+        DirectoryInfo directory = new DirectoryInfo(Directorys);
         FileInfo[] files = directory.GetFiles("*.txt");
         GameObject Gui = GameObject.Find("PauseMenuCanvas").transform.Find("Loads").gameObject;
         GameObject menu = GameObject.Find("Menu");
