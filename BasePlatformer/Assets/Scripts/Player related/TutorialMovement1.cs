@@ -53,7 +53,7 @@ public class TutorialMovement1 : MonoBehaviour
         JumpCheck();
         if (!Inwater) JumpHeightClocker();
         if (Input.GetKey(KeyCode.DownArrow) && Inwater) rb.gravityScale = 6;
-        if (Input.GetKeyUp(PlayerPrefs.GetString("Up")))
+        if (Input.GetKeyUp((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W"))))
         {
             Jumping = false;
             JumpTimeCounter = JumpTime;
@@ -83,7 +83,7 @@ public class TutorialMovement1 : MonoBehaviour
     }
     private void JumpHeightClocker()
     {
-        if (Input.GetKey(PlayerPrefs.GetString("Up")) && Jumping)
+        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W"))) && Jumping)
         {
             if (JumpTimeCounter > 0)
             {
@@ -97,7 +97,7 @@ public class TutorialMovement1 : MonoBehaviour
 
     private void JumpCheck()
     {
-        if (Input.GetKeyDown(PlayerPrefs.GetString("Up")) && Jumps > 0)
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W"))) && Jumps > 0)
         {
             animatorss.SetTrigger("Trigger");
             Jumping = true;
