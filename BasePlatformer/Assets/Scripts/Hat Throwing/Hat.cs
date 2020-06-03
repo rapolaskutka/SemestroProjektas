@@ -34,7 +34,7 @@ public class Hat : MonoBehaviour
         if(collision.tag.Equals("Boss"))
         {
             Boss_Health health= collision.GetComponent<Boss_Health>();
-            health.GetDamage(30, true, 5);
+            health.GetDamage(30, true, 3);
         }
        
     }
