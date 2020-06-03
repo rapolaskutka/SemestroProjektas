@@ -24,14 +24,9 @@ public class OnExitSave : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
-        Saving();
-    }
-    public void Saving()
-    {
         int healths = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthControl>().health;
         Vector3 positions = GameObject.FindGameObjectWithTag("Player").transform.position;
         int scene_index = SceneManager.GetActiveScene().buildIndex;
-
         Save save = new Save
         {
             health = healths,
@@ -39,16 +34,11 @@ public class OnExitSave : MonoBehaviour
             position = positions,
         };
         string json = JsonUtility.ToJson(save);
-
-        if (!File.Exists(Directory + "/" + "LastSave.txt"))
-        {
-            File.Open(Directory + "/" + "LastSave.txt", FileMode.CreateNew);
-            File.WriteAllText(Directory, json);
-        }
-        else
-        {
-            File.WriteAllText(Directory, json);
-        }
+        Saving(json);
+    }
+    public void Saving(string json)
+    {
+        File.WriteAllText(Directory + "LastSave.txt", json);
     }
     private class Save
     {
