@@ -17,21 +17,29 @@ public class Greeting_Player : MonoBehaviour
         start = GameObject.Find("Boss").GetComponent<Boss_Fight>();
         tiles = GameObject.Find("Platforms");
         tiles.SetActive(false);
-        Debug.Log(tiles);
+        Debug.Log(start);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag.Equals("Player") && gameObject.tag.Equals("Door") && !Boss_Enabled)
+        if (collision.gameObject.tag.Equals("Player") && (gameObject.tag.Equals("Door") || gameObject.name.Equals("PlayerSpawnTrigger")) && !Boss_Enabled)
         {
-            Boss_Enabled = true;
-            welcomes[0].enabled = true;
-            StartCoroutine(Next());
+            if (gameObject.name.Equals("PlayerSpawnTrigger"))
+            {
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            }
+            else
+            {
+                GameObject.Find("PlayerSpawnTrigger").GetComponent<BoxCollider2D>().enabled = false;
+                Boss_Enabled = true;
+                welcomes[0].enabled = true;
+                StartCoroutine(Next());
+            }
         }
         if(Boss_Enabled && collision.gameObject.tag.Equals("Player") && gameObject.tag.Equals("Door"))
         {
@@ -43,11 +51,13 @@ public class Greeting_Player : MonoBehaviour
         yield return new WaitForSeconds(3);
         welcomes[0].enabled = false;
         welcomes[1].enabled = true;
+        Debug.Log("Stop");
         StartCoroutine(Stop());
     }
     IEnumerator Stop()
     {
         yield return new WaitForSeconds(3);
+        start = GameObject.Find("Boss").GetComponent<Boss_Fight>();
         welcomes[0].enabled = false;
         welcomes[1].enabled = false;
         tiles.SetActive(true);

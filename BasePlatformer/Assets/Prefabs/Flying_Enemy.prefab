@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1687122423676166481}
   - component: {fileID: 1687122423676166478}
   - component: {fileID: 1687122423676166483}
-  - component: {fileID: 1687122423676166482}
   m_Layer: 0
   m_Name: Flying_Enemy
   m_TagString: Untagged
@@ -131,23 +130,10 @@ MonoBehaviour:
   StartPoint: {fileID: 3532701889711428555}
   FireballPrefab: {fileID: 4192075312750584742, guid: 71a8edc0aa626c64b89ea140e898a20c,
     type: 3}
-  Cooldown: 0
   CanSeeBehind: 0
   StartsLookingRight: 0
   RotateTime: 0
   Stationary: 0
---- !u!114 &1687122423676166482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687122423676166479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85912ec9082767449a211fd9b10cccb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1687122424031690679
 GameObject:
   m_ObjectHideFlags: 0
