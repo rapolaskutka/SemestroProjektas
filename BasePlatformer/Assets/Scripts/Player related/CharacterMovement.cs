@@ -71,7 +71,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
             }
-            if (rb.velocity.y < 0 && !Input.GetKey(PlayerPrefs.GetString("Up")))
+            if (rb.velocity.y < 0 && !Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W"))))
             {
                 rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
             }
@@ -82,7 +82,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplierFloat - 1) * Time.deltaTime;
             }
-            if (rb.velocity.y > 0 && !Input.GetKey(PlayerPrefs.GetString("Up")))
+            if (rb.velocity.y > 0 && !Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W"))))
             {
                 rb.velocity += Vector2.up * Physics.gravity.y * (lowJumpMultiplierFloat - 1) * Time.deltaTime;
             }

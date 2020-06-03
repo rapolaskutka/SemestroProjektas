@@ -13,7 +13,8 @@ public class ResumeGame : MonoBehaviour
         Directory = Application.dataPath + "/resume/";
         if(File.Exists(Directory + "LastSave.txt"))
         {
-            gameObject.transform.Find("LoadGame").gameObject.SetActive(true);
+            if(File.ReadAllText(Directory + "LastSave.txt").Length != 0)
+            gameObject.transform.Find("Resume").gameObject.SetActive(true);
         }
     }
 
@@ -29,7 +30,7 @@ public class ResumeGame : MonoBehaviour
         Save info = JsonUtility.FromJson<Save>(save);
         GameObject.Find("Info").GetComponent<Info>().health = info.health;
         GameObject.Find("Info").GetComponent<Info>().position = info.position;
-        File.Delete(Directory);
+        File.Delete(file);
         SceneManager.LoadScene(info.scene);
         Time.timeScale = 1f;
     }
