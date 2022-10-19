@@ -1,5 +1,10 @@
 <img src="https://cdn.discordapp.com/attachments/677905644170510348/684868641459535915/Asset_1-100.jpg" width="150" height="225"/>
 
+# Trailer showcase
+https://www.youtube.com/watch?v=jUYDww3I6Dw
+
+
+
 # Terminus Vitae
 
 A game project assignment for KTU in collaboration with SneakyBox.
