@@ -1,28 +1,30 @@
 <img src="https://cdn.discordapp.com/attachments/677905644170510348/684868641459535915/Asset_1-100.jpg" width="150" height="225"/>
 
-# Patent Pending
+# Terminus Vitae
 
-A game project assignment for KTU, collaboration with SneakyBox.
+A game project assignment for KTU in collaboration with SneakyBox.
+
+A 2d adventure game in which you go through the stages of character's after-life. Special features including ghost jumps, boss battles, gravity flippers, patrolling enemies and more!
 
 ## Installing
 
-Download the latest release, unzip it and run the Test3.exe
+Download the latest release, unzip it and run the executable in root directory.
 
 ## Built With
 
 * [Unity](https://unity.com/) - The main game engine.
 
-<img src="https://unity3d.com/files/images/ogimg.jpg" width="150" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Unity_Technologies_logo.svg/2560px-Unity_Technologies_logo.svg.png" width="150" />
 
 ## Contributing
 
-You can't
+Not available.
 
 ## Versioning
 
 * We use [GitHub Desktop](https://desktop.github.com/) for versioning.
 
-<img src="https://github.githubassets.com/images/modules/open_graph/github-mark.png" width="150" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Github-desktop-logo-symbol.svg/1024px-Github-desktop-logo-symbol.svg.png" width="150" />
 
 ## Authors
 
